@@ -7,3 +7,4 @@ lib/polina/beans/client.js
 lib/polina/beans/user.js
 lib/polina/beans/watcher.js
 lib/polina/beans/packet-handler.js
+lib/polina/beans/users-bundle.js
