@@ -10,4 +10,8 @@ lib/polina/beans/packet-handler.js
 lib/polina/beans/users-bundle.js
 
 lib/polina/redis/response-type.js
+lib/polina/redis/client.js
 lib/polina/redis/packet-handler.js
+lib/polina/redis/int-packet-handler.js
+lib/polina/redis/string-packet-handler.js
+lib/polina/redis/array-packet-handler.js

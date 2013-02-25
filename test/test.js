@@ -1,24 +1,23 @@
 var polina = require('../bin');
 
 
-var chunk = '*5\r\n:1\r\n:2\r\n:3\r\n:4\r\n$6\r\nfooba';
 
-var handler = new polina.redis.PacketHandler(console.log);
-chunk = handler.process(chunk);
 
-console.log(chunk);
 
-handler.process(chunk + 'r\r\n');
 
-//////////////////////
+var redis = new polina.redis.Client(6379);
 
-/*handler = new polina.redis.PacketHandler(console.log);
 
-chunk = handler.process(chunk);
-//console.log(chunk);
 
-handler = new polina.redis.PacketHandler(console.log);
+redis.__strCommand(['SET', 'kononenko', 'ты такой молодец'], console.info, console.error);
+redis.__strCommand(['GET', 'kononenko'], console.info, console.error);
 
-chunk += 'lo!\r\ndfty';
-chunk = handler.process(chunk);
-console.log(chunk);*/
+redis.__intCommand(['SADD', 'me', 'привет'], console.info, console.error);
+redis.__intCommand(['SADD', 'me', 'кононенко'], console.info, console.error);
+redis.__intCommand(['SADD', 'me', ','], console.info, console.error);
+redis.__intCommand(['SADD', 'me', 'ты'], console.info, console.error);
+redis.__intCommand(['SADD', 'me', 'крут'], console.info, console.error);
+
+redis.__arrCommand(['SMEMBERS', 'me'], console.info, console.error);
+redis.__intCommand(['SCARD', 'me'], console.info, console.error);
+redis.__arrCommand(['SMEMBERS', 'me'], console.info, console.error);

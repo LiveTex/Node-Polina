@@ -179,10 +179,22 @@ polina.redis.ResponseType = {
 
 /**
  * @constructor
- * @implements {polina.IPacketHandler}
- * @param {function(Error, string)=} opt_callback Обработчик результата.
+ * @extends {polina.Connection}
+ * @param {number} port Порт подключения.
+ * @param {string=} opt_host Хост для подключения.
  */
-polina.redis.PacketHandler = function(opt_callback) {};
+polina.redis.Client = function(port, opt_host) {};
+
+/**
+ * @type {number}
+ */
+polina.redis.Client.RECONNECT_TIMEOUT = 1000;
+
+/**
+ * @constructor
+ * @implements {polina.IPacketHandler}
+ */
+polina.redis.PacketHandler = function() {};
 
 /**
  * @inheritDoc
@@ -198,6 +210,30 @@ polina.redis.PacketHandler.prototype.process = function(chunk) {};
  * @inheritDoc
  */
 polina.redis.PacketHandler.prototype.destroy = function() {};
+
+/**
+ * @constructor
+ * @extends {polina.redis.PacketHandler}
+ * @param {function(number)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.IntPacketHandler = function(complete, cancel) {};
+
+/**
+ * @constructor
+ * @extends {polina.redis.PacketHandler}
+ * @param {function(string)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.StringPacketHandler = function(complete, cancel) {};
+
+/**
+ * @constructor
+ * @extends {polina.redis.PacketHandler}
+ * @param {function(!Array.<string>)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.ArrayPacketHandler = function(complete, cancel) {};
 
 
 
