@@ -16,6 +16,16 @@ polina.VERSION = '0.0.1';
 polina.beans = {};
 
 /**
+ * @namespace
+ */
+polina.redis = {};
+
+/**
+ * Ничего.
+ */
+polina.nop = function() {};
+
+/**
  * @interface
  */
 polina.IPacketHandler = function() {};
@@ -51,17 +61,15 @@ polina.Connection = function(errorHandler, reconnectTimeout, port, opt_host) {};
 polina.Connection.prototype.destroy = function() {};
 
 /**
- * @param {string} payload Данные.
- * @param {!polina.IPacketHandler} handler Обработчик пакета.
- */
-polina.Connection.prototype.send = function(payload, handler) {};
-
-/**
  * @constructor
+ * @extends {polina.Connection}
+ * @param {string} handshakePayload Инициирующий пакет.
+ * @param {!polina.beans.PacketHandler} handshakeHandler Инициирующий пакет.
  * @param {number} port Порт подключения.
  * @param {string=} opt_host Хост для подключения.
  */
-polina.beans.Client = function(port, opt_host) {};
+polina.beans.Client =
+    function(handshakePayload, handshakeHandler, port, opt_host) {};
 
 /**
  * @type {number}
@@ -69,10 +77,13 @@ polina.beans.Client = function(port, opt_host) {};
 polina.beans.Client.RECONNECT_TIMEOUT = 1000;
 
 /**
- * @param {string} tube Труба.
- * @param {function(Error)=} opt_callback Обработчик результата.
+ * @constructor
+ * @extends {polina.beans.Client}
+ * @param {string} tube Труба наблюдения.
+ * @param {number} port Порт подключения.
+ * @param {string=} opt_host Хост для подключения.
  */
-polina.beans.Client.prototype.use = function(tube, opt_callback) {};
+polina.beans.User = function(tube, port, opt_host) {};
 
 /**
  *
@@ -82,25 +93,28 @@ polina.beans.Client.prototype.use = function(tube, opt_callback) {};
  * @param {string} data Данные.
  * @param {?function(Error, string=)=} opt_callback Обработчик результата.
  */
-polina.beans.Client.prototype.put =
+polina.beans.User.prototype.put =
     function(priority, timeout, execTime, data, opt_callback) {};
 
 /**
- * @param {string} tube Труба.
- * @param {Function=} opt_callback Обработчик результата.
+ * @constructor
+ * @extends {polina.beans.Client}
+ * @param {number} tube Труба наблюдения.
+ * @param {number} port Порт подключения.
+ * @param {string=} opt_host Хост для подключения.
  */
-polina.beans.Client.prototype.watch = function(tube, opt_callback) {};
+polina.beans.Watcher = function(tube, port, opt_host) {};
 
 /**
  * @param {function(Error, string=, string=)} callback Обработчик результата.
  */
-polina.beans.Client.prototype.reserve = function(callback) {};
+polina.beans.Watcher.prototype.reserve = function(callback) {};
 
 /**
  * @param {string} jobId Идентификатор задачи.
  * @param {function(Error)} callback Обработчик результата.
  */
-polina.beans.Client.prototype.delete = function(jobId, callback) {};
+polina.beans.Watcher.prototype.delete = function(jobId, callback) {};
 
 /**
  * @param {string} jobId Идентификатор задачи.
@@ -108,16 +122,16 @@ polina.beans.Client.prototype.delete = function(jobId, callback) {};
  * @param {number} timeout Таймаут.
  * @param {function(Error)} callback Обработчик результата.
  */
-polina.beans.Client.prototype.release =
+polina.beans.Watcher.prototype.release =
     function(jobId, priority, timeout, callback) {};
 
 /**
  * @constructor
  * @implements {polina.IPacketHandler}
  * @param {string} expectedResponse Ожидaемый результат.
- * @param {Function} callback Обработчик результата.
+ * @param {Function=} opt_callback Обработчик результата.
  */
-polina.beans.PacketHandler = function(expectedResponse, callback) {};
+polina.beans.PacketHandler = function(expectedResponse, opt_callback) {};
 
 /**
  * @inheritDoc
@@ -133,5 +147,58 @@ polina.beans.PacketHandler.prototype.process = function(chunk) {};
  * @inheritDoc
  */
 polina.beans.PacketHandler.prototype.destroy = function() {};
+
+/**
+ * @constructor
+ * @param {string} tube Труба наблюдения.
+ * @param {!Array.<number>} ports Порт подключения.
+ * @param {!Array.<string>=} opt_hosts Хост для подключения.
+ */
+polina.beans.UsersBundle = function(tube, ports, opt_hosts) {};
+
+/**
+ * @param {number} priority Приоритет.
+ * @param {number} timeout Таймаут.
+ * @param {number} execTime Время на обработку.
+ * @param {string} data Данные.
+ * @param {?function(Error, string=)=} opt_callback Обработчик результата.
+ */
+polina.beans.UsersBundle.prototype.put =
+    function(priority, timeout, execTime, data, opt_callback) {};
+
+/**
+ * @enum {string}
+ */
+polina.redis.ResponseType = {
+  OK: '+',
+  ERR: '-',
+  INT: ':',
+  BULK: '$',
+  MULTI_BULK: '*'
+};
+
+/**
+ * @constructor
+ * @implements {polina.IPacketHandler}
+ * @param {function(Error, string)=} opt_callback Обработчик результата.
+ */
+polina.redis.PacketHandler = function(opt_callback) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.PacketHandler.prototype.isComplete = function() {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.PacketHandler.prototype.process = function(chunk) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.PacketHandler.prototype.destroy = function() {};
+
+
 
 
