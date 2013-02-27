@@ -36,15 +36,11 @@ polina.IPacketHandler = function() {};
 polina.IPacketHandler.prototype.isComplete = function() {};
 
 /**
- * @param {string} chunk Пакет данных.
- * @return {string} Не обработанный остаток.
+ * @param {number} cursor Курсор.
+ * @param {!Buffer} chunk Пакет данных.
+ * @return {number} Новое положение курсора.
  */
-polina.IPacketHandler.prototype.process = function(chunk) {};
-
-/**
- * Удаление обработчика.
- */
-polina.IPacketHandler.prototype.destroy = function() {};
+polina.IPacketHandler.prototype.process = function(cursor, chunk) {};
 
 /**
  * @constructor
@@ -141,12 +137,7 @@ polina.beans.PacketHandler.prototype.isComplete = function() {};
 /**
  * @inheritDoc
  */
-polina.beans.PacketHandler.prototype.process = function(chunk) {};
-
-/**
- * @inheritDoc
- */
-polina.beans.PacketHandler.prototype.destroy = function() {};
+polina.beans.PacketHandler.prototype.process = function(cursor, chunk) {};
 
 /**
  * @constructor
@@ -167,14 +158,14 @@ polina.beans.UsersBundle.prototype.put =
     function(priority, timeout, execTime, data, opt_callback) {};
 
 /**
- * @enum {string}
+ * @enum {number}
  */
 polina.redis.ResponseType = {
-  OK: '+',
-  ERR: '-',
-  INT: ':',
-  BULK: '$',
-  MULTI_BULK: '*'
+  OK: '+'.charCodeAt(0),
+  ERR: '-'.charCodeAt(0),
+  INT: ':'.charCodeAt(0),
+  BULK: '$'.charCodeAt(0),
+  MULTI_BULK: '*'.charCodeAt(0)
 };
 
 /**
@@ -191,10 +182,59 @@ polina.redis.Client = function(port, opt_host) {};
 polina.redis.Client.RECONNECT_TIMEOUT = 1000;
 
 /**
+ *
+ * @param {string} key Ключ.
+ * @param {string} value Значение.
+ * @param {function(string)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.Client.prototype.set = function(key, value, complete, cancel) {};
+
+/**
+ * @param {string} key Ключ.
+ * @param {function(string)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.Client.prototype.get = function(key, complete, cancel) {};
+
+/**
+ * @param {string|!Array.<string>} key Ключи.
+ * @param {function(number)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.Client.prototype.del = function(key, complete, cancel) {};
+
+/**
+ * @param {string} key Ключ.
+ * @param {string|!Array.<string>} value Значение.
+ * @param {function(number)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.Client.prototype.sadd = function(key, value, complete, cancel) {};
+
+/**
+ * @param {string} key Ключ.
+ * @param {string|!Array.<string>} value Значение.
+ * @param {function(number)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.Client.prototype.srem = function(key, value, complete, cancel) {};
+
+/**
+ * @param {string} key Ключ.
+ * @param {function(!Array.<string>)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.Client.prototype.smembers = function(key, complete, cancel) {};
+
+/**
  * @constructor
  * @implements {polina.IPacketHandler}
+ * @param {!Function} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ * @param {number} type Тип ответа.
  */
-polina.redis.PacketHandler = function() {};
+polina.redis.PacketHandler = function(complete, cancel, type) {};
 
 /**
  * @inheritDoc
@@ -204,36 +244,7 @@ polina.redis.PacketHandler.prototype.isComplete = function() {};
 /**
  * @inheritDoc
  */
-polina.redis.PacketHandler.prototype.process = function(chunk) {};
-
-/**
- * @inheritDoc
- */
-polina.redis.PacketHandler.prototype.destroy = function() {};
-
-/**
- * @constructor
- * @extends {polina.redis.PacketHandler}
- * @param {function(number)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
- */
-polina.redis.IntPacketHandler = function(complete, cancel) {};
-
-/**
- * @constructor
- * @extends {polina.redis.PacketHandler}
- * @param {function(string)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
- */
-polina.redis.StringPacketHandler = function(complete, cancel) {};
-
-/**
- * @constructor
- * @extends {polina.redis.PacketHandler}
- * @param {function(!Array.<string>)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
- */
-polina.redis.ArrayPacketHandler = function(complete, cancel) {};
+polina.redis.PacketHandler.prototype.process = function(cursor, chunk) {};
 
 
 

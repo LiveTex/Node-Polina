@@ -1,23 +1,24 @@
 var polina = require('../bin');
 
 
+var client = new polina.redis.Client(6379);
+
+var i = 0;
+var c = 500000;
+
+console.time('1');
+
+function handleRequest(result) {
+  if ((c -= 1) === 0) {
+    console.timeEnd('1');
+    process.exit();
+  }
+}
 
 
+while (i < c/2) {
+  client.smembers('me', handleRequest, console.error);
+  client.get('kononenko', handleRequest, console.error);
 
-
-var redis = new polina.redis.Client(6379);
-
-
-
-redis.__strCommand(['SET', 'kononenko', 'ты такой молодец'], console.info, console.error);
-redis.__strCommand(['GET', 'kononenko'], console.info, console.error);
-
-redis.__intCommand(['SADD', 'me', 'привет'], console.info, console.error);
-redis.__intCommand(['SADD', 'me', 'кононенко'], console.info, console.error);
-redis.__intCommand(['SADD', 'me', ','], console.info, console.error);
-redis.__intCommand(['SADD', 'me', 'ты'], console.info, console.error);
-redis.__intCommand(['SADD', 'me', 'крут'], console.info, console.error);
-
-redis.__arrCommand(['SMEMBERS', 'me'], console.info, console.error);
-redis.__intCommand(['SCARD', 'me'], console.info, console.error);
-redis.__arrCommand(['SMEMBERS', 'me'], console.info, console.error);
+  i += 1;
+}
