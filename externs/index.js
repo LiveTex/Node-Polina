@@ -26,6 +26,14 @@ polina.redis = {};
 polina.nop = function() {};
 
 /**
+ * JS Implementation of MurmurHash3 (r136) (as of May 20, 2011)
+ *
+ * @param {string} key ASCII only.
+ * @return {number} 32-bit positive integer hash.
+ */
+polina.murmur = function(key) {};
+
+/**
  * @interface
  */
 polina.IPacketHandler = function() {};
@@ -169,8 +177,63 @@ polina.redis.ResponseType = {
 };
 
 /**
+ * @interface
+ */
+polina.redis.IClient = function() {};
+
+/**
+ * @param {string} key Ключ.
+ * @param {string} value Значение.
+ * @param {function(string)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.IClient.prototype.set =
+    function(key, value, complete, cancel) {};
+
+/**
+ * @param {string} key Ключ.
+ * @param {function(string)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.IClient.prototype.get = function(key, complete, cancel) {};
+
+/**
+ * @param {string} key Ключ.
+ * @param {function(number)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.IClient.prototype.del = function(key, complete, cancel) {};
+
+/**
+ * @param {string} key Ключ.
+ * @param {string|!Array.<string>} value Значение.
+ * @param {function(number)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.IClient.prototype.sadd =
+    function(key, value, complete, cancel) {};
+
+/**
+ * @param {string} key Ключ.
+ * @param {string|!Array.<string>} value Значение.
+ * @param {function(number)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.IClient.prototype.srem =
+    function(key, value, complete, cancel) {};
+
+/**
+ * @param {string} key Ключ.
+ * @param {function(!Array.<string>)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.IClient.prototype.smembers =
+    function(key, complete, cancel) {};
+
+/**
  * @constructor
  * @extends {polina.Connection}
+ * @implements {polina.redis.IClient}
  * @param {number} port Порт подключения.
  * @param {string=} opt_host Хост для подключения.
  */
@@ -182,27 +245,83 @@ polina.redis.Client = function(port, opt_host) {};
 polina.redis.Client.RECONNECT_TIMEOUT = 1000;
 
 /**
- *
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.set = function(key, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.get = function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.del = function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.sadd = function(key, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.srem = function(key, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.smembers = function(key, complete, cancel) {};
+
+/**
+ * @constructor
+ * @implements {polina.redis.IClient}
+ * @param {number} size Размер бакета.
+ */
+polina.redis.Bucket = function(size) {};
+
+/**
+ * @param {number} size Размер бакета.
+ */
+polina.redis.Bucket.prototype.resize = function(size) {};
+
+/**
+ * @param {number} intervalStart Начало выделенного интервала.
+ * @param {number} intervalEnd Конец выделенного интервала.
+ * @param {number} port Порт подключения.
+ * @param {string=} opt_host Хост подключения.
+ */
+polina.redis.Bucket.prototype.registerClient =
+    function(intervalStart, intervalEnd, port, opt_host) {};
+
+/**
+ * @param {number} port Порт подключения.
+ * @param {string=} opt_host Хост подключения.
+ */
+polina.redis.Bucket.prototype.terminateClient = function(port, opt_host) {};
+
+/**
  * @param {string} key Ключ.
  * @param {string} value Значение.
  * @param {function(string)} complete Обработчик результата.
  * @param {function(string, number=)} cancel Обработчик ошибки.
  */
-polina.redis.Client.prototype.set = function(key, value, complete, cancel) {};
+polina.redis.Bucket.prototype.set = function(key, value, complete, cancel) {};
 
 /**
  * @param {string} key Ключ.
  * @param {function(string)} complete Обработчик результата.
  * @param {function(string, number=)} cancel Обработчик ошибки.
  */
-polina.redis.Client.prototype.get = function(key, complete, cancel) {};
+polina.redis.Bucket.prototype.get = function(key, complete, cancel) {};
 
 /**
- * @param {string|!Array.<string>} key Ключи.
+ * @param {string} key Ключ.
  * @param {function(number)} complete Обработчик результата.
  * @param {function(string, number=)} cancel Обработчик ошибки.
  */
-polina.redis.Client.prototype.del = function(key, complete, cancel) {};
+polina.redis.Bucket.prototype.del = function(key, complete, cancel) {};
 
 /**
  * @param {string} key Ключ.
@@ -210,7 +329,7 @@ polina.redis.Client.prototype.del = function(key, complete, cancel) {};
  * @param {function(number)} complete Обработчик результата.
  * @param {function(string, number=)} cancel Обработчик ошибки.
  */
-polina.redis.Client.prototype.sadd = function(key, value, complete, cancel) {};
+polina.redis.Bucket.prototype.sadd = function(key, value, complete, cancel) {};
 
 /**
  * @param {string} key Ключ.
@@ -218,14 +337,14 @@ polina.redis.Client.prototype.sadd = function(key, value, complete, cancel) {};
  * @param {function(number)} complete Обработчик результата.
  * @param {function(string, number=)} cancel Обработчик ошибки.
  */
-polina.redis.Client.prototype.srem = function(key, value, complete, cancel) {};
+polina.redis.Bucket.prototype.srem = function(key, value, complete, cancel) {};
 
 /**
  * @param {string} key Ключ.
  * @param {function(!Array.<string>)} complete Обработчик результата.
  * @param {function(string, number=)} cancel Обработчик ошибки.
  */
-polina.redis.Client.prototype.smembers = function(key, complete, cancel) {};
+polina.redis.Bucket.prototype.smembers = function(key, complete, cancel) {};
 
 /**
  * @constructor

@@ -16,4 +16,3 @@ client.smembers('me', console.info, console.error);
 client.srem('me', ',', console.info, console.error);
 client.smembers('me', console.info, console.error);
 
-client.del([], console.info, console.error);
