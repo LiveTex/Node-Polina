@@ -103,31 +103,36 @@ polina.beans.User.prototype.put =
 /**
  * @constructor
  * @extends {polina.beans.Client}
- * @param {number} tube Труба наблюдения.
+ * @param {string} tube Труба наблюдения.
  * @param {number} port Порт подключения.
  * @param {string=} opt_host Хост для подключения.
  */
 polina.beans.Watcher = function(tube, port, opt_host) {};
 
 /**
- * @param {function(Error, string=, string=)} callback Обработчик результата.
+ * @param {function(string, string)} callback Обработчик результата.
  */
 polina.beans.Watcher.prototype.reserve = function(callback) {};
 
 /**
- * @param {string} jobId Идентификатор задачи.
- * @param {function(Error)} callback Обработчик результата.
+ * @param {string} jid Идентификатор задачи.
+ * @param {function()} callback Обработчик результата.
  */
-polina.beans.Watcher.prototype.delete = function(jobId, callback) {};
+polina.beans.Watcher.prototype.delete = function(jid, callback) {};
 
 /**
- * @param {string} jobId Идентификатор задачи.
+ * @param {string} jid Идентификатор задачи.
  * @param {number} priority Приоритет.
  * @param {number} timeout Таймаут.
- * @param {function(Error)} callback Обработчик результата.
+ * @param {function()} callback Обработчик результата.
  */
 polina.beans.Watcher.prototype.release =
-    function(jobId, priority, timeout, callback) {};
+    function(jid, priority, timeout, callback) {};
+
+/**
+ * @inheritDoc
+ */
+polina.beans.Watcher.prototype.destroy = function() {};
 
 /**
  * @constructor
@@ -164,6 +169,11 @@ polina.beans.UsersBundle = function(tube, ports, opt_hosts) {};
  */
 polina.beans.UsersBundle.prototype.put =
     function(priority, timeout, execTime, data, opt_callback) {};
+
+/**
+ * Разрушение.
+ */
+polina.beans.UsersBundle.prototype.destroy = function() {};
 
 /**
  * @enum {number}
