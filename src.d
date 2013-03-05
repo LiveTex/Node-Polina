@@ -14,3 +14,4 @@ lib/polina/redis/i-client.js
 lib/polina/redis/client.js
 lib/polina/redis/bucket.js
 lib/polina/redis/packet-handler.js
+lib/polina/redis/connections-bundle.js
