@@ -65,22 +65,6 @@ polina.Connection = function(errorHandler, reconnectTimeout, port, opt_host) {};
 polina.Connection.prototype.destroy = function() {};
 
 /**
- * @param {string} payload Данные.
- * @param {!polina.IPacketHandler} handler Обработчик пакета.
- */
-polina.Connection.prototype._send = function(payload, handler) {};
-
-/**
- * @return {string} Инициирующий запрос.
- */
-polina.Connection.prototype._getHandshakePayload = function() {};
-
-/**
- * @return {polina.IPacketHandler} Инициирующий пакет.
- */
-polina.Connection.prototype._getHandshakeHandler = function() {};
-
-/**
  * @constructor
  * @extends {polina.Connection}
  * @param {string} handshakePayload Инициирующий пакет.
@@ -95,26 +79,6 @@ polina.beans.Client =
  * @type {number}
  */
 polina.beans.Client.RECONNECT_TIMEOUT = 1000;
-
-/**
- * @return {string} Инициирующий запрос.
- */
-polina.beans.Client.prototype._getHandshakePayload = function() {};
-
-/**
- * @return {polina.IPacketHandler} Инициирующий пакет.
- */
-polina.beans.Client.prototype._getHandshakeHandler = function() {};
-
-/**
- * @param {string} name Имя команды.
- * @param {string} args Аргументы комады.
- * @param {string} response Ожидаемый результат.
- * @param {Function} callback Обработчик результата.
- * @param {string=} opt_data Данные.
- */
-polina.beans.Client.prototype._command =
-    function(name, args, response, callback, opt_data) {};
 
 /**
  * @constructor
@@ -412,15 +376,6 @@ polina.redis.PacketHandler.prototype.isComplete = function() {};
 polina.redis.PacketHandler.prototype.process = function(cursor, chunk) {};
 
 /**
- */
-polina.redis.PacketHandler.prototype._complete = function() {};
-
-/**
- * @param {!Buffer} error Ошибка.
- */
-polina.redis.PacketHandler.prototype._cancel = function(error) {};
-
-/**
  * @constructor
  * @implements {polina.redis.IClient}
  * @param {number} count Количество соединений.
@@ -430,60 +385,35 @@ polina.redis.PacketHandler.prototype._cancel = function(error) {};
 polina.redis.ConnectionsBundle = function(count, port, opt_host) {};
 
 /**
- * @param {string} key Ключ.
- * @param {string} value Значение.
- * @param {function(string)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * @inheritDoc
  */
 polina.redis.ConnectionsBundle.prototype.set =
     function(key, value, complete, cancel) {};
 
 /**
- * @param {string} key Ключ.
- * @param {function(string)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * @inheritDoc
  */
 polina.redis.ConnectionsBundle.prototype.get = function(key, complete, cancel) {};
 
 /**
- *
- * @param {string} key Ключ.
- * @param {function(number)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * @inheritDoc
  */
 polina.redis.ConnectionsBundle.prototype.del = function(key, complete, cancel) {};
 
 /**
- *
- * @param {string} keys Ключи.
- * @param {function(number)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
- */
-polina.redis.ConnectionsBundle.prototype.delete =
-    function(keys, complete, cancel) {};
-
-/**
- * @param {string} key Ключ.
- * @param {string|!Array.<string>} value Значение.
- * @param {function(number)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * @inheritDoc
  */
 polina.redis.ConnectionsBundle.prototype.sadd =
     function(key, value, complete, cancel) {};
 
 /**
- * @param {string} key Ключ.
- * @param {string|!Array.<string>} value Значение.
- * @param {function(number)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * @inheritDoc
  */
 polina.redis.ConnectionsBundle.prototype.srem =
     function(key, value, complete, cancel) {};
 
 /**
- * @param {string} key Ключ.
- * @param {function(!Array.<string>)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * @inheritDoc
  */
 polina.redis.ConnectionsBundle.prototype.smembers =
     function(key, complete, cancel) {};
