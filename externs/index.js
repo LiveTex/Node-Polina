@@ -26,12 +26,28 @@ polina.redis = {};
 polina.nop = function() {};
 
 /**
- * JS Implementation of MurmurHash3 (r136) (as of May 20, 2011)
- *
- * @param {string} key ASCII only.
- * @return {number} 32-bit positive integer hash.
+ * @typedef {{
+ *  intervalStart: number,
+ *  intervalEnd: number,
+ *  connectionCount: number,
+ *  port: number,
+ *  host: string
+ * }}
  */
-polina.murmur = function(key) {};
+polina.RedisConfig;
+
+/**
+ * JS Implementation of MurmurHash2
+ *
+ * @author <a href="mailto:gary.court@gmail.com">Gary Court</a>
+ * @see http://github.com/garycourt/murmurhash-js
+ * @author <a href="mailto:aappleby@gmail.com">Austin Appleby</a>
+ * @see http://sites.google.com/site/murmurhash/
+ *
+ * @param {string} str ASCII only
+ * @return {number} 32-bit positive integer hash
+ */
+polina.murmur = function(str) {};
 
 /**
  * @interface
