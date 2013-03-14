@@ -27,6 +27,7 @@ polina.nop = function() {};
 
 /**
  * @typedef {{
+ *  id: string,
  *  intervalStart: number,
  *  intervalEnd: number,
  *  connectionCount: number,
@@ -354,20 +355,20 @@ polina.redis.Bucket = function(size) {};
 polina.redis.Bucket.prototype.resize = function(size) {};
 
 /**
+ *
+ *
  * @param {number} intervalStart Начало выделенного интервала.
  * @param {number} intervalEnd Конец выделенного интервала.
- * @param {number} connectionCount Сило соединений.
- * @param {number} port Порт подключения.
- * @param {string=} opt_host Хост подключения.
+ * @param {!polina.redis.IClient} client Redis-клиент.
+ * @param {string} id Идентификатор клиента.
  */
 polina.redis.Bucket.prototype.registerClient =
-    function(intervalStart, intervalEnd, connectionCount, port, opt_host) {};
+    function(intervalStart, intervalEnd, client, id) {};
 
 /**
- * @param {number} port Порт подключения.
- * @param {string=} opt_host Хост подключения.
+ * @param {string} id Идентификатор клиента.
  */
-polina.redis.Bucket.prototype.terminateClient = function(port, opt_host) {};
+polina.redis.Bucket.prototype.terminateClient = function(id) {};
 
 /**
  * @inheritDoc
