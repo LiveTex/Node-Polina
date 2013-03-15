@@ -52,12 +52,16 @@ polina.IPacketHandler.prototype.process = function(cursor, chunk) {};
 
 /**
  * @constructor
- * @param {function(!Error)} errorHandler Обработчик ошибок.
- * @param {number} reconnectTimeout Интервал переподключения.
  * @param {number} port Порт подключения.
  * @param {string=} opt_host Хост для подключения.
  */
-polina.Connection = function(errorHandler, reconnectTimeout, port, opt_host) {};
+polina.Connection = function(port, opt_host) {};
+
+/**
+ * @param {number} port Порт подключения.
+ * @param {string=} opt_host Хост для подключения.
+ */
+polina.Connection.prototype.registerFallback = function(port, opt_host) {};
 
 /**
  *
@@ -90,11 +94,6 @@ polina.Connection.prototype._getHandshakeHandler = function() {};
  */
 polina.beans.Client =
     function(handshakePayload, handshakeHandler, port, opt_host) {};
-
-/**
- * @type {number}
- */
-polina.beans.Client.RECONNECT_TIMEOUT = 1000;
 
 /**
  * @return {string} Инициирующий запрос.
@@ -289,11 +288,6 @@ polina.redis.IClient.prototype.destroy = function() {};
  * @param {string=} opt_host Хост для подключения.
  */
 polina.redis.Client = function(port, opt_host) {};
-
-/**
- * @type {number}
- */
-polina.redis.Client.RECONNECT_TIMEOUT = 1000;
 
 /**
  * @inheritDoc
