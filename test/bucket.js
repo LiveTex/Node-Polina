@@ -1,14 +1,11 @@
 var polina = require('../bin');
 
 
-var client = new polina.redis.Bucket(1024);
-
-client.registerClient(0, 511, 6379, '192.168.48.14');
-client.registerClient(512, 1024, 6379, '127.0.0.1');
-
+var client = new polina.redis.Client(6379);
+client.registerFallback(6379, '192.168.48.14');
 
 var i = 0;
-var c = 1000;
+var c = 100000;
 
 console.time('1');
 
@@ -16,20 +13,22 @@ function handleRequest(result) {
   if ((c -= 1) === 0) {
     console.timeEnd('1');
 
-    client.resize(512);
-    client.registerClient(0, 127, 6379, '192.168.48.14');
-    client.registerClient(128, 512, 6379, '127.0.0.1');
+    /*client.resize(512);
+    client.registerClient(0, 127, new polina.redis.Client(6379), 'remote');
+    client.registerClient(128, 512, new polina.redis.Client(6379, '192.168.48.14'), 'local');
 
     client.smembers('me', console.info, console.error);
-    client.get('kononenko', console.info, console.error);
+    client.get('kononenko', console.info, console.error);*/
   }
 }
 
 
 
 while (i < c/2) {
-  client.smembers('me', handleRequest, console.error);
-  client.get('kononenko', handleRequest, console.error);
+  setTimeout(function() {
+    client.smembers('me', handleRequest, console.error);
+    client.get('kononenko', handleRequest, console.error);
+  }, i);
 
   i += 1;
 }
@@ -52,3 +51,7 @@ client.smembers('me', console.info, console.error);
 client.del('me', console.info, console.error);
 client.del('kononenko', console.info, console.error);
 */
+
+
+/*var socket = new net.Socket();
+socket.connect(6379);*/

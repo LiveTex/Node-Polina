@@ -40,13 +40,11 @@ polina.RedisConfig;
 /**
  * JS Implementation of MurmurHash2
  *
- * @author <a href="mailto:gary.court@gmail.com">Gary Court</a>
  * @see http://github.com/garycourt/murmurhash-js
- * @author <a href="mailto:aappleby@gmail.com">Austin Appleby</a>
  * @see http://sites.google.com/site/murmurhash/
  *
- * @param {string} str ASCII only
- * @return {number} 32-bit positive integer hash
+ * @param {string} str ASCII only.
+ * @return {number} 32-bit positive integer hash.
  */
 polina.murmur = function(str) {};
 
@@ -434,45 +432,45 @@ polina.redis.PacketHandler.prototype._cancel = function(error) {};
  * @param {number} port Порт.
  * @param {string=} opt_host Хост.
  */
-polina.redis.ConnectionsBundle = function(count, port, opt_host) {};
+polina.redis.Bundle = function(count, port, opt_host) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.ConnectionsBundle.prototype.set =
+polina.redis.Bundle.prototype.set =
     function(key, value, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.ConnectionsBundle.prototype.get = function(key, complete, cancel) {};
+polina.redis.Bundle.prototype.get = function(key, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.ConnectionsBundle.prototype.del = function(key, complete, cancel) {};
+polina.redis.Bundle.prototype.del = function(key, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.ConnectionsBundle.prototype.sadd =
+polina.redis.Bundle.prototype.sadd =
     function(key, value, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.ConnectionsBundle.prototype.srem =
+polina.redis.Bundle.prototype.srem =
     function(key, value, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.ConnectionsBundle.prototype.smembers =
+polina.redis.Bundle.prototype.smembers =
     function(key, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.ConnectionsBundle.prototype.destroy = function() {};
+polina.redis.Bundle.prototype.destroy = function() {};
 
 
