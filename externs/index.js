@@ -435,6 +435,12 @@ polina.redis.PacketHandler.prototype._cancel = function(error) {};
 polina.redis.Bundle = function(count, port, opt_host) {};
 
 /**
+ * @param {number} port Порт подключения.
+ * @param {string=} opt_host Хост для подключения.
+ */
+polina.redis.Bundle.prototype.registerFallback = function(port, opt_host) {};
+
+/**
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.set =
