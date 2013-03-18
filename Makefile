@@ -1,5 +1,3 @@
-
-
 #
 #	Variables
 #
@@ -9,43 +7,64 @@ JS_BUILD_HOME ?= /usr/lib/js-build-tools
 DESTDIR = 
 
 JS_ROOT_DIR  = ./
-JS_DEPS_DIRS = /usr/lib/node/ds/
+JS_CUSTOM_EXTERNS = 
+JS_DEFAULT_ENV = node
+JS_LEVEL = WHITESPACE_ONLY
+
+MODULE_NAME = polina
+
+DEV_INSTALL_PREFIX ?= /usr/lib/node
+DEPLOY_INSTALL_PREFIX ?= /var/lib/livetex/Livetex-Server
+DEPLOY_RELEASE = 1.0.0
+
+JS_DEPS_DIRS =  /usr/lib/node/ds/
 
 include $(JS_BUILD_HOME)/js-variables.mk
-
-
-
-MODULE_NAME ?= polina
-INSTALL_PREFIX ?= /usr/lib/
-
 
 #
 #	Rules
 #
 
-all : js-externs js-export
+all: build
 
 
-check : js-test-compile js-test-lint
+check: js-test-compile js-test-lint
 
 
-install-dev :
-	ln -sf $(CURDIR) $(DESTDIR)$(INSTALL_PREFIX)/node/$(MODULE_NAME)
+build: js-export
 
 
-install :
-	mkdir -p $(DESTDIR)$(INSTALL_PREFIX)/node/$(MODULE_NAME)/bin/;
-	mkdir -p $(DESTDIR)$(INSTALL_PREFIX)/node/$(MODULE_NAME)/externs/;
-	cp package.json $(DESTDIR)$(INSTALL_PREFIX)/node/$(MODULE_NAME)/;
-	cp bin/index.js $(DESTDIR)$(INSTALL_PREFIX)/node/$(MODULE_NAME)/bin/;
-	cp -R externs/*.js $(DESTDIR)$(INSTALL_PREFIX)/node/$(MODULE_NAME)/externs/;
+install: install-dev
 
 
-uninstall :
-	rm -rf $(DESTDIR)$(INSTALL_PREFIX)/node/$(MODULE_NAME);
+install-dev:
+	mkdir -p $(DEV_INSTALL_PREFIX)/$(MODULE_NAME)/bin/;
+	mkdir -p $(DEV_INSTALL_PREFIX)/$(MODULE_NAME)/externs/;
+	cp package.json $(DEV_INSTALL_PREFIX)/$(MODULE_NAME)/;
+	cp bin/index.js $(DEV_INSTALL_PREFIX)/$(MODULE_NAME)/bin/;
+	cp externs/index.js $(DEV_INSTALL_PREFIX)/$(MODULE_NAME)/externs/;
 
 
-clean : js-clean
+install-deploy:
+	mkdir -p $(DEPLOY_INSTALL_PREFIX)/$(DEPLOY_RELEASE)/deps/$(MODULE_NAME)/bin/;
+	mkdir -p $(DEPLOY_INSTALL_PREFIX)/$(DEPLOY_RELEASE)/deps/$(MODULE_NAME)/externs/;
+	cp package.json $(DEPLOY_INSTALL_PREFIX)/$(DEPLOY_RELEASE)/deps/$(MODULE_NAME)/;
+	cp bin/index.js $(DEPLOY_INSTALL_PREFIX)/$(DEPLOY_RELEASE)/deps/$(MODULE_NAME)/bin/;
+	cp externs/index.js $(DEPLOY_INSTALL_PREFIX)/$(DEPLOY_RELEASE)/deps/$(MODULE_NAME)/externs/;
+
+
+uninstall: uninstall-dev
+
+
+uninstall-dev:
+	rm -rf $(DEV_INSTALL_PREFIX)/$(DEPLOY_RELEASE)/deps/$(MODULE_NAME);
+
+
+uninstall-deploy:
+	rm -rf $(DEPLOY_INSTALL_PREFIX)/$(DEPLOY_RELEASE)/deps/$(MODULE_NAME);
+
+
+clean: js-clean
 
 
 include $(JS_BUILD_HOME)/js-rules.mk
