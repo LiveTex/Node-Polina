@@ -17,7 +17,7 @@ DEV_INSTALL_PREFIX ?= /usr/lib/node
 DEPLOY_INSTALL_PREFIX ?= /var/lib/livetex/Livetex-Server
 DEPLOY_RELEASE = 1.0.0
 
-JS_DEPS_DIRS =  /usr/lib/node/ds/
+JS_DEPS_DIRS ?=  /usr/lib/node/ds/
 
 include $(JS_BUILD_HOME)/js-variables.mk
 
@@ -31,7 +31,7 @@ all: build
 check: js-test-compile js-test-lint
 
 
-build: js-export
+build: js-externs js-export
 
 
 install: install-dev
@@ -57,7 +57,7 @@ uninstall: uninstall-dev
 
 
 uninstall-dev:
-	rm -rf $(DEV_INSTALL_PREFIX)/$(DEPLOY_RELEASE)/deps/$(MODULE_NAME);
+	rm -rf $(DEV_INSTALL_PREFIX)/$(MODULE_NAME);
 
 
 uninstall-deploy:
