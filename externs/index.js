@@ -66,6 +66,11 @@ polina.IPacketHandler.prototype.isComplete = function() {};
 polina.IPacketHandler.prototype.process = function(cursor, chunk) {};
 
 /**
+ * Очищение пакета, кторое может понадобиться при реконекте.
+ */
+polina.IPacketHandler.prototype.reset = function() {};
+
+/**
  * @constructor
  * @param {number} port Порт подключения.
  * @param {string=} opt_host Хост для подключения.
@@ -191,6 +196,11 @@ polina.beans.Watcher.prototype.destroy = function() {};
  * @param {Function=} opt_callback Обработчик результата.
  */
 polina.beans.PacketHandler = function(expectedResponse, opt_callback) {};
+
+/**
+ * @inheritDoc
+ */
+polina.beans.PacketHandler.prototype.reset = function() {};
 
 /**
  * @inheritDoc
@@ -405,6 +415,11 @@ polina.redis.Bucket.prototype.destroy = function() {};
  * @param {number} type Тип ответа.
  */
 polina.redis.PacketHandler = function(complete, cancel, type) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.PacketHandler.prototype.reset = function() {};
 
 /**
  * @inheritDoc
