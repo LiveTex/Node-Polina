@@ -11,8 +11,8 @@ deps_dir = deps
 
 dev.install_prefix = /usr/lib/node
 
-deploy.install_prefix = /var/lib/livetex/Livetex-Server
-deploy.release = 1.0.0
+deploy.install_prefix =
+deploy.release =
 
 custom_externs =
 

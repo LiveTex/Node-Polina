@@ -14,8 +14,8 @@ JS_LEVEL = WHITESPACE_ONLY
 MODULE_NAME = polina
 
 DEV_INSTALL_PREFIX ?= /usr/lib/node
-DEPLOY_INSTALL_PREFIX ?= /var/lib/livetex/Livetex-Server
-DEPLOY_RELEASE = 1.0.0
+DEPLOY_INSTALL_PREFIX =
+DEPLOY_RELEASE =
 
 JS_DEPS_DIRS ?=  /usr/lib/node/ds/
 
