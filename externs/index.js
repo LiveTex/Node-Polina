@@ -262,6 +262,16 @@ polina.redis.IClient.prototype.set =
 
 /**
  * @param {string} key Ключ.
+ * @param {number} seconds Количество секунд жизни ключа.
+ * @param {string} value Значение.
+ * @param {function(string)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.IClient.prototype.setex =
+    function(key, seconds, value, complete, cancel) {};
+
+/**
+ * @param {string} key Ключ.
  * @param {function(string)} complete Обработчик результата.
  * @param {function(string, number=)} cancel Обработчик ошибки.
  */
@@ -322,6 +332,12 @@ polina.redis.Client.prototype.set = function(key, value, complete, cancel) {};
 /**
  * @inheritDoc
  */
+polina.redis.Client.prototype.setex =
+    function(key, seconds, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
 polina.redis.Client.prototype.get = function(key, complete, cancel) {};
 
 /**
@@ -376,6 +392,12 @@ polina.redis.Bucket.prototype.terminateClient = function(id) {};
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.set = function(key, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.setex =
+    function(key, seconds, value, complete, cancel) {};
 
 /**
  * @inheritDoc.
@@ -460,6 +482,12 @@ polina.redis.Bundle.prototype.registerFallback = function(port, opt_host) {};
  */
 polina.redis.Bundle.prototype.set =
     function(key, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.setex =
+    function(key, seconds, value, complete, cancel) {};
 
 /**
  * @inheritDoc
