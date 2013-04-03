@@ -26,18 +26,6 @@ polina.redis = {};
 polina.nop = function() {};
 
 /**
- * @typedef {{
- *  id: string,
- *  intervalStart: number,
- *  intervalEnd: number,
- *  connectionCount: number,
- *  port: number,
- *  host: string
- * }}
- */
-polina.RedisConfig;
-
-/**
  * JS Implementation of MurmurHash2
  *
  * @see http://github.com/garycourt/murmurhash-js
@@ -262,6 +250,15 @@ polina.redis.IClient.prototype.set =
 
 /**
  * @param {string} key Ключ.
+ * @param {number} value Значение.
+ * @param {function(number)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.IClient.prototype.incrby =
+    function(key, value, complete, cancel) {};
+
+/**
+ * @param {string} key Ключ.
  * @param {number} seconds Количество секунд жизни ключа.
  * @param {string} value Значение.
  * @param {function(string)} complete Обработчик результата.
@@ -332,6 +329,12 @@ polina.redis.Client.prototype.set = function(key, value, complete, cancel) {};
 /**
  * @inheritDoc
  */
+polina.redis.Client.prototype.incrby =
+    function(key, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
 polina.redis.Client.prototype.setex =
     function(key, seconds, value, complete, cancel) {};
 
@@ -392,6 +395,12 @@ polina.redis.Bucket.prototype.terminateClient = function(id) {};
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.set = function(key, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.incrby =
+    function(key, value, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -481,6 +490,12 @@ polina.redis.Bundle.prototype.registerFallback = function(port, opt_host) {};
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.set =
+    function(key, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.incrby =
     function(key, value, complete, cancel) {};
 
 /**
