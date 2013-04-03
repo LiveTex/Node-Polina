@@ -144,6 +144,18 @@ polina.beans.User.prototype.put =
     function(priority, timeout, execTime, data, opt_callback) {};
 
 /**
+ * @param {function(string, string)} complete Обработчик результата.
+ */
+polina.beans.User.prototype.peekReady =
+    function(complete, cancel) {};
+
+/**
+ * @param {string} jid Job id.
+ * @param {function()} callback Обработчик результата.
+ */
+polina.beans.User.prototype.delete = function(jid, callback) {};
+
+/**
  * @constructor
  * @extends {polina.beans.Client}
  * @param {string} tube Труба наблюдения.
