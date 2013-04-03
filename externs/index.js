@@ -146,8 +146,7 @@ polina.beans.User.prototype.put =
 /**
  * @param {function(string, string)} complete Обработчик результата.
  */
-polina.beans.User.prototype.peekReady =
-    function(complete, cancel) {};
+polina.beans.User.prototype.peekReady = function(complete) {};
 
 /**
  * @param {string} jid Job id.
@@ -313,6 +312,15 @@ polina.redis.IClient.prototype.srem =
 
 /**
  * @param {string} key Ключ.
+ * @param {string} value Значение.
+ * @param {function(number)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.IClient.prototype.sismember =
+    function(key, value, complete, cancel) {};
+
+/**
+ * @param {string} key Ключ.
  * @param {function(!Array.<string>)} complete Обработчик результата.
  * @param {function(string, number=)} cancel Обработчик ошибки.
  */
@@ -369,6 +377,12 @@ polina.redis.Client.prototype.sadd = function(key, value, complete, cancel) {};
  * @inheritDoc
  */
 polina.redis.Client.prototype.srem = function(key, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.sismember =
+    function(key, value, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -439,6 +453,12 @@ polina.redis.Bucket.prototype.sadd = function(key, value, complete, cancel) {};
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.srem = function(key, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.sismember =
+    function(key, value, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -536,6 +556,12 @@ polina.redis.Bundle.prototype.sadd =
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.srem =
+    function(key, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.sismember =
     function(key, value, complete, cancel) {};
 
 /**
