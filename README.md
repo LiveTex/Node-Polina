@@ -1,1 +1,1 @@
-Beanstalkd and Redis clients.
+Polina: Beanstalkd and Redis clients.
