@@ -10,7 +10,7 @@ JS_LEVEL = WHITESPACE_ONLY
 MODULE_NAME = node-polina
 DEV_INSTALL_PREFIX ?= /usr/lib/node
 
-JS_DEPS_DIRS ?= node_modules/node-ds/ node_modules/node-util/
+JS_DEPS_DIRS ?= /usr/lib/node/node-ds/ /usr/lib/node/node-util/
 
 include $(JS_BUILD_HOME)/js-variables.mk
 
