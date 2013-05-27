@@ -325,11 +325,11 @@ polina.redis.IClient.prototype.mget = function(keys, complete, cancel) {};
 polina.redis.IClient.prototype.keys = function(pattern, complete, cancel) {};
 
 /**
- * @param {string} key Ключ.
+ * @param {string|!Array.<string>} keys Ключ.
  * @param {function(number)} complete Обработчик результата.
  * @param {function(string, number=)} cancel Обработчик ошибки.
  */
-polina.redis.IClient.prototype.del = function(key, complete, cancel) {};
+polina.redis.IClient.prototype.del = function(keys, complete, cancel) {};
 
 /**
  * @param {string} key Ключ.
@@ -431,7 +431,7 @@ polina.redis.Client.prototype.keys = function(pattern, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Client.prototype.del = function(key, complete, cancel) {};
+polina.redis.Client.prototype.del = function(keys, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -533,7 +533,7 @@ polina.redis.Bucket.prototype.keys = function(pattern, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Bucket.prototype.del = function(key, complete, cancel) {};
+polina.redis.Bucket.prototype.del = function(keys, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -661,7 +661,7 @@ polina.redis.Bundle.prototype.keys = function(pattern, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Bundle.prototype.del = function(key, complete, cancel) {};
+polina.redis.Bundle.prototype.del = function(keys, complete, cancel) {};
 
 /**
  * @inheritDoc
