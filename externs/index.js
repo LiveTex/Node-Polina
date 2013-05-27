@@ -295,6 +295,13 @@ polina.redis.IClient.prototype.expire =
 polina.redis.IClient.prototype.get = function(key, complete, cancel) {};
 
 /**
+ * @param {!Array.<string>} keys Ключи.
+ * @param {function(!Array.<string>)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.IClient.prototype.mget = function(keys, complete, cancel) {};
+
+/**
  * @param {string} key Ключ.
  * @param {function(number)} complete Обработчик результата.
  * @param {function(string, number=)} cancel Обработчик ошибки.
@@ -381,6 +388,11 @@ polina.redis.Client.prototype.get = function(key, complete, cancel) {};
 /**
  * @inheritDoc
  */
+polina.redis.Client.prototype.mget = function(keys, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
 polina.redis.Client.prototype.del = function(key, complete, cancel) {};
 
 /**
@@ -459,6 +471,11 @@ polina.redis.Bucket.prototype.expire =
  * @inheritDoc.
  */
 polina.redis.Bucket.prototype.get = function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc.
+ */
+polina.redis.Bucket.prototype.mget = function(keys, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -567,6 +584,11 @@ polina.redis.Bundle.prototype.expire =
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.get = function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc.
+ */
+polina.redis.Bundle.prototype.mget = function(keys, complete, cancel) {};
 
 /**
  * @inheritDoc
