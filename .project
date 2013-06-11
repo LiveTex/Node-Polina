@@ -5,7 +5,7 @@
 name = polina 
 
 deps = 
-externs = ds
+externs = ds node-util
 
 deps_dir = deps
 

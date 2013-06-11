@@ -270,6 +270,22 @@ polina.redis.IClient.prototype.incrby =
 
 /**
  * @param {string} key Ключ.
+ * @param {function(number)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.IClient.prototype.incr =
+    function(key, complete, cancel) {};
+
+/**
+ * @param {string} key Ключ.
+ * @param {function(number)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.IClient.prototype.decr =
+    function(key, complete, cancel) {};
+
+/**
+ * @param {string} key Ключ.
  * @param {number} seconds Количество секунд жизни ключа.
  * @param {string} value Значение.
  * @param {function(string)} complete Обработчик результата.
@@ -280,17 +296,40 @@ polina.redis.IClient.prototype.setex =
 
 /**
  * @param {string} key Ключ.
+ * @param {number} seconds Количество секунд жизни ключа.
+ * @param {function(number)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.IClient.prototype.expire =
+    function(key, seconds, complete, cancel) {};
+
+/**
+ * @param {string} key Ключ.
  * @param {function(string)} complete Обработчик результата.
  * @param {function(string, number=)} cancel Обработчик ошибки.
  */
 polina.redis.IClient.prototype.get = function(key, complete, cancel) {};
 
 /**
- * @param {string} key Ключ.
+ * @param {!Array.<string>} keys Ключи.
+ * @param {function(!Array.<string>)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.IClient.prototype.mget = function(keys, complete, cancel) {};
+
+/**
+ * @param {string} pattern Шаблон.
+ * @param {function(!Array.<string>)} complete Обработчик результата.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.redis.IClient.prototype.keys = function(pattern, complete, cancel) {};
+
+/**
+ * @param {string|!Array.<string>} keys Ключ.
  * @param {function(number)} complete Обработчик результата.
  * @param {function(string, number=)} cancel Обработчик ошибки.
  */
-polina.redis.IClient.prototype.del = function(key, complete, cancel) {};
+polina.redis.IClient.prototype.del = function(keys, complete, cancel) {};
 
 /**
  * @param {string} key Ключ.
@@ -355,8 +394,24 @@ polina.redis.Client.prototype.incrby =
 /**
  * @inheritDoc
  */
+polina.redis.Client.prototype.incr = function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.decr = function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
 polina.redis.Client.prototype.setex =
     function(key, seconds, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.expire =
+    function(key, seconds, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -366,7 +421,17 @@ polina.redis.Client.prototype.get = function(key, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Client.prototype.del = function(key, complete, cancel) {};
+polina.redis.Client.prototype.mget = function(keys, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.keys = function(pattern, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.del = function(keys, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -431,8 +496,24 @@ polina.redis.Bucket.prototype.incrby =
 /**
  * @inheritDoc
  */
+polina.redis.Bucket.prototype.incr = function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.decr = function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
 polina.redis.Bucket.prototype.setex =
     function(key, seconds, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.expire =
+    function(key, seconds, complete, cancel) {};
 
 /**
  * @inheritDoc.
@@ -440,9 +521,19 @@ polina.redis.Bucket.prototype.setex =
 polina.redis.Bucket.prototype.get = function(key, complete, cancel) {};
 
 /**
+ * @inheritDoc.
+ */
+polina.redis.Bucket.prototype.mget = function(keys, complete, cancel) {};
+
+/**
+ * @inheritDoc.
+ */
+polina.redis.Bucket.prototype.keys = function(pattern, complete, cancel) {};
+
+/**
  * @inheritDoc
  */
-polina.redis.Bucket.prototype.del = function(key, complete, cancel) {};
+polina.redis.Bucket.prototype.del = function(keys, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -533,8 +624,24 @@ polina.redis.Bundle.prototype.incrby =
 /**
  * @inheritDoc
  */
+polina.redis.Bundle.prototype.incr = function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.decr = function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
 polina.redis.Bundle.prototype.setex =
     function(key, seconds, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.expire =
+    function(key, seconds, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -542,9 +649,19 @@ polina.redis.Bundle.prototype.setex =
 polina.redis.Bundle.prototype.get = function(key, complete, cancel) {};
 
 /**
+ * @inheritDoc.
+ */
+polina.redis.Bundle.prototype.mget = function(keys, complete, cancel) {};
+
+/**
+ * @inheritDoc.
+ */
+polina.redis.Bundle.prototype.keys = function(pattern, complete, cancel) {};
+
+/**
  * @inheritDoc
  */
-polina.redis.Bundle.prototype.del = function(key, complete, cancel) {};
+polina.redis.Bundle.prototype.del = function(keys, complete, cancel) {};
 
 /**
  * @inheritDoc
