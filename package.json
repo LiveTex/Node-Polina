@@ -1,7 +1,7 @@
 {
   "name": "node-polina",
   "main": "bin/index.js",
-  "version": "0.1.0",
+  "version": "0.2.0",
 
   "scripts": {
     "prepublish": "make clean && make check && make"
