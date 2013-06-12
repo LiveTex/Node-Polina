@@ -8,7 +8,6 @@
   },
 
   "dependencies": {
-    "node-util": "*",
     "node-ds": "*"
   }
 }
