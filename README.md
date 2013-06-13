@@ -55,7 +55,7 @@ Pure JS driver for Redis server and Beanstalk queue daemon.
     user.put(0, 0, 30, 'hello world');
 
 
-### Infinite watching for data
+### Infinite data watching loop 
 
     var polina = require('livetex-polina');
     var watcher = new polina.beans.Watcher('tube', 11300);
