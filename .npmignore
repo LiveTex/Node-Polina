@@ -2,4 +2,5 @@
 *.iml
 *.log
 .gitignore
-
+.build/
+bin/

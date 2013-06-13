@@ -1,13 +1,30 @@
 {
-  "name": "node-polina",
+  "name": "livetex-polina",
+  "version": "1.0.0",
+
+  "description": "Pure JS driver for Redis server and Beanstalk queue daemon.",
+  "readmeFilename": "README.md",
+
+  "license": "Modified BSD License",
+
+  "contributors": [{
+    "name": "Sergey Kononenko",
+    "email": "kononencheg@gmail.com"
+  }, {
+    "name": "Evgeny Mikheev",
+    "email": "eudgee@gmail.com"
+  }, {
+    "name": "Maxim Kalachev",
+    "email": "kalachevmax@gmail.com"
+  }, {
+    "name": "Valeria Lepina",
+    "email": "divergence082@gmail.com"
+  }],
+
   "main": "bin/index.js",
-  "version": "0.2.0",
 
   "scripts": {
-    "prepublish": "make clean && make check && make"
-  },
-
-  "dependencies": {
-    "node-ds": "*"
+    "prepublish": "make js-check && make js-lint",
+    "install": "make setup && make"
   }
 }
