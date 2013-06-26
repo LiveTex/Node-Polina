@@ -148,11 +148,11 @@ polina.beans.User = function(tube, port, opt_host) {};
 /**
  * Puts data to execution tube.
  *
- * @param {number} priority Priority of data handling.
- * @param {number} timeout Execution timeout.
- * @param {number} execTime Execution time.
- * @param {string} data Data to handle.
- * @param {?function(Error, string=)=} opt_callback Result handler.
+ * @param {number} priority Приоритет.
+ * @param {number} timeout Таймаут.
+ * @param {number} execTime Время на обработку.
+ * @param {string} data Данные.
+ * @param {?function(string)=} opt_callback Обработчик результата.
  */
 polina.beans.User.prototype.put =
     function(priority, timeout, execTime, data, opt_callback) {};
@@ -380,7 +380,7 @@ polina.redis.IClient.prototype.keys = function(pattern, complete, cancel) {};
 /**
  * Deletes kleys.
  *
- * @param {string|!Array.<string>} keys Keys to be deleted.
+ * @param {string} keys Keys to be deleted.
  * @param {function(number)} complete Result handler.
  * @param {function(string, number=)} cancel Error handler.
  */
@@ -496,7 +496,7 @@ polina.redis.Client.prototype.keys = function(pattern, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Client.prototype.del = function(keys, complete, cancel) {};
+polina.redis.Client.prototype.del = function(key, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -604,7 +604,7 @@ polina.redis.Bucket.prototype.keys = function(pattern, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Bucket.prototype.del = function(keys, complete, cancel) {};
+polina.redis.Bucket.prototype.del = function(key, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -739,7 +739,7 @@ polina.redis.Bundle.prototype.keys = function(pattern, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Bundle.prototype.del = function(keys, complete, cancel) {};
+polina.redis.Bundle.prototype.del = function(key, complete, cancel) {};
 
 /**
  * @inheritDoc
