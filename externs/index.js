@@ -148,11 +148,11 @@ polina.beans.User = function(tube, port, opt_host) {};
 /**
  * Puts data to execution tube.
  *
- * @param {number} priority Priority of data handling.
- * @param {number} timeout Execution timeout.
- * @param {number} execTime Execution time.
- * @param {string} data Data to handle.
- * @param {?function(Error, string=)=} opt_callback Result handler.
+ * @param {number} priority Приоритет.
+ * @param {number} timeout Таймаут.
+ * @param {number} execTime Время на обработку.
+ * @param {string} data Данные.
+ * @param {?function(string)=} opt_callback Обработчик результата.
  */
 polina.beans.User.prototype.put =
     function(priority, timeout, execTime, data, opt_callback) {};
