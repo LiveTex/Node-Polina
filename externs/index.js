@@ -380,7 +380,7 @@ polina.redis.IClient.prototype.keys = function(pattern, complete, cancel) {};
 /**
  * Deletes kleys.
  *
- * @param {string|!Array.<string>} keys Keys to be deleted.
+ * @param {string} keys Keys to be deleted.
  * @param {function(number)} complete Result handler.
  * @param {function(string, number=)} cancel Error handler.
  */
@@ -496,7 +496,7 @@ polina.redis.Client.prototype.keys = function(pattern, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Client.prototype.del = function(keys, complete, cancel) {};
+polina.redis.Client.prototype.del = function(key, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -604,7 +604,7 @@ polina.redis.Bucket.prototype.keys = function(pattern, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Bucket.prototype.del = function(keys, complete, cancel) {};
+polina.redis.Bucket.prototype.del = function(key, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -739,7 +739,7 @@ polina.redis.Bundle.prototype.keys = function(pattern, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Bundle.prototype.del = function(keys, complete, cancel) {};
+polina.redis.Bundle.prototype.del = function(key, complete, cancel) {};
 
 /**
  * @inheritDoc
