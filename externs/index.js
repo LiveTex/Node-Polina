@@ -146,6 +146,11 @@ polina.beans.Client.prototype._command =
 polina.beans.User = function(tube, port, opt_host) {};
 
 /**
+ * @return {string} Tube.
+ */
+polina.beans.User.prototype.getTube = function() {};
+
+/**
  * Puts data to execution tube.
  *
  * @param {number} priority Приоритет.
@@ -182,6 +187,11 @@ polina.beans.User.prototype.delete = function(jid, callback) {};
  * @param {string=} opt_host Connection host.
  */
 polina.beans.Watcher = function(tube, port, opt_host) {};
+
+/**
+ * @return {string} Tube.
+ */
+polina.beans.Watcher.prototype.getTube = function() {};
 
 /**
  * Reserves ready-task, which can be deleted, buried, released with delay or
@@ -439,16 +449,36 @@ polina.redis.IClient.prototype.smembers =
 polina.redis.IClient.prototype.scriptLoad = function(lua, complete, cancel) {};
 
 /**
- *
  * @param {string} sha SHA1 digest of a script.
  * @param {Array.<string>} args Script's arguments.
- * @param {string} type Type of return-value.
- * @param {function(number)|function(string)|function(Array.<string>)} complete
+ * @param {function(number)} complete
  *    Result handler.
  * @param {function(string, number=)} cancel Error handler.
  */
-polina.redis.IClient.prototype.evalsha = function(sha, args, type,
-                                                  complete, cancel) {};
+polina.redis.IClient.prototype.evalshaInt =
+    function(sha, args, complete, cancel) {};
+
+/**
+ *
+ * @param {string} sha SHA1 digest of a script.
+ * @param {Array.<string>} args Script's arguments.
+ * @param {function(string)} complete
+ *    Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.evalshaString =
+    function(sha, args, complete, cancel) {};
+
+/**
+ *
+ * @param {string} sha SHA1 digest of a script.
+ * @param {Array.<string>} args Script's arguments.
+ * @param {function(!Array.<string>)} complete
+ *    Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.evalshaArray =
+    function(sha, args, complete, cancel) {};
 
 /**
  * Destroys a client.
@@ -548,8 +578,20 @@ polina.redis.Client.prototype.scriptLoad = function(lua, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Client.prototype.evalsha = function(sha, args, type,
-                                                 complete, cancel) {};
+polina.redis.Client.prototype.evalshaInt =
+    function(sha, args, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.evalshaString =
+    function(sha, args, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.evalshaArray =
+    function(sha, args, complete, cancel) {};
 
 /**
  * Redis Bucket.
@@ -667,8 +709,20 @@ polina.redis.Bucket.prototype.scriptLoad = function(lua, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Bucket.prototype.evalsha = function(sha, args, type,
-                                                 complete, cancel) {};
+polina.redis.Bucket.prototype.evalshaInt =
+    function(sha, args, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.evalshaString =
+    function(sha, args, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.evalshaArray =
+    function(sha, args, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -816,8 +870,20 @@ polina.redis.Bundle.prototype.scriptLoad = function(lua, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Bundle.prototype.evalsha = function(sha, args, type,
-                                                 complete, cancel) {};
+polina.redis.Bundle.prototype.evalshaInt =
+    function(sha, args, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.evalshaString =
+    function(sha, args, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.evalshaArray =
+    function(sha, args, complete, cancel) {};
 
 /**
  * @inheritDoc
