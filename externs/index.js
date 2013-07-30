@@ -106,6 +106,36 @@ polina.Connection.prototype._getDestoryPayload = function() {};
 polina.Connection.prototype._getHandshakeHandler = function() {};
 
 /**
+ * @type {number}
+ */
+polina.beans.USER_TTL = 60000;
+
+/**
+ * @param {!polina.beans.Tube} tube Туба.
+ * @return {string} Сериализованная туба.
+ */
+polina.beans.serializeTube = function(tube) {};
+
+/**
+ * @param {string} string Сериализованная туба.
+ * @return {!polina.beans.Tube} Туба.
+ */
+polina.beans.reconstructTube = function(string) {};
+
+/**
+ * @param {!polina.beans.Tube} tube Туба.
+ * @param {function(string)} handler Обработчик.
+ */
+polina.beans.unsafeWatch = function(tube, handler) {};
+
+/**
+ * @param {string|!polina.beans.Tube} tube Туба.
+ * @param {string} data Данные.
+ * @param {function(string)=} opt_callback Обработчик результата.
+ */
+polina.beans.put = function(tube, data, opt_callback) {};
+
+/**
  * Beanstalkd client.
  *
  * @constructor
@@ -147,15 +177,36 @@ polina.beans.Client.prototype._command =
     function(name, args, response, callback, opt_data) {};
 
 /**
+ * @constructor
+ * @param {string} name Observation tube.
+ * @param {number} port Connection port.
+ * @param {string=} opt_host Connection host.
+ */
+polina.beans.Tube = function(name, port, opt_host) {};
+
+/**
+ * @return {string} Name of the tube.
+ */
+polina.beans.Tube.prototype.getName = function() {};
+
+/**
+ * @return {number} Connection port.
+ */
+polina.beans.Tube.prototype.getPort = function() {};
+
+/**
+ * @return {string} Connection host.
+ */
+polina.beans.Tube.prototype.getHost = function() {};
+
+/**
  * User of a tube.
  *
  * @constructor
  * @extends {polina.beans.Client}
- * @param {string} tube Observation tube.
- * @param {number} port Connection port.
- * @param {string=} opt_host Connection host.
+ * @param {!polina.beans.Tube} tube Observation tube.
  */
-polina.beans.User = function(tube, port, opt_host) {};
+polina.beans.User = function(tube) {};
 
 /**
  * Puts data to execution tube.
@@ -189,11 +240,9 @@ polina.beans.User.prototype.delete = function(jid, callback) {};
  *
  * @constructor
  * @extends {polina.beans.Client}
- * @param {string} tube Observation tube.
- * @param {number} port Connection port.
- * @param {string=} opt_host Connection host.
+ * @param {!polina.beans.Tube} tube Observation tube.
  */
-polina.beans.Watcher = function(tube, port, opt_host) {};
+polina.beans.Watcher = function(tube) {};
 
 /**
  * Reserves ready-task, which can be deleted, buried, released with delay or
@@ -251,6 +300,31 @@ polina.beans.PacketHandler.prototype.isComplete = function() {};
  * @inheritDoc
  */
 polina.beans.PacketHandler.prototype.process = function(cursor, chunk) {};
+
+/**
+ * A bundle of beanstalkd users.
+ *
+ * @constructor
+ * @param {!Array.<!polina.beans.Tube>} tubes Connection tubes.
+ */
+polina.beans.UsersBundle = function(tubes) {};
+
+/**
+ * Puts data to execution tube.
+ *
+ * @param {number} priority Priority of data handling.
+ * @param {number} timeout Execution timeout.
+ * @param {number} execTime Execution time.
+ * @param {string} data Data to handle.
+ * @param {function(string)=} opt_callback Result handler.
+ */
+polina.beans.UsersBundle.prototype.put =
+    function(priority, timeout, execTime, data, opt_callback) {};
+
+/**
+ * Destroys a bundle.
+ */
+polina.beans.UsersBundle.prototype.destroy = function() {};
 
 /**
  *
