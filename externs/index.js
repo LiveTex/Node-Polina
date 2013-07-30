@@ -96,6 +96,11 @@ polina.Connection.prototype._send = function(payload, handler) {};
 polina.Connection.prototype._getHandshakePayload = function() {};
 
 /**
+ * @return {string} Initializes request.
+ */
+polina.Connection.prototype._getDestoryPayload = function() {};
+
+/**
  * @return {polina.IPacketHandler} Initializes packet.
  */
 polina.Connection.prototype._getHandshakeHandler = function() {};
@@ -105,6 +110,7 @@ polina.Connection.prototype._getHandshakeHandler = function() {};
  *
  * @constructor
  * @extends {polina.Connection}
+ * @param {string} destroyPayload Initializes packet.
  * @param {string} handshakePayload Initializes packet.
  * @param {!polina.beans.PacketHandler} handshakeHandler A handler for a
  *   handshake.
@@ -112,7 +118,8 @@ polina.Connection.prototype._getHandshakeHandler = function() {};
  * @param {string=} opt_host Connection host.
  */
 polina.beans.Client =
-    function(handshakePayload, handshakeHandler, port, opt_host) {};
+    function(destroyPayload, handshakePayload, handshakeHandler, port,
+             opt_host) {};
 
 /**
  * @return {string} Initializes request.
@@ -123,6 +130,11 @@ polina.beans.Client.prototype._getHandshakePayload = function() {};
  * @return {polina.IPacketHandler} Initializes packet.
  */
 polina.beans.Client.prototype._getHandshakeHandler = function() {};
+
+/**
+ * @inheritDoc
+ */
+polina.beans.Client.prototype._getDestoryPayload = function() {};
 
 /**
  * @param {string} name Command name.
@@ -144,11 +156,6 @@ polina.beans.Client.prototype._command =
  * @param {string=} opt_host Connection host.
  */
 polina.beans.User = function(tube, port, opt_host) {};
-
-/**
- * @return {string} Tube.
- */
-polina.beans.User.prototype.getTube = function() {};
 
 /**
  * Puts data to execution tube.
@@ -187,11 +194,6 @@ polina.beans.User.prototype.delete = function(jid, callback) {};
  * @param {string=} opt_host Connection host.
  */
 polina.beans.Watcher = function(tube, port, opt_host) {};
-
-/**
- * @return {string} Tube.
- */
-polina.beans.Watcher.prototype.getTube = function() {};
 
 /**
  * Reserves ready-task, which can be deleted, buried, released with delay or
@@ -249,33 +251,6 @@ polina.beans.PacketHandler.prototype.isComplete = function() {};
  * @inheritDoc
  */
 polina.beans.PacketHandler.prototype.process = function(cursor, chunk) {};
-
-/**
- * A bundle of beanstalkd users.
- *
- * @constructor
- * @param {string} tube Observation tube.
- * @param {!Array.<number>} ports Connection ports.
- * @param {!Array.<string>=} opt_hosts Connection hosts.
- */
-polina.beans.UsersBundle = function(tube, ports, opt_hosts) {};
-
-/**
- * Puts data to execution tube.
- *
- * @param {number} priority Priority of data handling.
- * @param {number} timeout Execution timeout.
- * @param {number} execTime Execution time.
- * @param {string} data Data to handle.
- * @param {function(string)=} opt_callback Result handler.
- */
-polina.beans.UsersBundle.prototype.put =
-    function(priority, timeout, execTime, data, opt_callback) {};
-
-/**
- * Destroys a bundle.
- */
-polina.beans.UsersBundle.prototype.destroy = function() {};
 
 /**
  *
@@ -436,8 +411,7 @@ polina.redis.IClient.prototype.sismember =
  * @param {function(!Array.<string>)} complete Result handler.
  * @param {function(string, number=)} cancel Error handler.
  */
-polina.redis.IClient.prototype.smembers =
-    function(key, complete, cancel) {};
+polina.redis.IClient.prototype.smembers = function(key, complete, cancel) {};
 
 /**
  * Load a script into the scripts cache, without executing it.
@@ -470,11 +444,9 @@ polina.redis.IClient.prototype.evalshaString =
     function(sha, args, complete, cancel) {};
 
 /**
- *
  * @param {string} sha SHA1 digest of a script.
- * @param {Array.<string>} args Script's arguments.
- * @param {function(!Array.<string>)} complete
- *    Result handler.
+ * @param {!Array.<string>} args Script's arguments.
+ * @param {function(!Array.<string>)} complete Result handler.
  * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.evalshaArray =
@@ -495,6 +467,11 @@ polina.redis.IClient.prototype.destroy = function() {};
  * @param {string=} opt_host Connection host.
  */
 polina.redis.Client = function(port, opt_host) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype._getDestoryPayload = function() {};
 
 /**
  * @inheritDoc
