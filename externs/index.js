@@ -573,6 +573,26 @@ polina.redis.Client.prototype.smembers = function(key, complete, cancel) {};
 /**
  * @inheritDoc
  */
+polina.redis.Client.prototype.hset = function(keys, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.hget = function(keys, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.hdel = function(keys, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.hgetall = function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
 polina.redis.Client.prototype.scriptLoad = function(lua, complete, cancel) {};
 
 /**
