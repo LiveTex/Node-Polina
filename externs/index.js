@@ -129,11 +129,18 @@ polina.beans.reconstructTube = function(string) {};
 polina.beans.unsafeWatch = function(tube, handler) {};
 
 /**
- * @param {string|!polina.beans.Tube} tube Туба.
+ * @param {string|!polina.beans.Tube} tubeOrString Туба.
+ * @param {function(boolean)} complete Обработчик блокировки.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.beans.hasWatchers = function(tubeOrString, complete, cancel) {};
+
+/**
+ * @param {string|!polina.beans.Tube} tubeOrString Туба.
  * @param {string} data Данные.
  * @param {function(string)=} opt_callback Обработчик результата.
  */
-polina.beans.put = function(tube, data, opt_callback) {};
+polina.beans.put = function(tubeOrString, data, opt_callback) {};
 
 /**
  * Beanstalkd client.
@@ -219,6 +226,11 @@ polina.beans.User = function(tube) {};
  */
 polina.beans.User.prototype.put =
     function(priority, timeout, execTime, data, opt_callback) {};
+
+/**
+ * @param {function(!Object.<string, string>)} complete Обработчик результата.
+ */
+polina.beans.User.prototype.statsTube = function(complete) {};
 
 /**
  * Picks data, which is ready for task.
