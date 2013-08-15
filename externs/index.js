@@ -440,6 +440,42 @@ polina.redis.IClient.prototype.smembers =
     function(key, complete, cancel) {};
 
 /**
+ * @param {string} key Key.
+ * @param {string} hashkey Hash key.
+ * @param {string} value Value.
+ * @param {function()} complete Success handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.hset =
+    function(key, hashkey, value, complete, cancel) {};
+
+/**
+ * @param {string} key Key.
+ * @param {string} hashkey Hash key.
+ * @param {function()} complete Success handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.hget =
+    function(key, hashkey, complete, cancel) {};
+
+/**
+ * @param {string} key Key.
+ * @param {string} hashkey Hash key.
+ * @param {function()} complete Success handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.hdel =
+    function(key, hashkey, complete, cancel) {};
+
+/**
+ * @param {string} key Key.
+ * @param {function()} complete Success handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.hgetall =
+    function(key, complete, cancel) {};
+
+/**
  * Load a script into the scripts cache, without executing it.
  *
  * @param {string} lua Lua script.
@@ -573,22 +609,26 @@ polina.redis.Client.prototype.smembers = function(key, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Client.prototype.hset = function(keys, value, complete, cancel) {};
+polina.redis.Client.prototype.hset =
+    function(key, hashkey, value, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.Client.prototype.hget = function(keys, complete, cancel) {};
+polina.redis.Client.prototype.hget =
+    function(key, hashkey, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.Client.prototype.hdel = function(keys, complete, cancel) {};
+polina.redis.Client.prototype.hdel =
+    function(key, hashkey, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.Client.prototype.hgetall = function(key, complete, cancel) {};
+polina.redis.Client.prototype.hgetall =
+    function(key, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -720,6 +760,30 @@ polina.redis.Bucket.prototype.sismember =
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.smembers = function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.hset =
+    function(key, hashkey, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.hget =
+    function(key, hashkey, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.hdel =
+    function(key, hashkey, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.hgetall =
+    function(key, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -880,6 +944,30 @@ polina.redis.Bundle.prototype.sismember =
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.smembers =
+    function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.hset =
+    function(key, hashkey, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.hget =
+    function(key, hashkey, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.hdel =
+    function(key, hashkey, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.hgetall =
     function(key, complete, cancel) {};
 
 /**
