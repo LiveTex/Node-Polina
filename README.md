@@ -1,6 +1,7 @@
 # Livetex-Polina
 
-####Install via *npm*: *npm install livetex-polina*
+####Install via npm: 
+    npm install livetex-polina
 
 Pure JS driver for Redis server and Beanstalk queue daemon.
 
