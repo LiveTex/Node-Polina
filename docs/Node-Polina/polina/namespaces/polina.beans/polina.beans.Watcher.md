@@ -1,10 +1,10 @@
-## **Class: <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Watcher.md">polina.beans.Watcher</a>**
+## **Class: <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Watcher.md">polina.beans.Watcher</a>**
 
  Event watcher  
 
 
 ### **Constructor:**
-####<a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Watcher.md">polina.beans.Watcher</a>(tube, port, opt_host)
+####<a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Watcher.md">polina.beans.Watcher</a>(tube, port, opt_host)
 
 <table>
   <tr>
@@ -31,7 +31,7 @@
 
 ### **Extends:**
 
-* <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Client.md">polina.beans.Client</a>
+* <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Client.md">polina.beans.Client</a>
 
 
 
@@ -42,7 +42,63 @@
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Watcher.md">polina.beans.Watcher</a>#release(jid, priority, timeout, callback)
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Watcher.md">polina.beans.Watcher</a>#destroy()
+
+ 
+
+
+
+
+
+
+
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Watcher.md">polina.beans.Watcher</a>#delete(jid, callback)
+
+ Deletes task from tube.  
+
+
+
+<table>
+  <tr>
+    <th>Parameter</th><th>Type</th><th>Description</th>
+  </tr>
+  
+  <tr>
+    <td>jid</td><td>string</td><td>Job id</td>
+  </tr>
+  
+  <tr>
+    <td>callback</td><td>function()</td><td>Result handler</td>
+  </tr>
+  
+</table>
+
+
+
+
+
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Watcher.md">polina.beans.Watcher</a>#reserve(callback)
+
+ Reserves ready-task, which can be deleted, buried, released with delay or just released.  
+
+
+
+<table>
+  <tr>
+    <th>Parameter</th><th>Type</th><th>Description</th>
+  </tr>
+  
+  <tr>
+    <td>callback</td><td>function(string, string)</td><td>Result handler</td>
+  </tr>
+  
+</table>
+
+
+
+
+
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Watcher.md">polina.beans.Watcher</a>#release(jid, priority, timeout, callback)
 
  Releases task. Puts it into ready-tasks tube.  
 
@@ -70,62 +126,6 @@
   </tr>
   
 </table>
-
-
-
-
-
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Watcher.md">polina.beans.Watcher</a>#delete(jid, callback)
-
- Deletes task from tube.  
-
-
-
-<table>
-  <tr>
-    <th>Parameter</th><th>Type</th><th>Description</th>
-  </tr>
-  
-  <tr>
-    <td>jid</td><td>string</td><td>Job id</td>
-  </tr>
-  
-  <tr>
-    <td>callback</td><td>function()</td><td>Result handler</td>
-  </tr>
-  
-</table>
-
-
-
-
-
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Watcher.md">polina.beans.Watcher</a>#reserve(callback)
-
- Reserves ready-task, which can be deleted, buried, released with delay or just released.  
-
-
-
-<table>
-  <tr>
-    <th>Parameter</th><th>Type</th><th>Description</th>
-  </tr>
-  
-  <tr>
-    <td>callback</td><td>function(string, string)</td><td>Result handler</td>
-  </tr>
-  
-</table>
-
-
-
-
-
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Watcher.md">polina.beans.Watcher</a>#destroy()
-
- 
-
-
 
 
 

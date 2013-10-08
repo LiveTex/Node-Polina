@@ -1,10 +1,10 @@
-## **Class: <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.User.md">polina.beans.User</a>**
+## **Class: <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.User.md">polina.beans.User</a>**
 
  User of a tube.  
 
 
 ### **Constructor:**
-####<a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.User.md">polina.beans.User</a>(tube, port, opt_host)
+####<a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.User.md">polina.beans.User</a>(tube, port, opt_host)
 
 <table>
   <tr>
@@ -31,7 +31,7 @@
 
 ### **Extends:**
 
-* <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Client.md">polina.beans.Client</a>
+* <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Client.md">polina.beans.Client</a>
 
 
 
@@ -42,7 +42,53 @@
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.User.md">polina.beans.User</a>#put(priority, timeout, execTime, data, opt_callback)
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.User.md">polina.beans.User</a>#delete(jid, callback)
+
+ Deletes job by id.  
+
+
+
+<table>
+  <tr>
+    <th>Parameter</th><th>Type</th><th>Description</th>
+  </tr>
+  
+  <tr>
+    <td>jid</td><td>string</td><td>Job id</td>
+  </tr>
+  
+  <tr>
+    <td>callback</td><td>function()</td><td>Result handler</td>
+  </tr>
+  
+</table>
+
+
+
+
+
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.User.md">polina.beans.User</a>#peekReady(complete)
+
+ Picks data, which is ready for task.  
+
+
+
+<table>
+  <tr>
+    <th>Parameter</th><th>Type</th><th>Description</th>
+  </tr>
+  
+  <tr>
+    <td>complete</td><td>function(string, string)</td><td>Result handler</td>
+  </tr>
+  
+</table>
+
+
+
+
+
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.User.md">polina.beans.User</a>#put(priority, timeout, execTime, data, opt_callback)
 
  Puts data to execution tube.  
 
@@ -71,52 +117,6 @@
   
   <tr>
     <td>opt_callback</td><td>?function(Error, string=)=</td><td>Result handler</td>
-  </tr>
-  
-</table>
-
-
-
-
-
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.User.md">polina.beans.User</a>#delete(jid, callback)
-
- Deletes job by id.  
-
-
-
-<table>
-  <tr>
-    <th>Parameter</th><th>Type</th><th>Description</th>
-  </tr>
-  
-  <tr>
-    <td>jid</td><td>string</td><td>Job id</td>
-  </tr>
-  
-  <tr>
-    <td>callback</td><td>function()</td><td>Result handler</td>
-  </tr>
-  
-</table>
-
-
-
-
-
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.User.md">polina.beans.User</a>#peekReady(complete)
-
- Picks data, which is ready for task.  
-
-
-
-<table>
-  <tr>
-    <th>Parameter</th><th>Type</th><th>Description</th>
-  </tr>
-  
-  <tr>
-    <td>complete</td><td>function(string, string)</td><td>Result handler</td>
   </tr>
   
 </table>

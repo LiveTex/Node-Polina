@@ -1,4 +1,4 @@
-## **Namespace: <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.redis/polina.redis.md">polina.redis</a>**
+## **Namespace: <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.redis/polina.redis.md">polina.redis</a>**
 
  
 
@@ -15,7 +15,7 @@
 ### **Enumerations:**
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.redis/polina.redis.md">polina.redis.ResponseType</a>
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.redis/polina.redis.md">polina.redis.ResponseType</a>
  
 Type:number
 

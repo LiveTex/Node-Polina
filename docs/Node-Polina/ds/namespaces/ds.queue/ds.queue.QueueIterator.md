@@ -1,10 +1,10 @@
-## **Class: <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueIterator.md">ds.queue.QueueIterator</a>**
+## **Class: <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueIterator.md">ds.queue.QueueIterator</a>**
 
  
 
 
 ### **Constructor:**
-####<a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueIterator.md">ds.queue.QueueIterator</a>(queue)
+####<a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueIterator.md">ds.queue.QueueIterator</a>(queue)
 
 <table>
   <tr>
@@ -12,7 +12,7 @@
   </tr>
   
   <tr>
-    <td>queue</td><td>!<a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.Queue.md">ds.queue.Queue</a></td><td>Очередь</td>
+    <td>queue</td><td>!<a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.Queue.md">ds.queue.Queue</a></td><td>Очередь</td>
   </tr>
   
 </table>
@@ -29,27 +29,7 @@
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueIterator.md">ds.queue.QueueIterator</a>#hasNext()
-
- 
-
-
-
-
-
-
-
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueIterator.md">ds.queue.QueueIterator</a>#destroy()
-
- 
-
-
-
-
-
-
-
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueIterator.md">ds.queue.QueueIterator</a>#isNext(item)
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueIterator.md">ds.queue.QueueIterator</a>#isNext(item)
 
  
 
@@ -61,7 +41,7 @@
   </tr>
   
   <tr>
-    <td>item</td><td>!<a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/interfaces/ds.IDataItem.md">ds.IDataItem</a></td><td>Элемент для проверки</td>
+    <td>item</td><td>!<a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/interfaces/ds.IDataItem.md">ds.IDataItem</a></td><td>Элемент для проверки</td>
   </tr>
   
 </table>
@@ -70,7 +50,27 @@
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueIterator.md">ds.queue.QueueIterator</a>#next()
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueIterator.md">ds.queue.QueueIterator</a>#destroy()
+
+ 
+
+
+
+
+
+
+
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueIterator.md">ds.queue.QueueIterator</a>#hasNext()
+
+ 
+
+
+
+
+
+
+
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueIterator.md">ds.queue.QueueIterator</a>#next()
 
  
 

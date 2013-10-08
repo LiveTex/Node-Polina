@@ -1,4 +1,4 @@
-## **Interface: <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/interfaces/ds.IDataItem.md">ds.IDataItem</a>**
+## **Interface: <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/interfaces/ds.IDataItem.md">ds.IDataItem</a>**
 
  
 
@@ -11,7 +11,7 @@
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/interfaces/ds.IDataItem.md">ds.IDataItem</a>#get()
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/interfaces/ds.IDataItem.md">ds.IDataItem</a>#get()
 
  
 
@@ -27,7 +27,7 @@
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/interfaces/ds.IDataItem.md">ds.IDataItem</a>#clear()
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/interfaces/ds.IDataItem.md">ds.IDataItem</a>#clear()
 
   
 

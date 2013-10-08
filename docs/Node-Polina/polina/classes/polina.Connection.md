@@ -1,10 +1,10 @@
-## **Class: <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/classes/polina.Connection.md">polina.Connection</a>**
+## **Class: <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/classes/polina.Connection.md">polina.Connection</a>**
 
  Connection establisher.  
 
 
 ### **Constructor:**
-####<a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/classes/polina.Connection.md">polina.Connection</a>(port, opt_host)
+####<a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/classes/polina.Connection.md">polina.Connection</a>(port, opt_host)
 
 <table>
   <tr>
@@ -33,7 +33,23 @@
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/classes/polina.Connection.md">polina.Connection</a>#_send(payload, handler)
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/classes/polina.Connection.md">polina.Connection</a>#_getHandshakeHandler()
+
+ 
+
+
+
+
+<table>
+  <tr>
+    <th>Returns</th><td><a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/interfaces/polina.IPacketHandler.md">polina.IPacketHandler</a></td><td>Initializes packet</td>
+  </tr>
+</table>
+
+
+
+
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/classes/polina.Connection.md">polina.Connection</a>#_send(payload, handler)
 
  
 
@@ -49,7 +65,7 @@
   </tr>
   
   <tr>
-    <td>handler</td><td>!<a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/interfaces/polina.IPacketHandler.md">polina.IPacketHandler</a></td><td>Packet handler</td>
+    <td>handler</td><td>!<a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/interfaces/polina.IPacketHandler.md">polina.IPacketHandler</a></td><td>Packet handler</td>
   </tr>
   
 </table>
@@ -58,7 +74,17 @@
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/classes/polina.Connection.md">polina.Connection</a>#_getHandshakePayload()
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/classes/polina.Connection.md">polina.Connection</a>#destroy()
+
+ Destroys connection. 
+
+
+
+
+
+
+
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/classes/polina.Connection.md">polina.Connection</a>#_getHandshakePayload()
 
  
 
@@ -74,17 +100,7 @@
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/classes/polina.Connection.md">polina.Connection</a>#destroy()
-
- Destroys connection. 
-
-
-
-
-
-
-
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/classes/polina.Connection.md">polina.Connection</a>#registerFallback(port, opt_host)
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/classes/polina.Connection.md">polina.Connection</a>#registerFallback(port, opt_host)
 
  Registers a fallback destination.  
 
@@ -105,22 +121,6 @@
   
 </table>
 
-
-
-
-
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/classes/polina.Connection.md">polina.Connection</a>#_getHandshakeHandler()
-
- 
-
-
-
-
-<table>
-  <tr>
-    <th>Returns</th><td><a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/interfaces/polina.IPacketHandler.md">polina.IPacketHandler</a></td><td>Initializes packet</td>
-  </tr>
-</table>
 
 
 

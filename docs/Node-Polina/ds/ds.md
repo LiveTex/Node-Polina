@@ -1,4 +1,4 @@
-## **Namespace: <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/ds.md">ds</a>**
+## **Namespace: <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/ds.md">ds</a>**
 
  
 
@@ -14,7 +14,7 @@
   </tr>
   
   <tr>
-    <td><a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/ds.md">ds.VERSION</a></td><td>'0.1.0'</td><td>string</td><td> </td>
+    <td><a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/ds.md">ds.VERSION</a></td><td>'0.1.0'</td><td>string</td><td> </td>
   </tr>
   
 </table>

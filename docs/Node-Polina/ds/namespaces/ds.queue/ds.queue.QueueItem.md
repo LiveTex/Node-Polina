@@ -1,10 +1,10 @@
-## **Class: <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueItem.md">ds.queue.QueueItem</a>**
+## **Class: <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueItem.md">ds.queue.QueueItem</a>**
 
  
 
 
 ### **Constructor:**
-####<a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueItem.md">ds.queue.QueueItem</a>(data)
+####<a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueItem.md">ds.queue.QueueItem</a>(data)
 
 <table>
   <tr>
@@ -27,13 +27,13 @@
   
   <tr>
     
-    <td>this._prev</td><td>!<a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueItem.md">ds.queue.QueueItem</a></td><td> </td>
+    <td>this._prev</td><td>!<a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueItem.md">ds.queue.QueueItem</a></td><td> </td>
     
   </tr>
   
   <tr>
     
-    <td>this._next</td><td>!<a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueItem.md">ds.queue.QueueItem</a></td><td> </td>
+    <td>this._next</td><td>!<a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueItem.md">ds.queue.QueueItem</a></td><td> </td>
     
   </tr>
   
@@ -49,7 +49,7 @@
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueItem.md">ds.queue.QueueItem</a>#get()
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueItem.md">ds.queue.QueueItem</a>#get()
 
  
 
@@ -59,7 +59,7 @@
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueItem.md">ds.queue.QueueItem</a>#clear()
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/ds/namespaces/ds.queue/ds.queue.QueueItem.md">ds.queue.QueueItem</a>#clear()
 
  
 

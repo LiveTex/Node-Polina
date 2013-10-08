@@ -1,10 +1,10 @@
-## **Class: <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Client.md">polina.beans.Client</a>**
+## **Class: <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Client.md">polina.beans.Client</a>**
 
  Beanstalkd client.  handshake. 
 
 
 ### **Constructor:**
-####<a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Client.md">polina.beans.Client</a>(handshakePayload, handshakeHandler, port, opt_host)
+####<a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Client.md">polina.beans.Client</a>(handshakePayload, handshakeHandler, port, opt_host)
 
 <table>
   <tr>
@@ -16,7 +16,7 @@
   </tr>
   
   <tr>
-    <td>handshakeHandler</td><td>!<a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.PacketHandler.md">polina.beans.PacketHandler</a></td><td>A handler for a *    handshake</td>
+    <td>handshakeHandler</td><td>!<a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.PacketHandler.md">polina.beans.PacketHandler</a></td><td>A handler for a *    handshake</td>
   </tr>
   
   <tr>
@@ -35,7 +35,7 @@
 
 ### **Extends:**
 
-* <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/classes/polina.Connection.md">polina.Connection</a>
+* <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/classes/polina.Connection.md">polina.Connection</a>
 
 
 
@@ -46,7 +46,7 @@
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Client.md">polina.beans.Client</a>#_getHandshakeHandler()
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Client.md">polina.beans.Client</a>#_getHandshakeHandler()
 
  
 
@@ -55,30 +55,14 @@
 
 <table>
   <tr>
-    <th>Returns</th><td><a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/interfaces/polina.IPacketHandler.md">polina.IPacketHandler</a></td><td>Initializes packet</td>
+    <th>Returns</th><td><a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/interfaces/polina.IPacketHandler.md">polina.IPacketHandler</a></td><td>Initializes packet</td>
   </tr>
 </table>
 
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Client.md">polina.beans.Client</a>#_getHandshakePayload()
-
- 
-
-
-
-
-<table>
-  <tr>
-    <th>Returns</th><td>string</td><td>Initializes request</td>
-  </tr>
-</table>
-
-
-
-
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Client.md">polina.beans.Client</a>#_command(name, args, response, callback, opt_data)
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Client.md">polina.beans.Client</a>#_command(name, args, response, callback, opt_data)
 
  
 
@@ -111,6 +95,22 @@
   
 </table>
 
+
+
+
+
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.Client.md">polina.beans.Client</a>#_getHandshakePayload()
+
+ 
+
+
+
+
+<table>
+  <tr>
+    <th>Returns</th><td>string</td><td>Initializes request</td>
+  </tr>
+</table>
 
 
 

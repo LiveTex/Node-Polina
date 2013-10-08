@@ -1,10 +1,10 @@
-## **Class: <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.UsersBundle.md">polina.beans.UsersBundle</a>**
+## **Class: <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.UsersBundle.md">polina.beans.UsersBundle</a>**
 
  A bundle of beanstalkd users.  
 
 
 ### **Constructor:**
-####<a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.UsersBundle.md">polina.beans.UsersBundle</a>(tube, ports, opt_hosts)
+####<a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.UsersBundle.md">polina.beans.UsersBundle</a>(tube, ports, opt_hosts)
 
 <table>
   <tr>
@@ -37,7 +37,7 @@
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.UsersBundle.md">polina.beans.UsersBundle</a>#destroy()
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.UsersBundle.md">polina.beans.UsersBundle</a>#destroy()
 
  Destroys a bundle. 
 
@@ -47,7 +47,7 @@
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.UsersBundle.md">polina.beans.UsersBundle</a>#put(priority, timeout, execTime, data, opt_callback)
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/namespaces/polina.beans/polina.beans.UsersBundle.md">polina.beans.UsersBundle</a>#put(priority, timeout, execTime, data, opt_callback)
 
  Puts data to execution tube.  
 

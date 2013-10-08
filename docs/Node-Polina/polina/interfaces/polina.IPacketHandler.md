@@ -1,4 +1,4 @@
-## **Interface: <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/interfaces/polina.IPacketHandler.md">polina.IPacketHandler</a>**
+## **Interface: <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/interfaces/polina.IPacketHandler.md">polina.IPacketHandler</a>**
 
  
 
@@ -11,7 +11,23 @@
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/interfaces/polina.IPacketHandler.md">polina.IPacketHandler</a>#process(cursor, chunk)
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/interfaces/polina.IPacketHandler.md">polina.IPacketHandler</a>#isComplete()
+
+ Returns true if a pachket was handled.  
+
+
+
+
+<table>
+  <tr>
+    <th>Returns</th><td>boolean</td><td>Flag of packet handling</td>
+  </tr>
+</table>
+
+
+
+
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/interfaces/polina.IPacketHandler.md">polina.IPacketHandler</a>#process(cursor, chunk)
 
  Shifts cursor and returns is's new position.  
 
@@ -42,23 +58,7 @@
 
 
 
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/interfaces/polina.IPacketHandler.md">polina.IPacketHandler</a>#isComplete()
-
- Returns true if a pachket was handled.  
-
-
-
-
-<table>
-  <tr>
-    <th>Returns</th><td>boolean</td><td>Flag of packet handling</td>
-  </tr>
-</table>
-
-
-
-
-#### <a href="https://github.com/LiveTex/Node-Polina/tree/master/docs/Node-Polina/polina/interfaces/polina.IPacketHandler.md">polina.IPacketHandler</a>#reset()
+#### <a href="https://github.com/LiveTex/Node-Polina/tree/public/docs/Node-Polina/polina/interfaces/polina.IPacketHandler.md">polina.IPacketHandler</a>#reset()
 
  Clears packet for reconnect. 
 
