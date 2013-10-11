@@ -339,8 +339,32 @@ polina.beans.UsersBundle.prototype.put =
 polina.beans.UsersBundle.prototype.destroy = function() {};
 
 /**
- *
- *
+ * @param {!Array.<string>} args Arguments.
+ * @return {string} Command payload.
+ */
+polina.redis.encodeCommand = function(args) {};
+
+/**
+ * @constructor
+ * @param {!Array.<string>} args Script's arguments.
+ * @param {!Function} complete  Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ * @param {!polina.redis.ResultType} type Тип результата.
+ */
+polina.redis.ScriptInvoke = function(args, complete, cancel, type) {};
+
+/**
+ * @param {string} sha Контрольная сумма скрипта.
+ * @return {string} Данные команды.
+ */
+polina.redis.ScriptInvoke.prototype.compilePayload = function(sha) {};
+
+/**
+ * @return {!polina.redis.PacketHandler} Обрабтчик результа.
+ */
+polina.redis.ScriptInvoke.prototype.createHandler = function() {};
+
+/**
  * @enum {number}
  */
 polina.redis.ResponseType = {
@@ -349,6 +373,15 @@ polina.redis.ResponseType = {
   INT: ':'.charCodeAt(0),
   BULK: '$'.charCodeAt(0),
   MULTI_BULK: '*'.charCodeAt(0)
+};
+
+/**
+ * @enum {number}
+ */
+polina.redis.ResultType = {
+  INT: 0,
+  STR: 1,
+  ARR: 2
 };
 
 /**
@@ -512,7 +545,7 @@ polina.redis.IClient.prototype.hset =
 /**
  * @param {string} key Key.
  * @param {string} hashkey Hash key.
- * @param {function(Array)} complete Success handler.
+ * @param {function(!Array)} complete Success handler.
  * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.hget =
@@ -529,50 +562,47 @@ polina.redis.IClient.prototype.hdel =
 
 /**
  * @param {string} key Key.
- * @param {function(Array)} complete Success handler.
+ * @param {function(!Array.<string>)} complete Success handler.
  * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.hgetall =
     function(key, complete, cancel) {};
 
 /**
- * Load a script into the scripts cache, without executing it.
- *
- * @param {string} lua Lua script.
- * @param {function(string)} complete Result handler.
- * @param {function(string, number=)} cancel Error handler.
- */
-polina.redis.IClient.prototype.scriptLoad = function(lua, complete, cancel) {};
-
-/**
- * @param {string} sha SHA1 digest of a script.
- * @param {Array.<string>} args Script's arguments.
+ * @param {string} scriptName Registered script name.
+ * @param {!Array.<string>} args Script's arguments.
  * @param {function(number)} complete
  *    Result handler.
  * @param {function(string, number=)} cancel Error handler.
  */
-polina.redis.IClient.prototype.evalshaInt =
-    function(sha, args, complete, cancel) {};
+polina.redis.IClient.prototype.execInt =
+    function(scriptName, args, complete, cancel) {};
 
 /**
  *
- * @param {string} sha SHA1 digest of a script.
- * @param {Array.<string>} args Script's arguments.
+ * @param {string} scriptName Registered script name.
+ * @param {!Array.<string>} args Script's arguments.
  * @param {function(string)} complete
  *    Result handler.
  * @param {function(string, number=)} cancel Error handler.
  */
-polina.redis.IClient.prototype.evalshaString =
-    function(sha, args, complete, cancel) {};
+polina.redis.IClient.prototype.execString =
+    function(scriptName, args, complete, cancel) {};
 
 /**
- * @param {string} sha SHA1 digest of a script.
+ * @param {string} scriptName Registered script name.
  * @param {!Array.<string>} args Script's arguments.
  * @param {function(!Array.<string>)} complete Result handler.
  * @param {function(string, number=)} cancel Error handler.
  */
-polina.redis.IClient.prototype.evalshaArray =
-    function(sha, args, complete, cancel) {};
+polina.redis.IClient.prototype.execArray =
+    function(scriptName, args, complete, cancel) {};
+
+/**
+ * @param {string} name Script name.
+ * @param {string} script Lua script.
+ */
+polina.redis.IClient.prototype.registerScript = function(name, script) {};
 
 /**
  * Destroys a client.
@@ -696,25 +726,30 @@ polina.redis.Client.prototype.hgetall =
 /**
  * @inheritDoc
  */
-polina.redis.Client.prototype.scriptLoad = function(lua, complete, cancel) {};
+polina.redis.Client.prototype.execInt =
+    function(name, args, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.Client.prototype.evalshaInt =
-    function(sha, args, complete, cancel) {};
+polina.redis.Client.prototype.execString =
+    function(name, args, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.Client.prototype.evalshaString =
-    function(sha, args, complete, cancel) {};
+polina.redis.Client.prototype.execArray =
+    function(name, args, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.Client.prototype.evalshaArray =
-    function(sha, args, complete, cancel) {};
+polina.redis.Client.prototype.registerScript = function(name, script) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.destroy = function() {};
 
 /**
  * Redis Bucket.
@@ -851,25 +886,25 @@ polina.redis.Bucket.prototype.hgetall =
 /**
  * @inheritDoc
  */
-polina.redis.Bucket.prototype.scriptLoad = function(lua, complete, cancel) {};
+polina.redis.Bucket.prototype.execInt =
+    function(name, args, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.Bucket.prototype.evalshaInt =
-    function(sha, args, complete, cancel) {};
+polina.redis.Bucket.prototype.execString =
+    function(name, args, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.Bucket.prototype.evalshaString =
-    function(sha, args, complete, cancel) {};
+polina.redis.Bucket.prototype.execArray =
+    function(name, args, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.Bucket.prototype.evalshaArray =
-    function(sha, args, complete, cancel) {};
+polina.redis.Bucket.prototype.registerScript = function(name, script) {};
 
 /**
  * @inheritDoc
@@ -883,7 +918,7 @@ polina.redis.Bucket.prototype.destroy = function() {};
  * @implements {polina.IPacketHandler}
  * @param {!Function} complete Result handler.
  * @param {function(string, number=)} cancel Error handler.
- * @param {number} type Response type.
+ * @param {!polina.redis.ResultType} type Response type.
  */
 polina.redis.PacketHandler = function(complete, cancel, type) {};
 
@@ -1036,25 +1071,25 @@ polina.redis.Bundle.prototype.hgetall =
 /**
  * @inheritDoc
  */
-polina.redis.Bundle.prototype.scriptLoad = function(lua, complete, cancel) {};
-
-/**
- * @inheritDoc
- */
-polina.redis.Bundle.prototype.evalshaInt =
+polina.redis.Bundle.prototype.execInt =
     function(sha, args, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.Bundle.prototype.evalshaString =
+polina.redis.Bundle.prototype.execString =
     function(sha, args, complete, cancel) {};
 
 /**
  * @inheritDoc
  */
-polina.redis.Bundle.prototype.evalshaArray =
+polina.redis.Bundle.prototype.execArray =
     function(sha, args, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.registerScript = function(name, script) {};
 
 /**
  * @inheritDoc

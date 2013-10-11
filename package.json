@@ -1,13 +1,13 @@
 {
   "name": "node-polina",
   "main": "bin/index.js",
-  "version": "0.2.6-0",
+  "version": "0.3.6-0",
 
   "scripts": {
     "prepublish": "make clean && make check && make"
   },
 
   "dependencies": {
-    "node-ds": "*"
+    "node-ds": "0.2.9-2"
   }
 }

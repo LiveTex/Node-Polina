@@ -11,7 +11,10 @@ lib/polina/beans/watcher.js
 lib/polina/beans/packet-handler.js
 lib/polina/beans/users-bundle.js
 
+lib/polina/redis/redis.js
+lib/polina/redis/script-invoke.js
 lib/polina/redis/response-type.js
+lib/polina/redis/result-type.js
 lib/polina/redis/i-client.js
 lib/polina/redis/client.js
 lib/polina/redis/bucket.js
