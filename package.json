@@ -8,6 +8,7 @@
   },
 
   "dependencies": {
-    "node-ds": "0.2.9-2"
+    "node-ds": "0.2.9-2",
+	"livetex-tools": "*"
   }
 }
