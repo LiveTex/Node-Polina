@@ -4,7 +4,7 @@
   "version": "0.3.6-0",
 
   "scripts": {
-    "prepublish": "make clean && make check && make"
+    "prepublish": "make index.js-clean && make index.js-check && make"
   },
 
   "dependencies": {
