@@ -1,7 +1,5 @@
-var polina = require('../bin');
-
-
-var client = new polina.redis.Client(6379);
+//var client = require('redis').createClient();
+var client = new (require('../bin')).redis.Client(6379);
 
 var i = 0;
 var c = 500000;
@@ -17,8 +15,8 @@ function handleRequest(result) {
 
 
 while (i < c/2) {
-  client.smembers('me', handleRequest, console.error);
-  client.get('kononenko', handleRequest, console.error);
+  client.smembers('me', handleRequest);
+  client.get('kononenko', handleRequest);
 
   i += 1;
 }

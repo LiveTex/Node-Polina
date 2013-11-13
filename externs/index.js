@@ -42,143 +42,243 @@ polina.murmur = function(str) {};
 polina.IPacketHandler = function() {};
 
 /**
- * @return {boolean} Обработан ли пакет.
+ * Returns true if a pachket was handled.
+ *
+ * @return {boolean} Flag of packet handling.
  */
 polina.IPacketHandler.prototype.isComplete = function() {};
 
 /**
- * @param {number} cursor Курсор.
- * @param {!Buffer} chunk Пакет данных.
- * @return {number} Новое положение курсора.
+ * Shifts cursor and returns is's new position.
+ *
+ * @param {number} cursor Data cursor.
+ * @param {!Buffer} chunk Data packet.
+ * @return {number} New cursor position.
  */
 polina.IPacketHandler.prototype.process = function(cursor, chunk) {};
 
 /**
- * Очищение пакета, кторое может понадобиться при реконекте.
+ * Clears a packet for reconnect.
  */
 polina.IPacketHandler.prototype.reset = function() {};
 
 /**
+ * Connection establisher.
+ *
  * @constructor
- * @param {number} port Порт подключения.
- * @param {string=} opt_host Хост для подключения.
+ * @param {number} port Connection port.
+ * @param {string=} opt_host Хост Connection host.
  */
 polina.Connection = function(port, opt_host) {};
 
 /**
- * @param {number} port Порт подключения.
- * @param {string=} opt_host Хост для подключения.
+ * Registers a fallback destination.
+ *
+ * @param {number} port Fallback connection port.
+ * @param {string=} opt_host Fallback connection host.
  */
 polina.Connection.prototype.registerFallback = function(port, opt_host) {};
 
 /**
- *
+ * Destroys connection.
  */
 polina.Connection.prototype.destroy = function() {};
 
 /**
- * @param {string} payload Данные.
- * @param {!polina.IPacketHandler} handler Обработчик пакета.
+ * @param {string} payload Data.
+ * @param {!polina.IPacketHandler} handler Packet handler.
  */
 polina.Connection.prototype._send = function(payload, handler) {};
 
 /**
- * @return {string} Инициирующий запрос.
+ * @return {string} Initializes request.
  */
 polina.Connection.prototype._getHandshakePayload = function() {};
 
 /**
- * @return {polina.IPacketHandler} Инициирующий пакет.
+ * @return {string} Initializes request.
+ */
+polina.Connection.prototype._getDestoryPayload = function() {};
+
+/**
+ * @return {polina.IPacketHandler} Initializes packet.
  */
 polina.Connection.prototype._getHandshakeHandler = function() {};
 
 /**
- * @constructor
- * @extends {polina.Connection}
- * @param {string} handshakePayload Инициирующий пакет.
- * @param {!polina.beans.PacketHandler} handshakeHandler Инициирующий пакет.
- * @param {number} port Порт подключения.
- * @param {string=} opt_host Хост для подключения.
+ * @type {number}
  */
-polina.beans.Client =
-    function(handshakePayload, handshakeHandler, port, opt_host) {};
+polina.beans.USER_TTL = 60000;
 
 /**
- * @return {string} Инициирующий запрос.
+ * @param {!polina.beans.Tube} tube Туба.
+ * @return {string} Сериализованная туба.
+ */
+polina.beans.serializeTube = function(tube) {};
+
+/**
+ * @param {string} string Сериализованная туба.
+ * @return {!polina.beans.Tube} Туба.
+ */
+polina.beans.reconstructTube = function(string) {};
+
+/**
+ * @param {!polina.beans.Tube} tube Туба.
+ * @param {function(string)} handler Обработчик.
+ */
+polina.beans.unsafeWatch = function(tube, handler) {};
+
+/**
+ * @param {string|!polina.beans.Tube} tubeOrString Туба.
+ * @param {function(boolean)} complete Обработчик блокировки.
+ * @param {function(string, number=)} cancel Обработчик ошибки.
+ */
+polina.beans.hasWatchers = function(tubeOrString, complete, cancel) {};
+
+/**
+ * @param {string|!polina.beans.Tube} tubeOrString Туба.
+ * @param {string} data Данные.
+ * @param {function(string)=} opt_callback Обработчик результата.
+ */
+polina.beans.put = function(tubeOrString, data, opt_callback) {};
+
+/**
+ * Beanstalkd client.
+ *
+ * @constructor
+ * @extends {polina.Connection}
+ * @param {string} destroyPayload Initializes packet.
+ * @param {string} handshakePayload Initializes packet.
+ * @param {!polina.beans.PacketHandler} handshakeHandler A handler for a
+ *   handshake.
+ * @param {number} port Connection port.
+ * @param {string=} opt_host Connection host.
+ */
+polina.beans.Client =
+    function(destroyPayload, handshakePayload, handshakeHandler, port,
+             opt_host) {};
+
+/**
+ * @return {string} Initializes request.
  */
 polina.beans.Client.prototype._getHandshakePayload = function() {};
 
 /**
- * @return {polina.IPacketHandler} Инициирующий пакет.
+ * @return {polina.IPacketHandler} Initializes packet.
  */
 polina.beans.Client.prototype._getHandshakeHandler = function() {};
 
 /**
- * @param {string} name Имя команды.
- * @param {string} args Аргументы комады.
- * @param {string} response Ожидаемый результат.
- * @param {Function} callback Обработчик результата.
- * @param {string=} opt_data Данные.
+ * @inheritDoc
+ */
+polina.beans.Client.prototype._getDestoryPayload = function() {};
+
+/**
+ * @param {string} name Command name.
+ * @param {string} args Command arguments.
+ * @param {string} response Expected result.
+ * @param {Function} callback Result handler.
+ * @param {string=} opt_data Data.
  */
 polina.beans.Client.prototype._command =
     function(name, args, response, callback, opt_data) {};
 
 /**
  * @constructor
- * @extends {polina.beans.Client}
- * @param {string} tube Труба наблюдения.
- * @param {number} port Порт подключения.
- * @param {string=} opt_host Хост для подключения.
+ * @param {string} name Observation tube.
+ * @param {number} port Connection port.
+ * @param {string=} opt_host Connection host.
  */
-polina.beans.User = function(tube, port, opt_host) {};
+polina.beans.Tube = function(name, port, opt_host) {};
 
 /**
+ * @return {string} Name of the tube.
+ */
+polina.beans.Tube.prototype.getName = function() {};
+
+/**
+ * @return {number} Connection port.
+ */
+polina.beans.Tube.prototype.getPort = function() {};
+
+/**
+ * @return {string} Connection host.
+ */
+polina.beans.Tube.prototype.getHost = function() {};
+
+/**
+ * User of a tube.
+ *
+ * @constructor
+ * @extends {polina.beans.Client}
+ * @param {!polina.beans.Tube} tube Observation tube.
+ */
+polina.beans.User = function(tube) {};
+
+/**
+ * Puts data to execution tube.
  *
  * @param {number} priority Приоритет.
  * @param {number} timeout Таймаут.
  * @param {number} execTime Время на обработку.
  * @param {string} data Данные.
- * @param {?function(Error, string=)=} opt_callback Обработчик результата.
+ * @param {function(string)=} opt_callback Обработчик результата.
  */
 polina.beans.User.prototype.put =
     function(priority, timeout, execTime, data, opt_callback) {};
 
 /**
- * @param {function(string, string)} complete Обработчик результата.
+ * @param {function(!Object.<string, string>)} complete Обработчик результата.
+ */
+polina.beans.User.prototype.statsTube = function(complete) {};
+
+/**
+ * Picks data, which is ready for task.
+ *
+ * @param {function(string, string)} complete Result handler.
  */
 polina.beans.User.prototype.peekReady = function(complete) {};
 
 /**
+ * Deletes job by id.
+ *
  * @param {string} jid Job id.
- * @param {function()} callback Обработчик результата.
+ * @param {function()} callback Result handler.
  */
 polina.beans.User.prototype.delete = function(jid, callback) {};
 
 /**
+ * Event watcher
+ *
  * @constructor
  * @extends {polina.beans.Client}
- * @param {string} tube Труба наблюдения.
- * @param {number} port Порт подключения.
- * @param {string=} opt_host Хост для подключения.
+ * @param {!polina.beans.Tube} tube Observation tube.
  */
-polina.beans.Watcher = function(tube, port, opt_host) {};
+polina.beans.Watcher = function(tube) {};
 
 /**
- * @param {function(string, string)} callback Обработчик результата.
+ * Reserves ready-task, which can be deleted, buried, released with delay or
+ * just released.
+ *
+ * @param {function(string, string)} callback Result handler.
  */
 polina.beans.Watcher.prototype.reserve = function(callback) {};
 
 /**
- * @param {string} jid Идентификатор задачи.
- * @param {function()} callback Обработчик результата.
+ * Deletes task from tube.
+ *
+ * @param {string} jid Job id.
+ * @param {function()} callback Result handler.
  */
 polina.beans.Watcher.prototype.delete = function(jid, callback) {};
 
 /**
- * @param {string} jid Идентификатор задачи.
- * @param {number} priority Приоритет.
- * @param {number} timeout Таймаут.
- * @param {function()} callback Обработчик результата.
+ * Releases task. Puts it into ready-tasks tube.
+ *
+ * @param {string} jid Job id.
+ * @param {number} priority Priority of a job.
+ * @param {number} timeout Execution timeout.
+ * @param {function()} callback Result handler.
  */
 polina.beans.Watcher.prototype.release =
     function(jid, priority, timeout, callback) {};
@@ -189,10 +289,12 @@ polina.beans.Watcher.prototype.release =
 polina.beans.Watcher.prototype.destroy = function() {};
 
 /**
+ * Beanstalkd packet handler.
+ *
  * @constructor
  * @implements {polina.IPacketHandler}
- * @param {string} expectedResponse Ожидaемый результат.
- * @param {Function=} opt_callback Обработчик результата.
+ * @param {string} expectedResponse Expected result.
+ * @param {Function=} opt_callback Result handler.
  */
 polina.beans.PacketHandler = function(expectedResponse, opt_callback) {};
 
@@ -212,27 +314,55 @@ polina.beans.PacketHandler.prototype.isComplete = function() {};
 polina.beans.PacketHandler.prototype.process = function(cursor, chunk) {};
 
 /**
+ * A bundle of beanstalkd users.
+ *
  * @constructor
- * @param {string} tube Труба наблюдения.
- * @param {!Array.<number>} ports Порт подключения.
- * @param {!Array.<string>=} opt_hosts Хост для подключения.
+ * @param {!Array.<!polina.beans.Tube>} tubes Connection tubes.
  */
-polina.beans.UsersBundle = function(tube, ports, opt_hosts) {};
+polina.beans.UsersBundle = function(tubes) {};
 
 /**
- * @param {number} priority Приоритет.
- * @param {number} timeout Таймаут.
- * @param {number} execTime Время на обработку.
- * @param {string} data Данные.
- * @param {?function(Error, string=)=} opt_callback Обработчик результата.
+ * Puts data to execution tube.
+ *
+ * @param {number} priority Priority of data handling.
+ * @param {number} timeout Execution timeout.
+ * @param {number} execTime Execution time.
+ * @param {string} data Data to handle.
+ * @param {function(string)=} opt_callback Result handler.
  */
 polina.beans.UsersBundle.prototype.put =
     function(priority, timeout, execTime, data, opt_callback) {};
 
 /**
- * Разрушение.
+ * Destroys a bundle.
  */
 polina.beans.UsersBundle.prototype.destroy = function() {};
+
+/**
+ * @param {!Array.<string>} args Arguments.
+ * @return {string} Command payload.
+ */
+polina.redis.encodeCommand = function(args) {};
+
+/**
+ * @constructor
+ * @param {!Array.<string>} args Script's arguments.
+ * @param {!Function} complete  Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ * @param {!polina.redis.ResultType} type Тип результата.
+ */
+polina.redis.ScriptInvoke = function(args, complete, cancel, type) {};
+
+/**
+ * @param {string} sha Контрольная сумма скрипта.
+ * @return {string} Данные команды.
+ */
+polina.redis.ScriptInvoke.prototype.compilePayload = function(sha) {};
+
+/**
+ * @return {!polina.redis.PacketHandler} Обрабтчик результа.
+ */
+polina.redis.ScriptInvoke.prototype.createHandler = function() {};
 
 /**
  * @enum {number}
@@ -246,139 +376,254 @@ polina.redis.ResponseType = {
 };
 
 /**
+ * @enum {number}
+ */
+polina.redis.ResultType = {
+  INT: 0,
+  STR: 1,
+  ARR: 2
+};
+
+/**
  * @interface
  */
 polina.redis.IClient = function() {};
 
 /**
- * @param {string} key Ключ.
- * @param {string} value Значение.
- * @param {function(string)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * Sets the string value of a key.
+ *
+ * @param {string} key A key of set value.
+ * @param {string} value Value to be set.
+ * @param {function(string)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.set =
     function(key, value, complete, cancel) {};
 
 /**
- * @param {string} key Ключ.
- * @param {number} value Значение.
- * @param {function(number)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * Increments the integer value of a key by the given amount.
+ *
+ * @param {string} key A key of a value to be incremented.
+ * @param {number} value Increment value.
+ * @param {function(number)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.incrby =
     function(key, value, complete, cancel) {};
 
 /**
- * @param {string} key Ключ.
- * @param {function(number)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * Increments the integer value of a key by one.
+ *
+ * @param {string} key A key of a value to be incremented..
+ * @param {function(number)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.incr =
     function(key, complete, cancel) {};
 
 /**
- * @param {string} key Ключ.
- * @param {function(number)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * Decrements the integer value of a key by one.
+ *
+ * @param {string} key A key of a value to be decremented.
+ * @param {function(number)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.decr =
     function(key, complete, cancel) {};
 
 /**
- * @param {string} key Ключ.
- * @param {number} seconds Количество секунд жизни ключа.
- * @param {string} value Значение.
- * @param {function(string)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * Sets the value and expiration of a key.
+ *
+ * @param {string} key A key of set value.
+ * @param {number} seconds Duration of key's life.
+ * @param {string} value Value to be set.
+ * @param {function(string)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.setex =
     function(key, seconds, value, complete, cancel) {};
 
 /**
- * @param {string} key Ключ.
- * @param {number} seconds Количество секунд жизни ключа.
- * @param {function(number)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * Sets a timeout on key.
+ *
+ * @param {string} key A key.
+ * @param {number} seconds Duration of key's life.
+ * @param {function(number)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.expire =
     function(key, seconds, complete, cancel) {};
 
 /**
- * @param {string} key Ключ.
- * @param {function(string)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * Gets the value of a key.
+ *
+ * @param {string} key A key.
+ * @param {function(string)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.get = function(key, complete, cancel) {};
 
 /**
- * @param {!Array.<string>} keys Ключи.
- * @param {function(!Array.<string>)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * Gets the values of all the given keys
+ *
+ * @param {!Array.<string>} keys Keys of values to be get.
+ * @param {function(!Array.<string>)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.mget = function(keys, complete, cancel) {};
 
 /**
- * @param {string} pattern Шаблон.
- * @param {function(!Array.<string>)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * Finds all keys matching the given pattern.
+ *
+ * @param {string} pattern Pattern of keys.
+ * @param {function(!Array.<string>)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.keys = function(pattern, complete, cancel) {};
 
 /**
- * @param {string|!Array.<string>} keys Ключ.
- * @param {function(number)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * Deletes kleys.
+ *
+ * @param {string} keys Keys to be deleted.
+ * @param {function(number)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.del = function(keys, complete, cancel) {};
 
 /**
- * @param {string} key Ключ.
- * @param {string|!Array.<string>} value Значение.
- * @param {function(number)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * Adds one or more values to a set.
+ *
+ * @param {string} key Key of values.
+ * @param {string|!Array.<string>} value Values to be set to a key.
+ * @param {function(number)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.sadd =
     function(key, value, complete, cancel) {};
 
 /**
- * @param {string} key Ключ.
- * @param {string|!Array.<string>} value Значение.
- * @param {function(number)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * Removes the specified values from the set stored at key.
+ *
+ * @param {string} key A key of values to be removed.
+ * @param {string|!Array.<string>} value Values of a key to be removed.
+ * @param {function(number)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.srem =
     function(key, value, complete, cancel) {};
 
 /**
- * @param {string} key Ключ.
- * @param {string} value Значение.
- * @param {function(number)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * Checks if value is a value of the set stored at key.
+ *
+ * @param {string} key Key of a set.
+ * @param {string} value Value to check.
+ * @param {function(number)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.sismember =
     function(key, value, complete, cancel) {};
 
 /**
- * @param {string} key Ключ.
- * @param {function(!Array.<string>)} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
+ * Extracts all the values of the set stored at key.
+ *
+ * @param {string} key Key of a set.
+ * @param {function(!Array.<string>)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
  */
-polina.redis.IClient.prototype.smembers =
+polina.redis.IClient.prototype.smembers = function(key, complete, cancel) {};
+
+/**
+ * @param {string} key Key.
+ * @param {string} hashkey Hash key.
+ * @param {string} value Value.
+ * @param {function()} complete Success handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.hset =
+    function(key, hashkey, value, complete, cancel) {};
+
+/**
+ * @param {string} key Key.
+ * @param {string} hashkey Hash key.
+ * @param {function(!Array)} complete Success handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.hget =
+    function(key, hashkey, complete, cancel) {};
+
+/**
+ * @param {string} key Key.
+ * @param {string} hashkey Hash key.
+ * @param {function()} complete Success handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.hdel =
+    function(key, hashkey, complete, cancel) {};
+
+/**
+ * @param {string} key Key.
+ * @param {function(!Array.<string>)} complete Success handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.hgetall =
     function(key, complete, cancel) {};
 
 /**
- * Разрушение клиента.
+ * @param {string} scriptName Registered script name.
+ * @param {!Array.<string>} args Script's arguments.
+ * @param {function(number)} complete
+ *    Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.execInt =
+    function(scriptName, args, complete, cancel) {};
+
+/**
+ *
+ * @param {string} scriptName Registered script name.
+ * @param {!Array.<string>} args Script's arguments.
+ * @param {function(string)} complete
+ *    Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.execString =
+    function(scriptName, args, complete, cancel) {};
+
+/**
+ * @param {string} scriptName Registered script name.
+ * @param {!Array.<string>} args Script's arguments.
+ * @param {function(!Array.<string>)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.execArray =
+    function(scriptName, args, complete, cancel) {};
+
+/**
+ * @param {string} name Script name.
+ * @param {string} script Lua script.
+ */
+polina.redis.IClient.prototype.registerScript = function(name, script) {};
+
+/**
+ * Destroys a client.
  */
 polina.redis.IClient.prototype.destroy = function() {};
 
 /**
+ * Redis client.
+ *
  * @constructor
  * @extends {polina.Connection}
  * @implements {polina.redis.IClient}
- * @param {number} port Порт подключения.
- * @param {string=} opt_host Хост для подключения.
+ * @param {number} port Connection port.
+ * @param {string=} opt_host Connection host.
  */
 polina.redis.Client = function(port, opt_host) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype._getDestoryPayload = function() {};
 
 /**
  * @inheritDoc
@@ -431,7 +676,7 @@ polina.redis.Client.prototype.keys = function(pattern, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Client.prototype.del = function(keys, complete, cancel) {};
+polina.redis.Client.prototype.del = function(key, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -455,30 +700,88 @@ polina.redis.Client.prototype.sismember =
 polina.redis.Client.prototype.smembers = function(key, complete, cancel) {};
 
 /**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.hset =
+    function(key, hashkey, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.hget =
+    function(key, hashkey, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.hdel =
+    function(key, hashkey, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.hgetall =
+    function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.execInt =
+    function(name, args, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.execString =
+    function(name, args, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.execArray =
+    function(name, args, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.registerScript = function(name, script) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.destroy = function() {};
+
+/**
+ * Redis Bucket.
+ *
  * @constructor
  * @implements {polina.redis.IClient}
- * @param {number} size Размер бакета.
+ * @param {number} size Bucket size.
  */
 polina.redis.Bucket = function(size) {};
 
 /**
- * @param {number} size Размер бакета.
+ * Changes a size of a bucket.
+ *
+ * @param {number} size Bucket size.
  */
 polina.redis.Bucket.prototype.resize = function(size) {};
 
 /**
+ * Registers client in a bucket.
  *
- *
- * @param {number} intervalStart Начало выделенного интервала.
- * @param {number} intervalEnd Конец выделенного интервала.
- * @param {!polina.redis.IClient} client Redis-клиент.
- * @param {string} id Идентификатор клиента.
+ * @param {number} intervalStart A start point of curtain interval.
+ * @param {number} intervalEnd An end point of curtain interval.
+ * @param {!polina.redis.IClient} client Redis-client.
+ * @param {string} id Client identificator.
  */
 polina.redis.Bucket.prototype.registerClient =
     function(intervalStart, intervalEnd, client, id) {};
 
 /**
- * @param {string} id Идентификатор клиента.
+ * Terminates client in bucket by id.
+ *
+ * @param {string} id Client identificator.
  */
 polina.redis.Bucket.prototype.terminateClient = function(id) {};
 
@@ -533,7 +836,7 @@ polina.redis.Bucket.prototype.keys = function(pattern, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Bucket.prototype.del = function(keys, complete, cancel) {};
+polina.redis.Bucket.prototype.del = function(key, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -559,14 +862,63 @@ polina.redis.Bucket.prototype.smembers = function(key, complete, cancel) {};
 /**
  * @inheritDoc
  */
+polina.redis.Bucket.prototype.hset =
+    function(key, hashkey, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.hget =
+    function(key, hashkey, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.hdel =
+    function(key, hashkey, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.hgetall =
+    function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.execInt =
+    function(name, args, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.execString =
+    function(name, args, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.execArray =
+    function(name, args, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.registerScript = function(name, script) {};
+
+/**
+ * @inheritDoc
+ */
 polina.redis.Bucket.prototype.destroy = function() {};
 
 /**
+ * Redis packet handler.
+ *
  * @constructor
  * @implements {polina.IPacketHandler}
- * @param {!Function} complete Обработчик результата.
- * @param {function(string, number=)} cancel Обработчик ошибки.
- * @param {number} type Тип ответа.
+ * @param {!Function} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ * @param {!polina.redis.ResultType} type Response type.
  */
 polina.redis.PacketHandler = function(complete, cancel, type) {};
 
@@ -586,26 +938,31 @@ polina.redis.PacketHandler.prototype.isComplete = function() {};
 polina.redis.PacketHandler.prototype.process = function(cursor, chunk) {};
 
 /**
+ *
  */
 polina.redis.PacketHandler.prototype._complete = function() {};
 
 /**
- * @param {!Buffer} error Ошибка.
+ * @param {!Buffer} error Error to be handled.
  */
 polina.redis.PacketHandler.prototype._cancel = function(error) {};
 
 /**
+ * A bundle of buckets.
+ *
  * @constructor
  * @implements {polina.redis.IClient}
- * @param {number} count Количество соединений.
- * @param {number} port Порт.
- * @param {string=} opt_host Хост.
+ * @param {number} count Connection count.
+ * @param {number} port Connection port.
+ * @param {string=} opt_host Connection host.
  */
 polina.redis.Bundle = function(count, port, opt_host) {};
 
 /**
- * @param {number} port Порт подключения.
- * @param {string=} opt_host Хост для подключения.
+ * Registers a fallback destination.
+ *
+ * @param {number} port Connection port.
+ * @param {string=} opt_host Connection host.
  */
 polina.redis.Bundle.prototype.registerFallback = function(port, opt_host) {};
 
@@ -661,7 +1018,7 @@ polina.redis.Bundle.prototype.keys = function(pattern, complete, cancel) {};
 /**
  * @inheritDoc
  */
-polina.redis.Bundle.prototype.del = function(keys, complete, cancel) {};
+polina.redis.Bundle.prototype.del = function(key, complete, cancel) {};
 
 /**
  * @inheritDoc
@@ -686,6 +1043,53 @@ polina.redis.Bundle.prototype.sismember =
  */
 polina.redis.Bundle.prototype.smembers =
     function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.hset =
+    function(key, hashkey, value, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.hget =
+    function(key, hashkey, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.hdel =
+    function(key, hashkey, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.hgetall =
+    function(key, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.execInt =
+    function(sha, args, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.execString =
+    function(sha, args, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.execArray =
+    function(sha, args, complete, cancel) {};
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.registerScript = function(name, script) {};
 
 /**
  * @inheritDoc
