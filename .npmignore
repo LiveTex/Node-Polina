@@ -1,6 +1,7 @@
-.idea/
 *.iml
 *.log
-.gitignore
 .build/
+.gitignore
+.idea/
 bin/
+externs/

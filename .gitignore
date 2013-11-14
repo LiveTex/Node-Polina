@@ -1,6 +1,7 @@
-.idea/
 *.iml
-bin/
-node_modules/
 *.log
 .build/
+.idea/
+.npmignore/
+bin/
+node_modules/

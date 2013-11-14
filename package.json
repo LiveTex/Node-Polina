@@ -1,14 +1,14 @@
 {
-  "name": "node-polina",
+  "name": "livetex-polina",
   "main": "bin/index.js",
-  "version": "0.3.6-4",
+  "version": "2.0.0",
 
   "scripts": {
     "prepublish": "make index.js-clean && make index.js-check && make"
   },
 
   "dependencies": {
-    "node-ds": ">=0.2.9-7",
-	"livetex-tools": "*"
+    "livetex-ds": "*",
+	  "livetex-tools": "*"
   }
 }
