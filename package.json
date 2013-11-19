@@ -10,5 +10,32 @@
   "dependencies": {
     "livetex-data-set": "*",
 	  "livetex-tools": "*"
+  },
+  
+  "license": "Modified BSD License",
+  
+  "contributors": [
+    {
+      "name": "Sergey Kononenko",
+      "email": "kononencheg@gmail.com"
+    },
+    {
+      "name": "Evgeny Mikheev",
+      "email": "eudgee@gmail.com"
+    },
+    {
+      "name": "Maxim Kalachev",
+      "email": "kalachevmax@gmail.com"
+    },
+    {
+      "name": "Valeria Lepina",
+      "email": "divergence082@gmail.com"
+    }
+  ],
+  
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/LiveTex/Node-Polina.git"
   }
+
 }
