@@ -2,6 +2,7 @@
 *.log
 .build/
 .gitignore
+.project
 .idea/
 bin/
 externs/
