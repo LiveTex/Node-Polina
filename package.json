@@ -8,7 +8,7 @@
   },
 
   "dependencies": {
-    "livetex-ds": "*",
+    "livetex-data-set": "*",
 	  "livetex-tools": "*"
   }
 }
