@@ -9,7 +9,8 @@
 
   "dependencies": {
     "livetex-data-set": "*",
-	  "livetex-tools": "*"
+    "livetex-node-util": "*",
+    "livetex-tools": "*"
   },
   
   "license": "Modified BSD License",
