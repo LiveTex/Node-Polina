@@ -1,19 +1,20 @@
 var polina = require('../bin');
 
 
+var tube = new polina.beans.Tube('tube', 11300);
 
-var watcher = new polina.beans.Watcher('tube', 11300);
+function nop() {}
 
-function reserve() {
-  watcher.reserve(function(jobId, rawData) {
-    console.log(jobId, rawData);
-
-    watcher.delete(jobId, function() {
-      console.log(jobId);
-
-      reserve();
-    });
+function reserve(watcher) {
+  watcher.reserve(function(jobId, data) {
+    if (data.length < 1024) {
+      watcher.delete(jobId, nop);
+      console.log(Date.now() - Number(data));
+    } else {
+      watcher.delete(jobId, nop);
+      reserve(watcher);
+    }
   });
 }
 
-reserve();
+reserve(new polina.beans.Watcher(tube));

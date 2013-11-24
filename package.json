@@ -9,6 +9,6 @@
 
   "dependencies": {
     "node-ds": ">=0.2.9-7",
-	"livetex-tools": "*"
+    "livetex-tools": "*"
   }
 }
