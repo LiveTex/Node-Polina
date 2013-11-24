@@ -1,21 +1,23 @@
 var polina = require('../bin');
 
 
+var PACKET_SIZE = 16;
 
 var tube = new polina.beans.Tube('tube', 11300);
 var payload = (new Array((1024)+1)).join('a'); // kb
-var user = new polina.beans.User(tube);
 var i = 0;
 var t = Date.now();
 var kb = 1024*1024;
 
 function put() {
-  user.put(0, 0, 30, payload);
+  for (var j = 0; j < PACKET_SIZE; j += 1) {
+    polina.beans.put(tube, payload);
+  }
 
-  if ((i += 1) < kb) {
+  if ((i += PACKET_SIZE) < kb) {
     process.nextTick(put);
   } else {
-    user.put(0, 0, 30, t.toString());
+    polina.beans.put(tube, t.toString());
     console.log(Date.now() - t);
   }
 }
