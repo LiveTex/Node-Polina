@@ -1,6 +1,7 @@
 *.iml
 *.log
 .project
+.build/
 .idea/
 bin/
 externs/
