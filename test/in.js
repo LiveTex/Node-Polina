@@ -8,7 +8,6 @@ function nop() {}
 function reserve(watcher) {
   watcher.reserve(function(jobId, data) {
     watcher.delete(jobId, nop);
-    console.log(data.length);
 
     if (data.length < 1024) {
       console.log(Date.now() - Number(data));
@@ -18,4 +17,7 @@ function reserve(watcher) {
   });
 }
 
+reserve(new polina.beans.Watcher(tube));
+reserve(new polina.beans.Watcher(tube));
+reserve(new polina.beans.Watcher(tube));
 reserve(new polina.beans.Watcher(tube));

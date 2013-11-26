@@ -1,29 +1,31 @@
- 
-
 /**
  * @namespace
  */
 var polina = {};
 
+
 /**
  * @type {string}
  */
-polina.VERSION = '0.0.1';
+polina.VERSION  = '';
 
 /**
  * @namespace
  */
 polina.beans = {};
 
+
 /**
  * @namespace
  */
 polina.redis = {};
 
+
 /**
  * Ничего.
  */
 polina.nop = function() {};
+
 
 /**
  * JS Implementation of MurmurHash2
@@ -36,10 +38,13 @@ polina.nop = function() {};
  */
 polina.murmur = function(str) {};
 
+
+
 /**
  * @interface
  */
 polina.IPacketHandler = function() {};
+
 
 /**
  * Returns true if a pachket was handled.
@@ -47,6 +52,7 @@ polina.IPacketHandler = function() {};
  * @return {boolean} Flag of packet handling.
  */
 polina.IPacketHandler.prototype.isComplete = function() {};
+
 
 /**
  * Shifts cursor and returns is's new position.
@@ -57,10 +63,13 @@ polina.IPacketHandler.prototype.isComplete = function() {};
  */
 polina.IPacketHandler.prototype.process = function(cursor, chunk) {};
 
+
 /**
  * Clears a packet for reconnect.
  */
 polina.IPacketHandler.prototype.reset = function() {};
+
+
 
 /**
  * Connection establisher.
@@ -71,6 +80,7 @@ polina.IPacketHandler.prototype.reset = function() {};
  */
 polina.Connection = function(port, opt_host) {};
 
+
 /**
  * Registers a fallback destination.
  *
@@ -79,10 +89,18 @@ polina.Connection = function(port, opt_host) {};
  */
 polina.Connection.prototype.registerFallback = function(port, opt_host) {};
 
+
+/**
+ * @return {boolean} В процессе ли звпрос.
+ */
+polina.Connection.prototype.isRunning = function() {};
+
+
 /**
  * Destroys connection.
  */
 polina.Connection.prototype.destroy = function() {};
+
 
 /**
  * @param {string} payload Data.
@@ -90,25 +108,40 @@ polina.Connection.prototype.destroy = function() {};
  */
 polina.Connection.prototype._send = function(payload, handler) {};
 
+
 /**
  * @return {string} Initializes request.
  */
 polina.Connection.prototype._getHandshakePayload = function() {};
+
 
 /**
  * @return {string} Initializes request.
  */
 polina.Connection.prototype._getDestoryPayload = function() {};
 
+
 /**
  * @return {polina.IPacketHandler} Initializes packet.
  */
 polina.Connection.prototype._getHandshakeHandler = function() {};
 
+
+
 /**
  * @type {number}
  */
-polina.beans.USER_TTL = 60000;
+polina.beans.USER_TTL  = 10000;
+
+/**
+ * @type {number}
+ */
+polina.beans.MAX_USER_POOL_SIZE  = 5;
+
+/**
+ * @type {number}
+ */
+polina.beans.TASK_TTR  = 30;
 
 /**
  * @param {!polina.beans.Tube} tube Туба.
@@ -116,17 +149,20 @@ polina.beans.USER_TTL = 60000;
  */
 polina.beans.serializeTube = function(tube) {};
 
+
 /**
  * @param {string} string Сериализованная туба.
  * @return {!polina.beans.Tube} Туба.
  */
 polina.beans.reconstructTube = function(string) {};
 
+
 /**
  * @param {!polina.beans.Tube} tube Туба.
  * @param {function(string)} handler Обработчик.
  */
 polina.beans.unsafeWatch = function(tube, handler) {};
+
 
 /**
  * @param {string|!polina.beans.Tube} tubeOrString Туба.
@@ -135,12 +171,15 @@ polina.beans.unsafeWatch = function(tube, handler) {};
  */
 polina.beans.hasWatchers = function(tubeOrString, complete, cancel) {};
 
+
 /**
  * @param {string|!polina.beans.Tube} tubeOrString Туба.
  * @param {string} data Данные.
  * @param {function(string)=} opt_callback Обработчик результата.
  */
 polina.beans.put = function(tubeOrString, data, opt_callback) {};
+
+
 
 /**
  * Beanstalkd client.
@@ -158,20 +197,24 @@ polina.beans.Client =
     function(destroyPayload, handshakePayload, handshakeHandler, port,
              opt_host) {};
 
+
 /**
  * @return {string} Initializes request.
  */
 polina.beans.Client.prototype._getHandshakePayload = function() {};
+
 
 /**
  * @return {polina.IPacketHandler} Initializes packet.
  */
 polina.beans.Client.prototype._getHandshakeHandler = function() {};
 
+
 /**
  * @inheritDoc
  */
 polina.beans.Client.prototype._getDestoryPayload = function() {};
+
 
 /**
  * @param {string} name Command name.
@@ -183,6 +226,8 @@ polina.beans.Client.prototype._getDestoryPayload = function() {};
 polina.beans.Client.prototype._command =
     function(name, args, response, callback, opt_data) {};
 
+
+
 /**
  * @constructor
  * @param {string} name Observation tube.
@@ -191,20 +236,31 @@ polina.beans.Client.prototype._command =
  */
 polina.beans.Tube = function(name, port, opt_host) {};
 
+
+/**
+ * @return {string} ID of the tube.
+ */
+polina.beans.Tube.prototype.getId = function() {};
+
+
 /**
  * @return {string} Name of the tube.
  */
 polina.beans.Tube.prototype.getName = function() {};
+
 
 /**
  * @return {number} Connection port.
  */
 polina.beans.Tube.prototype.getPort = function() {};
 
+
 /**
  * @return {string} Connection host.
  */
 polina.beans.Tube.prototype.getHost = function() {};
+
+
 
 /**
  * User of a tube.
@@ -214,6 +270,7 @@ polina.beans.Tube.prototype.getHost = function() {};
  * @param {!polina.beans.Tube} tube Observation tube.
  */
 polina.beans.User = function(tube) {};
+
 
 /**
  * Puts data to execution tube.
@@ -227,10 +284,12 @@ polina.beans.User = function(tube) {};
 polina.beans.User.prototype.put =
     function(priority, timeout, execTime, data, opt_callback) {};
 
+
 /**
  * @param {function(!Object.<string, string>)} complete Обработчик результата.
  */
 polina.beans.User.prototype.statsTube = function(complete) {};
+
 
 /**
  * Picks data, which is ready for task.
@@ -239,6 +298,7 @@ polina.beans.User.prototype.statsTube = function(complete) {};
  */
 polina.beans.User.prototype.peekReady = function(complete) {};
 
+
 /**
  * Deletes job by id.
  *
@@ -246,6 +306,8 @@ polina.beans.User.prototype.peekReady = function(complete) {};
  * @param {function()} callback Result handler.
  */
 polina.beans.User.prototype.delete = function(jid, callback) {};
+
+
 
 /**
  * Event watcher
@@ -256,6 +318,7 @@ polina.beans.User.prototype.delete = function(jid, callback) {};
  */
 polina.beans.Watcher = function(tube) {};
 
+
 /**
  * Reserves ready-task, which can be deleted, buried, released with delay or
  * just released.
@@ -264,6 +327,7 @@ polina.beans.Watcher = function(tube) {};
  */
 polina.beans.Watcher.prototype.reserve = function(callback) {};
 
+
 /**
  * Deletes task from tube.
  *
@@ -271,6 +335,7 @@ polina.beans.Watcher.prototype.reserve = function(callback) {};
  * @param {function()} callback Result handler.
  */
 polina.beans.Watcher.prototype.delete = function(jid, callback) {};
+
 
 /**
  * Releases task. Puts it into ready-tasks tube.
@@ -283,10 +348,13 @@ polina.beans.Watcher.prototype.delete = function(jid, callback) {};
 polina.beans.Watcher.prototype.release =
     function(jid, priority, timeout, callback) {};
 
+
 /**
  * @inheritDoc
  */
 polina.beans.Watcher.prototype.destroy = function() {};
+
+
 
 /**
  * Beanstalkd packet handler.
@@ -298,20 +366,25 @@ polina.beans.Watcher.prototype.destroy = function() {};
  */
 polina.beans.PacketHandler = function(expectedResponse, opt_callback) {};
 
+
 /**
  * @inheritDoc
  */
 polina.beans.PacketHandler.prototype.reset = function() {};
+
 
 /**
  * @inheritDoc
  */
 polina.beans.PacketHandler.prototype.isComplete = function() {};
 
+
 /**
  * @inheritDoc
  */
 polina.beans.PacketHandler.prototype.process = function(cursor, chunk) {};
+
+
 
 /**
  * A bundle of beanstalkd users.
@@ -320,6 +393,7 @@ polina.beans.PacketHandler.prototype.process = function(cursor, chunk) {};
  * @param {!Array.<!polina.beans.Tube>} tubes Connection tubes.
  */
 polina.beans.UsersBundle = function(tubes) {};
+
 
 /**
  * Puts data to execution tube.
@@ -333,16 +407,21 @@ polina.beans.UsersBundle = function(tubes) {};
 polina.beans.UsersBundle.prototype.put =
     function(priority, timeout, execTime, data, opt_callback) {};
 
+
 /**
  * Destroys a bundle.
  */
 polina.beans.UsersBundle.prototype.destroy = function() {};
+
+
 
 /**
  * @param {!Array.<string>} args Arguments.
  * @return {string} Command payload.
  */
 polina.redis.encodeCommand = function(args) {};
+
+
 
 /**
  * @constructor
@@ -353,16 +432,20 @@ polina.redis.encodeCommand = function(args) {};
  */
 polina.redis.ScriptInvoke = function(args, complete, cancel, type) {};
 
+
 /**
  * @param {string} sha Контрольная сумма скрипта.
  * @return {string} Данные команды.
  */
 polina.redis.ScriptInvoke.prototype.compilePayload = function(sha) {};
 
+
 /**
  * @return {!polina.redis.PacketHandler} Обрабтчик результа.
  */
 polina.redis.ScriptInvoke.prototype.createHandler = function() {};
+
+
 
 /**
  * @enum {number}
@@ -375,6 +458,8 @@ polina.redis.ResponseType = {
   MULTI_BULK: '*'.charCodeAt(0)
 };
 
+
+
 /**
  * @enum {number}
  */
@@ -384,10 +469,13 @@ polina.redis.ResultType = {
   ARR: 2
 };
 
+
+
 /**
  * @interface
  */
 polina.redis.IClient = function() {};
+
 
 /**
  * Sets the string value of a key.
@@ -400,6 +488,7 @@ polina.redis.IClient = function() {};
 polina.redis.IClient.prototype.set =
     function(key, value, complete, cancel) {};
 
+
 /**
  * Increments the integer value of a key by the given amount.
  *
@@ -411,6 +500,7 @@ polina.redis.IClient.prototype.set =
 polina.redis.IClient.prototype.incrby =
     function(key, value, complete, cancel) {};
 
+
 /**
  * Increments the integer value of a key by one.
  *
@@ -421,6 +511,7 @@ polina.redis.IClient.prototype.incrby =
 polina.redis.IClient.prototype.incr =
     function(key, complete, cancel) {};
 
+
 /**
  * Decrements the integer value of a key by one.
  *
@@ -430,6 +521,7 @@ polina.redis.IClient.prototype.incr =
  */
 polina.redis.IClient.prototype.decr =
     function(key, complete, cancel) {};
+
 
 /**
  * Sets the value and expiration of a key.
@@ -443,6 +535,7 @@ polina.redis.IClient.prototype.decr =
 polina.redis.IClient.prototype.setex =
     function(key, seconds, value, complete, cancel) {};
 
+
 /**
  * Sets a timeout on key.
  *
@@ -454,6 +547,7 @@ polina.redis.IClient.prototype.setex =
 polina.redis.IClient.prototype.expire =
     function(key, seconds, complete, cancel) {};
 
+
 /**
  * Gets the value of a key.
  *
@@ -462,6 +556,7 @@ polina.redis.IClient.prototype.expire =
  * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.get = function(key, complete, cancel) {};
+
 
 /**
  * Gets the values of all the given keys
@@ -472,6 +567,7 @@ polina.redis.IClient.prototype.get = function(key, complete, cancel) {};
  */
 polina.redis.IClient.prototype.mget = function(keys, complete, cancel) {};
 
+
 /**
  * Finds all keys matching the given pattern.
  *
@@ -481,6 +577,7 @@ polina.redis.IClient.prototype.mget = function(keys, complete, cancel) {};
  */
 polina.redis.IClient.prototype.keys = function(pattern, complete, cancel) {};
 
+
 /**
  * Deletes kleys.
  *
@@ -489,6 +586,7 @@ polina.redis.IClient.prototype.keys = function(pattern, complete, cancel) {};
  * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.del = function(keys, complete, cancel) {};
+
 
 /**
  * Adds one or more values to a set.
@@ -501,6 +599,7 @@ polina.redis.IClient.prototype.del = function(keys, complete, cancel) {};
 polina.redis.IClient.prototype.sadd =
     function(key, value, complete, cancel) {};
 
+
 /**
  * Removes the specified values from the set stored at key.
  *
@@ -511,6 +610,7 @@ polina.redis.IClient.prototype.sadd =
  */
 polina.redis.IClient.prototype.srem =
     function(key, value, complete, cancel) {};
+
 
 /**
  * Checks if value is a value of the set stored at key.
@@ -523,6 +623,7 @@ polina.redis.IClient.prototype.srem =
 polina.redis.IClient.prototype.sismember =
     function(key, value, complete, cancel) {};
 
+
 /**
  * Extracts all the values of the set stored at key.
  *
@@ -531,6 +632,7 @@ polina.redis.IClient.prototype.sismember =
  * @param {function(string, number=)} cancel Error handler.
  */
 polina.redis.IClient.prototype.smembers = function(key, complete, cancel) {};
+
 
 /**
  * @param {string} key Key.
@@ -542,6 +644,7 @@ polina.redis.IClient.prototype.smembers = function(key, complete, cancel) {};
 polina.redis.IClient.prototype.hset =
     function(key, hashkey, value, complete, cancel) {};
 
+
 /**
  * @param {string} key Key.
  * @param {string} hashkey Hash key.
@@ -550,6 +653,7 @@ polina.redis.IClient.prototype.hset =
  */
 polina.redis.IClient.prototype.hget =
     function(key, hashkey, complete, cancel) {};
+
 
 /**
  * @param {string} key Key.
@@ -560,6 +664,7 @@ polina.redis.IClient.prototype.hget =
 polina.redis.IClient.prototype.hdel =
     function(key, hashkey, complete, cancel) {};
 
+
 /**
  * @param {string} key Key.
  * @param {function(!Array.<string>)} complete Success handler.
@@ -567,6 +672,7 @@ polina.redis.IClient.prototype.hdel =
  */
 polina.redis.IClient.prototype.hgetall =
     function(key, complete, cancel) {};
+
 
 /**
  * @param {string} scriptName Registered script name.
@@ -577,6 +683,7 @@ polina.redis.IClient.prototype.hgetall =
  */
 polina.redis.IClient.prototype.execInt =
     function(scriptName, args, complete, cancel) {};
+
 
 /**
  *
@@ -589,6 +696,7 @@ polina.redis.IClient.prototype.execInt =
 polina.redis.IClient.prototype.execString =
     function(scriptName, args, complete, cancel) {};
 
+
 /**
  * @param {string} scriptName Registered script name.
  * @param {!Array.<string>} args Script's arguments.
@@ -598,16 +706,238 @@ polina.redis.IClient.prototype.execString =
 polina.redis.IClient.prototype.execArray =
     function(scriptName, args, complete, cancel) {};
 
+
 /**
  * @param {string} name Script name.
  * @param {string} script Lua script.
  */
 polina.redis.IClient.prototype.registerScript = function(name, script) {};
 
+
 /**
  * Destroys a client.
  */
 polina.redis.IClient.prototype.destroy = function() {};
+
+
+/**
+ * A blocking list pop primitive.
+ * Removes and gets the first element in a list,
+ * or blocks until one is available.
+ *
+ * @param {Array.<string>} keys Lists' names to check whether they are empty.
+ * @param {number} timeout The maximum number of seconds to block.
+ * @param {function(!Array.<string>)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.blpop =
+    function(keys, timeout, complete, cancel) {};
+
+
+/**
+ * A blocking list pop primitive.
+ * Removes and gets the last element in a list,
+ * or blocks until one is available.
+ *
+ * @param {Array.<string>} keys Lists' names to check whether they are empty.
+ * @param {number} timeout The maximum number of seconds to block.
+ * @param {function(!Array.<string>)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.brpop =
+    function(keys, timeout, complete, cancel) {};
+
+
+/**
+ * The blocking variant of RPOPLPUSH.
+ * Pops a value from a list, pushs it to another list and
+ * returns it;
+ * or
+ * blocks until one's available.
+ *
+ * @param {string} source Name of the list, from which to pop a value.
+ * @param {string} destination Name of the list, to which to push a value.
+ * @param {number} timeout The maximum number of seconds to block.
+ * @param {function(!Array.<string>)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.brpoplpush =
+    function(source, destination, timeout, complete, cancel) {};
+
+
+/**
+ * Gets an element from a list by its index.
+ *
+ * @param {string} key Name of the list.
+ * @param {number} index Position of an element.
+ * @param {function(string)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.lindex =
+    function(key, index, complete, cancel) {};
+
+
+/**
+ * Gets an element from a list by its index.
+ *
+ * @param {string} key Name of the list.
+ * @param {string} position Where to insert the value. 'BEFORE' or 'AFTER'
+ * @param {string} pivot Name of an element, relating to which the value will
+ * be inserted.
+ * @param {string} value Value to insert to list.
+ * @param {function(number)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.linsert =
+    function(key, position, pivot, value, complete, cancel) {};
+
+
+/**
+ * Gets the length of a list.
+ *
+ * @param {string} key Name of the list.
+ * @param {function(number)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.llen = function(key, complete, cancel) {};
+
+
+/**
+ * Removes and returns the first element of the list stored at key.
+ *
+ * @param {string} key Name of the list.
+ * @param {function(string)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.lpop = function(key, complete, cancel) {};
+
+
+/**
+ * Inserts all the specified values at the head of the list stored at key.
+ *
+ * @param {string} key Name of the list.
+ * @param {Array.<string>} values Values to insert.
+ * @param {function(number)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.lpush =
+    function(key, values, complete, cancel) {};
+
+
+/**
+ * Inserts value at the head of the list stored at key,
+ * only if key already exists and holds a list.
+ *
+ * @param {string} key Name of the list.
+ * @param {string} value Value to insert.
+ * @param {function(number)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.lpushx =
+    function(key, value, complete, cancel) {};
+
+
+/**
+ * Gets a range of elements from a list.
+ *
+ * @param {string} key Name of the list.
+ * @param {number} start Start index.
+ * @param {number} stop End index.
+ * @param {function(!Array.<string>)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.lrange =
+    function(key, start, stop, complete, cancel) {};
+
+
+/**
+ * Removes the first count occurrences of elements equal to value from the list
+ * stored at key.
+ *
+ * @param {string} key Name of the list.
+ * @param {number} count Number of occurrences.
+ * @param {string} value Value to remove.
+ * @param {function(!Array.<string>)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.lrem =
+    function(key, count, value, complete, cancel) {};
+
+
+/**
+ * Sets the list element at index to value.
+ *
+ * @param {string} key Name of the list.
+ * @param {number} index Position from which to set a value.
+ * @param {string} value Value to set.
+ * @param {function(string)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.lset =
+    function(key, index, value, complete, cancel) {};
+
+
+/**
+ * Trims a list to the specified range.
+ *
+ * @param {string} key Name of the list.
+ * @param {number} start Start index.
+ * @param {number} stop End index.
+ * @param {function(string)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.ltrim =
+    function(key, start, stop, complete, cancel) {};
+
+
+/**
+ * Removes and returns the last element of the list stored at key.
+ *
+ * @param {string} key Name of the list.
+ * @param {function(string)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.rpop = function(key, complete, cancel) {};
+
+
+/**
+ * Atomically returns and removes the last element (tail) of the list stored
+ * at source, and pushes the element at the first element (head) of the list
+ * stored at destination.
+ *
+ * @param {string} source Name of the list, from which to get a value.
+ * @param {string} destination Name of the list, to which to push a value.
+ * @param {function(string)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.rpoplpush =
+    function(source, destination, complete, cancel) {};
+
+
+/**
+ * Appends one or multiple values to a list.
+ *
+ * @param {string} key Name of the list.
+ * @param {Array.<string>} values Values to insert.
+ * @param {function(number)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.rpush =
+    function(key, values, complete, cancel) {};
+
+
+/**
+ * Appends a value to a list, only if the list exists.
+ *
+ * @param {string} key Name of the list.
+ * @param {string} value Value to insert.
+ * @param {function(number)} complete Result handler.
+ * @param {function(string, number=)} cancel Error handler.
+ */
+polina.redis.IClient.prototype.rpushx =
+    function(key, value, complete, cancel) {};
+
+
 
 /**
  * Redis client.
@@ -620,15 +950,18 @@ polina.redis.IClient.prototype.destroy = function() {};
  */
 polina.redis.Client = function(port, opt_host) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype._getDestoryPayload = function() {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype.set = function(key, value, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -636,15 +969,18 @@ polina.redis.Client.prototype.set = function(key, value, complete, cancel) {};
 polina.redis.Client.prototype.incrby =
     function(key, value, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype.incr = function(key, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype.decr = function(key, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -652,41 +988,49 @@ polina.redis.Client.prototype.decr = function(key, complete, cancel) {};
 polina.redis.Client.prototype.setex =
     function(key, seconds, value, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype.expire =
     function(key, seconds, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype.get = function(key, complete, cancel) {};
+
 
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype.mget = function(keys, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype.keys = function(pattern, complete, cancel) {};
+
 
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype.del = function(key, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype.sadd = function(key, value, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype.srem = function(key, value, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -694,10 +1038,12 @@ polina.redis.Client.prototype.srem = function(key, value, complete, cancel) {};
 polina.redis.Client.prototype.sismember =
     function(key, value, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype.smembers = function(key, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -705,11 +1051,13 @@ polina.redis.Client.prototype.smembers = function(key, complete, cancel) {};
 polina.redis.Client.prototype.hset =
     function(key, hashkey, value, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype.hget =
     function(key, hashkey, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -717,11 +1065,13 @@ polina.redis.Client.prototype.hget =
 polina.redis.Client.prototype.hdel =
     function(key, hashkey, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype.hgetall =
     function(key, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -729,11 +1079,13 @@ polina.redis.Client.prototype.hgetall =
 polina.redis.Client.prototype.execInt =
     function(name, args, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype.execString =
     function(name, args, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -741,15 +1093,130 @@ polina.redis.Client.prototype.execString =
 polina.redis.Client.prototype.execArray =
     function(name, args, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype.registerScript = function(name, script) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Client.prototype.destroy = function() {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.blpop =
+    function(keys, timeout, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.brpop =
+    function(keys, timeout, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.brpoplpush =
+    function(source, destination, timeout, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.lindex = function(key, index, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.linsert =
+    function(key, position, pivot, value, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.llen = function(key, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.lpop = function(key, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.lpush = function(key, values, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.lpushx = function(key, value, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.lrange =
+    function(key, start, stop, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.lrem =
+    function(key, count, value, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.lset =
+    function(key, index, value, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.ltrim =
+    function(key, start, stop, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.rpop = function(key, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.rpoplpush =
+    function(source, destination, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.rpush = function(key, values, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Client.prototype.rpushx = function(key, value, complete, cancel) {};
+
+
 
 /**
  * Redis Bucket.
@@ -760,12 +1227,14 @@ polina.redis.Client.prototype.destroy = function() {};
  */
 polina.redis.Bucket = function(size) {};
 
+
 /**
  * Changes a size of a bucket.
  *
  * @param {number} size Bucket size.
  */
 polina.redis.Bucket.prototype.resize = function(size) {};
+
 
 /**
  * Registers client in a bucket.
@@ -778,6 +1247,7 @@ polina.redis.Bucket.prototype.resize = function(size) {};
 polina.redis.Bucket.prototype.registerClient =
     function(intervalStart, intervalEnd, client, id) {};
 
+
 /**
  * Terminates client in bucket by id.
  *
@@ -785,10 +1255,12 @@ polina.redis.Bucket.prototype.registerClient =
  */
 polina.redis.Bucket.prototype.terminateClient = function(id) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.set = function(key, value, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -796,15 +1268,18 @@ polina.redis.Bucket.prototype.set = function(key, value, complete, cancel) {};
 polina.redis.Bucket.prototype.incrby =
     function(key, value, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.incr = function(key, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.decr = function(key, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -812,41 +1287,49 @@ polina.redis.Bucket.prototype.decr = function(key, complete, cancel) {};
 polina.redis.Bucket.prototype.setex =
     function(key, seconds, value, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.expire =
     function(key, seconds, complete, cancel) {};
 
+
 /**
  * @inheritDoc.
  */
 polina.redis.Bucket.prototype.get = function(key, complete, cancel) {};
+
 
 /**
  * @inheritDoc.
  */
 polina.redis.Bucket.prototype.mget = function(keys, complete, cancel) {};
 
+
 /**
  * @inheritDoc.
  */
 polina.redis.Bucket.prototype.keys = function(pattern, complete, cancel) {};
+
 
 /**
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.del = function(key, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.sadd = function(key, value, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.srem = function(key, value, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -854,10 +1337,12 @@ polina.redis.Bucket.prototype.srem = function(key, value, complete, cancel) {};
 polina.redis.Bucket.prototype.sismember =
     function(key, value, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.smembers = function(key, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -865,11 +1350,13 @@ polina.redis.Bucket.prototype.smembers = function(key, complete, cancel) {};
 polina.redis.Bucket.prototype.hset =
     function(key, hashkey, value, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.hget =
     function(key, hashkey, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -877,11 +1364,13 @@ polina.redis.Bucket.prototype.hget =
 polina.redis.Bucket.prototype.hdel =
     function(key, hashkey, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.hgetall =
     function(key, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -889,11 +1378,13 @@ polina.redis.Bucket.prototype.hgetall =
 polina.redis.Bucket.prototype.execInt =
     function(name, args, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.execString =
     function(name, args, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -901,15 +1392,131 @@ polina.redis.Bucket.prototype.execString =
 polina.redis.Bucket.prototype.execArray =
     function(name, args, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.registerScript = function(name, script) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bucket.prototype.destroy = function() {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.blpop =
+    function(keys, timeout, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.brpop =
+    function(keys, timeout, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.brpoplpush =
+    function(source, destination, timeout, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.lindex = function(key, index, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.linsert =
+    function(key, position, pivot, value, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.llen = function(key, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.lpop = function(key, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.lpush = function(key, values, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.lpushx = function(key, value, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.lrange =
+    function(key, start, stop, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.lrem =
+    function(key, count, value, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.lset =
+    function(key, index, value, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.ltrim =
+    function(key, start, stop, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.rpop =
+    function(key, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.rpoplpush =
+    function(source, destination, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.rpush = function(key, values, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bucket.prototype.rpushx = function(key, value, complete, cancel) {};
+
+
 
 /**
  * Redis packet handler.
@@ -922,30 +1529,37 @@ polina.redis.Bucket.prototype.destroy = function() {};
  */
 polina.redis.PacketHandler = function(complete, cancel, type) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.PacketHandler.prototype.reset = function() {};
+
 
 /**
  * @inheritDoc
  */
 polina.redis.PacketHandler.prototype.isComplete = function() {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.PacketHandler.prototype.process = function(cursor, chunk) {};
+
 
 /**
  *
  */
 polina.redis.PacketHandler.prototype._complete = function() {};
 
+
 /**
  * @param {!Buffer} error Error to be handled.
  */
 polina.redis.PacketHandler.prototype._cancel = function(error) {};
+
+
 
 /**
  * A bundle of buckets.
@@ -958,6 +1572,7 @@ polina.redis.PacketHandler.prototype._cancel = function(error) {};
  */
 polina.redis.Bundle = function(count, port, opt_host) {};
 
+
 /**
  * Registers a fallback destination.
  *
@@ -966,11 +1581,13 @@ polina.redis.Bundle = function(count, port, opt_host) {};
  */
 polina.redis.Bundle.prototype.registerFallback = function(port, opt_host) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.set =
     function(key, value, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -978,15 +1595,18 @@ polina.redis.Bundle.prototype.set =
 polina.redis.Bundle.prototype.incrby =
     function(key, value, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.incr = function(key, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.decr = function(key, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -994,31 +1614,37 @@ polina.redis.Bundle.prototype.decr = function(key, complete, cancel) {};
 polina.redis.Bundle.prototype.setex =
     function(key, seconds, value, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.expire =
     function(key, seconds, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.get = function(key, complete, cancel) {};
+
 
 /**
  * @inheritDoc.
  */
 polina.redis.Bundle.prototype.mget = function(keys, complete, cancel) {};
 
+
 /**
  * @inheritDoc.
  */
 polina.redis.Bundle.prototype.keys = function(pattern, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.del = function(key, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -1026,11 +1652,13 @@ polina.redis.Bundle.prototype.del = function(key, complete, cancel) {};
 polina.redis.Bundle.prototype.sadd =
     function(key, value, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.srem =
     function(key, value, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -1038,11 +1666,13 @@ polina.redis.Bundle.prototype.srem =
 polina.redis.Bundle.prototype.sismember =
     function(key, value, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.smembers =
     function(key, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -1050,11 +1680,13 @@ polina.redis.Bundle.prototype.smembers =
 polina.redis.Bundle.prototype.hset =
     function(key, hashkey, value, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.hget =
     function(key, hashkey, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -1062,11 +1694,13 @@ polina.redis.Bundle.prototype.hget =
 polina.redis.Bundle.prototype.hdel =
     function(key, hashkey, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.hgetall =
     function(key, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -1074,11 +1708,13 @@ polina.redis.Bundle.prototype.hgetall =
 polina.redis.Bundle.prototype.execInt =
     function(sha, args, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.execString =
     function(sha, args, complete, cancel) {};
+
 
 /**
  * @inheritDoc
@@ -1086,14 +1722,127 @@ polina.redis.Bundle.prototype.execString =
 polina.redis.Bundle.prototype.execArray =
     function(sha, args, complete, cancel) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.registerScript = function(name, script) {};
 
+
 /**
  * @inheritDoc
  */
 polina.redis.Bundle.prototype.destroy = function() {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.blpop =
+    function(keys, timeout, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.brpop =
+    function(keys, timeout, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.brpoplpush =
+    function(source, destination, timeout, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.lindex = function(key, index, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.linsert =
+    function(key, position, pivot, value, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.llen = function(key, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.lpop = function(key, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.lpush = function(key, values, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.lpushx = function(key, value, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.lrange =
+    function(key, start, stop, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.lrem = function(key, count, value, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.lset =
+    function(key, index, value, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.ltrim =
+    function(key, start, stop, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.rpop = function(key, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.rpoplpush =
+    function(source, destination, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.rpush = function(key, values, complete, cancel) {};
+
+
+/**
+ * @inheritDoc
+ */
+polina.redis.Bundle.prototype.rpushx = function(key, value, complete, cancel) {};
+
 
 
