@@ -14,7 +14,7 @@ function put() {
   }
 
   if ((i += PACKET_SIZE) < kb) {
-    process.nextTick(put);
+    setImmediate(put);
   } else {
     polina.beans.put(tube, t.toString());
     console.log(Date.now() - t);
@@ -24,5 +24,5 @@ function put() {
 put();
 
 
-setInterval(gc, 10000);
+setInterval(put, 120000);
 

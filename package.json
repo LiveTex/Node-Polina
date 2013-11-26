@@ -6,8 +6,8 @@
     "install": "npm install livetex-tools && make"
   },
   "dependencies": {
-    "node-ds": ">=0.2.9-7",
-    "node-util": "*",
+    "node-ds": "0.2.19",
+    "node-util": "0.1.14",
     "livetex-tools": ">=0.1.0"
   }
 }
