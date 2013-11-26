@@ -4,4 +4,6 @@
 .gitignore
 .project
 .idea/
+bin/
+externs/
 node_modules/

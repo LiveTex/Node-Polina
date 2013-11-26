@@ -3,7 +3,7 @@
   "main": "bin/index.js",
   "version": "0.3.12",
   "scripts": {
-    "prepublish": "make index.js-clean && make index.js-check && make"
+    "install": "npm install livetex-tools && make"
   },
   "dependencies": {
     "node-ds": ">=0.2.9-7",
