@@ -1,7 +1,7 @@
 {
   "name": "node-polina",
   "main": "bin/index.js",
-  "version": "0.3.15",
+  "version": "0.3.16",
 
   "scripts": {
     "install": "npm install livetex-tools && make"
