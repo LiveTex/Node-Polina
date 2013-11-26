@@ -1,7 +1,6 @@
 var polina = require('../bin');
 
-
-var PACKET_SIZE = 16;
+var PACKET_SIZE = 32;
 
 var tube = new polina.beans.Tube('tube', 11300);
 var payload = (new Array((1024)+1)).join('a'); // kb
@@ -23,3 +22,7 @@ function put() {
 }
 
 put();
+
+
+setInterval(gc, 10000);
+

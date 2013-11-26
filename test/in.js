@@ -7,14 +7,17 @@ function nop() {}
 
 function reserve(watcher) {
   watcher.reserve(function(jobId, data) {
+    watcher.delete(jobId, nop);
+
     if (data.length < 1024) {
-      watcher.delete(jobId, nop);
       console.log(Date.now() - Number(data));
-    } else {
-      watcher.delete(jobId, nop);
-      reserve(watcher);
     }
+
+    reserve(watcher);
   });
 }
 
+reserve(new polina.beans.Watcher(tube));
+reserve(new polina.beans.Watcher(tube));
+reserve(new polina.beans.Watcher(tube));
 reserve(new polina.beans.Watcher(tube));
