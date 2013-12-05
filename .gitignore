@@ -1,8 +1,7 @@
 *.iml
 *.log
-.build/
-.gitignore
 .project
+.build/
 .idea/
 bin/
 externs/

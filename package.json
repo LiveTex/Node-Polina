@@ -1,21 +1,13 @@
 {
   "name": "node-polina",
   "main": "bin/index.js",
-  "version": "0.3.20",
+  "version": "0.3.17",
   "scripts": {
-    "prepublish": "make index.js-clean && make index.js-check && make"
+    "install": "npm install livetex-tools && make"
   },
   "dependencies": {
     "node-ds": ">=0.2.9-7",
+    "node-util": "*",
     "livetex-tools": "*"
-  },
-  "readme": "Polina: Beanstalkd and Redis clients.\n",
-  "readmeFilename": "README.md",
-  "description": "Polina: Beanstalkd and Redis clients.",
-  "_id": "node-polina@0.3.6-4",
-  "dist": {
-    "shasum": "4c468dcd6db7586973003da0df25d1d1fc8936fb"
-  },
-  "_from": "node-polina@0.3.6-4",
-  "_resolved": "http://npm.livetex.ru:5984/registry/_design/app/_rewrite/node-polina/-/node-polina-0.3.6-4.tgz"
+  }
 }
