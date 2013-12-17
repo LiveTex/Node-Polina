@@ -1,13 +1,13 @@
 {
   "name": "node-polina",
   "main": "bin/index.js",
-  "version": "0.3.22",
+  "version": "0.3.23",
   "scripts": {
     "install": "npm install livetex-tools && make"
   },
   "dependencies": {
     "node-ds": ">=0.2.9-7",
     "node-util": "*",
-    "livetex-tools": "*"
+    "livetex-tools": "0.1.12"
   }
 }
