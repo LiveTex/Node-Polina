@@ -6,8 +6,12 @@
     "install": "npm install livetex-tools && make"
   },
   "dependencies": {
-    "node-ds": ">=0.2.9-7",
-    "node-util": "*",
-    "livetex-tools": "0.1.12"
+    "node-ds": "0.2.23",
+    "node-util": "0.3.9",
+    "livetex-tools": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LiveTex/Node-Polina"
   }
 }
