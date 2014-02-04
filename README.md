@@ -2,7 +2,7 @@
 
 Pure JS driver for Redis server and Beanstalk queue daemon.
 
-####Install via npm: 
+####Install via npm:
     npm install livetex-polina
 
 ## Redis examples
@@ -57,7 +57,7 @@ Pure JS driver for Redis server and Beanstalk queue daemon.
     user.put(0, 0, 30, 'hello world');
 
 
-### Infinite data watching loop 
+### Infinite data watching loop
 
     var polina = require('livetex-polina');
     var watcher = new polina.beans.Watcher('tube', 11300);
