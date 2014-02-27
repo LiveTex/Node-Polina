@@ -3,11 +3,11 @@
   "main": "bin/index.js",
   "version": "0.3.30",
   "scripts": {
-    "install": "npm install livetex-tools && make"
+    "install": "npm install livetex-tools && make js"
   },
   "dependencies": {
-    "node-ds": "0.2.23",
-    "node-util": "0.3.9",
+    "node-ds": "0.2.24",
+    "node-util": "0.4.5",
     "livetex-tools": "*"
   },
   "repository": {
