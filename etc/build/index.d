@@ -21,9 +21,8 @@ polina/redis/script-invoke.js
 
 polina/redis/resp/resp.js
 polina/redis/resp/i-value.js
-polina/redis/resp/string-value.js
 polina/redis/resp/bulk-value.js
-polina/redis/resp/error-value.js
-polina/redis/resp/int-value.js
 polina/redis/resp/arr-value.js
+polina/redis/resp/simple-value.js
 polina/redis/resp/value-type.js
+polina/redis/resp/redis-type.js
