@@ -2,7 +2,7 @@
 var client = new (require('../bin')).redis.Client(6379);
 
 var i = 0;
-var c = 500000;
+var c = 100000;
 
 console.time('1');
 
@@ -13,10 +13,9 @@ function handleRequest(result) {
   }
 }
 
-
 while (i < c/2) {
   client.smembers('me', handleRequest);
-  client.get('kononenko', handleRequest);
+  client.get('1', handleRequest);
 
   i += 1;
 }
