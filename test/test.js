@@ -2,7 +2,7 @@
 var client = new (require('../bin')).redis.Client(6379);
 
 var i = 0;
-var c = 100000;
+var c = 100;
 
 console.time('1');
 
@@ -12,6 +12,7 @@ function handleRequest(result) {
     process.exit();
   }
 }
+
 
 while (i < c/2) {
   client.smembers('me', handleRequest);
