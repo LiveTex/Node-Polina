@@ -7,18 +7,16 @@ var counter = 300000;
 console.time('1');
 
 function handleRequest(result) {
-  //console.log(result);
-  //console.log(i + "^^");
+//  console.log(result);
+//  console.log(i);
   i+=1;
   if (i == counter){
-
     console.timeEnd('1');
-    console.log("Exit");
+    console.log("Exit in " + i);
     process.exit();
   }
 }
 
 for(  var j = 0; j < counter; j++){
-  client.get('OK', handleRequest,handleRequest);
-
+  client.get('2', handleRequest);
 }
