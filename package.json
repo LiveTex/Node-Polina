@@ -6,8 +6,8 @@
     "prepublish": "npm install livetex-tools && make js"
   },
   "dependencies": {
-    "node-ds": "0.2.25",
-    "node-util": "0.4.5",
+    "node-ds": "0.2.26",
+    "node-util": "0.4.6",
     "livetex-tools": "*"
   },
   "repository": {
