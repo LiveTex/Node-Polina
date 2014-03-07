@@ -3,7 +3,7 @@
   "main": "bin/index.js",
   "version": "0.3.33",
   "scripts": {
-    "prepublish": "npm install livetex-tools && make js"
+    "install": "npm update"
   },
   "dependencies": {
     "node-ds": "0.2.26",

@@ -1,7 +1,5 @@
 *.iml
 *.log
-.gitignore
 .project
 .idea/
 node_modules/
-
