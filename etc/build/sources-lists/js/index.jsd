@@ -2,6 +2,7 @@
 polina/polina.js
 polina/i-packet-handler.js
 polina/connection.js
+polina/cursor.js
 
 polina/beans/beans.js
 polina/beans/client.js
@@ -27,7 +28,3 @@ polina/redis/resp/simple-value.js
 polina/redis/resp/value-type.js
 polina/redis/resp/redis-type.js
 
-polina/hbase/thrift/binery-protocol.js
-polina/hbase/thrift/i-protocol.js
-polina/hbase/client.js
-polina/hbase/packet-handler.js
