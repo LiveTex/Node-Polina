@@ -6,9 +6,9 @@
     "install": "npm update"
   },
   "dependencies": {
-    "node-ds": "0.2.26",
-    "node-util": "0.4.6",
-    "livetex-tools": "*"
+    "node-ds": "0.2.28",
+    "node-util": "0.4.12",
+    "livetex-tools": "0.2.18"
   },
   "repository": {
     "type": "git",
