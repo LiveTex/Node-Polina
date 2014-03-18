@@ -23,7 +23,8 @@ function handleRequest(err,result) {
 
 
 for(  var j = 0; j < counter; j++){
-  client.get('OK', handleRequest);
+  client.get('long', handleRequest);
+   //client.sscan('setKey','0',handleRequest);
 }
 
 
