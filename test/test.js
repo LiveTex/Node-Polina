@@ -2,24 +2,50 @@ var polina = require('../bin');
 
 var client = new polina.redis.Client(6379);
 
-var keys = 1000;
-var k = 1;
+var keys = 10;
+var counter = 10;
+
 var args = [];
-var counter = 100;
-var l = 0;
-var s = '';
-var script = 'return {';
-while( k < keys){
-  l = Math.round(Math.random() * (1024) );
-  s =(new Array(l)).join('*' + k);
-  args.push(s);
-  script += 'KEYS['+ k +']'+ ',';
-  k++;
+
+//var script = 'return {';
+var script = 'return ';
+
+
+function getRandomString(ch){
+  var l = Math.round(Math.random() * (1024) );
+  return  (new Array(l)).join(ch);
 }
- script+='0}';
+
+function getRandomSubArray(){
+  var randArr = '{';
+  var l = Math.round(Math.random() * (10) + 1);
+  while(l --){
+    randArr += '\'' + getRandomString('$') + '\',';
+  }
+  randArr += '0},' ;
+  return  randArr;
+}
+
+var s ='';
+var k = 1;
+while( k < keys){
+//
+//  args.push(getRandomString('+'));
+//  script += 'KEYS['+ k +'],';
+//  if (Math.round(Math.random() * (1024)) % 3 === 0){
+//    script += getRandomSubArray();
+//  }
+
+  script += '\'' + getRandomString('$') + '\',';
+  k++;
+
+}
+ script+='0';
 
 //console.log(script);
 //console.log(args);
+
+
 client.registerScript('ms',script);
 
 
@@ -28,7 +54,7 @@ var i  = 0;
 console.time('1');
 
 function handleRequest(result) {
-  //console.log(result);
+  console.log(result);
   //console.log(i + "^^");
   i+=1;
   if (i == counter){

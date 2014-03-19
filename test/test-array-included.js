@@ -3,7 +3,7 @@ var polina = require('../bin');
 var client = new polina.redis.Client(6379);
 
 //client.registerScript('ms','return {}');
-//client.registerScript('ms','return {1,2,{3,\'Hello World!\',{}}}');
+client.registerScript('ms','return {1,2,{3,\'Hello World!\',{}}}');
 //client.registerScript('ms','return {}');
 
 var i  = 0;
@@ -25,6 +25,6 @@ function handleRequest(result) {
 for(  var j = 0; j < counter; j++){
   //client.execArray('ms','0',handleRequest);
   //client.scan('0',handleRequest);
-  client.sscan('setKey','0',handleRequest,handleRequest,{'COUNT': '100000'});
+  client.sscan('setKey','0',handleRequest,handleRequest,{'COUNT': '10240'});
 
 }
