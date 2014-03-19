@@ -8,7 +8,7 @@
   "dependencies": {
     "node-ds": "0.2.23",
     "node-util": "0.3.9",
-    "livetex-tools": "*"
+    "livetex-tools": "0.2.18"
   },
   "repository": {
     "type": "git",
