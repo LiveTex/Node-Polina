@@ -3,9 +3,6 @@ var polina = require('../bin');
 
 var client = new polina.redis.Client(6379);
 
-<<<<<<< HEAD
-var s =(new Array(1024*10+1)).join('a');
-=======
 var keys = 1001;
 var k = 1;
 var l = 0;
@@ -27,17 +24,13 @@ console.log('end');
 
 
 //var s =(new Array(1024*10+1)).join('a');
->>>>>>> 7e072f3215ba36b3c29bd1f0c19b05df5d355950
 //
+
+
 client.set('long', s, console.info, console.error);
+
 //client.get('be cool', console.info, console.error);
 
-<<<<<<< HEAD
-//client.get('OK', console.info, console.error);
-
-
-=======
->>>>>>> 7e072f3215ba36b3c29bd1f0c19b05df5d355950
 //client.sadd('be cool', 'при вет', console.info, console.error);
 //client.sadd('me', 'кононе нко', console.info, console.error);
 //client.sadd('me', ',', console.info, console.error);

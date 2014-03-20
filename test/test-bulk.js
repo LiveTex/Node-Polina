@@ -12,11 +12,8 @@ console.time('1');
 var sum = 0;
 
 function handleRequest(result) {
-<<<<<<< HEAD
- //console.log(result);
-=======
+
 //console.log(result);
->>>>>>> 7e072f3215ba36b3c29bd1f0c19b05df5d355950
 //  console.log(i);
   i+=1;
   if (i == counter){
