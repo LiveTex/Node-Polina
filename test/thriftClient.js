@@ -1,5 +1,6 @@
 var polina = require('../bin');
 
+<<<<<<< HEAD
 var client = new polina.thrift.Client(9090);
 
 
@@ -18,6 +19,11 @@ var args=[tableName];
 
 
 client.writeMethod(methodName, returnType, clientType, args, console.log);
+=======
+var client = new polina.hbase.Client(9090);
+
+client.writeMethod('getTableNames');
+>>>>>>> 7e072f3215ba36b3c29bd1f0c19b05df5d355950
 
 
 

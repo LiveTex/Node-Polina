@@ -2,6 +2,7 @@
 polina/polina.js
 polina/i-packet-handler.js
 polina/connection.js
+polina/cursor.js
 
 polina/beans/beans.js
 polina/beans/client.js
@@ -35,7 +36,6 @@ polina/thrift/structure-value.js
 polina/thrift/map-value.js
 polina/thrift/array-value.js
 polina/thrift/thrift-types.js
-polina/thrift/thrift-types.js
 polina/thrift/message-types.js
 polina/thrift/value-factory.js
 
@@ -44,5 +44,4 @@ polina/thrift/packet-handler.js
 polina/thrift/thrift.js
 polina/thrift/arguments.js
 
-polina/cursor.js
 
