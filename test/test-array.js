@@ -7,7 +7,7 @@ var counter = 300000;
 console.time('1');
 
 function handleRequest(result) {
-   //console.log(result);
+  //console.log(result);
   //console.log(i + "^^");
   i+=1;
   if (i == counter){

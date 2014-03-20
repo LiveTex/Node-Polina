@@ -6,17 +6,17 @@ var client = new polina.redis.Client(6379);
 client.registerScript('ms','return {1,2,{3,\'Hello World!\',{}}}');
 
 var i  = 0;
-var counter = 30000;
+var counter = 300000;
 console.time('1');
 
 function handleRequest(result) {
-  console.log(result);
+  //console.log(result);
   //console.log(i + "^^");
   i+=1;
   if (i == counter){
 
     console.timeEnd('1');
-    console.log("Exit");
+    console.log("Exit " + i);
     process.exit();
   }
 }
