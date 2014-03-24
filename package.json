@@ -4,13 +4,13 @@
   "version": "3.0.0",
 
   "scripts": {
-    "install": "npm update && make js"
+    "install": "npm update"
   },
 
   "dependencies": {
-    "livetex-data-set": "1.0.0",
-    "livetex-node-util": "1.0.0",
-    "livetex-tools": "2.0.0"
+    "livetex-data-set": "1.0.1",
+    "livetex-node-util": "2.0.0",
+    "livetex-tools": "2.0.1"
   },
   
   "license": "Modified BSD License",
