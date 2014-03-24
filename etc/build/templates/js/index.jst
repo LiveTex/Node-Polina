@@ -1,10 +1,15 @@
+
+
 var ds = require('livetex-data-set');
 var util = require('livetex-node-util');
 var net = require('net');
 
+
 var package = require('../package.json');
 console.info(' [MODULE]: ' + package.name + '@' + package.version);
 
-%%CONTENT%%
+
+%%make -s index.js-compile%%
+
 
 module.exports = polina;
