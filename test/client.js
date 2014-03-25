@@ -2,6 +2,15 @@ var redis = require('redis');
 
 var client = redis.createClient(6379);
 
+<<<<<<< HEAD
+=======
+//var s =(new Array(1024 * 10 + 1)).join('$');
+//client.set('long', s, console.info, console.error);
+
+//client.script('ms','return {1,2,{3,\'Hello World!\',{\'\',{{1}},123}}}');
+//var sum = 0;
+
+>>>>>>> master
 var i  = 0;
 var counter = 30;
 console.time('1');
