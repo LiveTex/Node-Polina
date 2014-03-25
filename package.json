@@ -1,42 +1,36 @@
 {
-  "name": "livetex-polina",
-  "main": "bin/index.js",
-  "version": "3.0.0",
-
+  "name": "livetex-polina", 
+  "main": "bin/index.js", 
+  "version": "3.1.0", 
   "scripts": {
     "install": "npm update"
-  },
-
+  }, 
   "dependencies": {
-    "livetex-data-set": "1.0.1",
-    "livetex-node-util": "2.0.0",
+    "livetex-data-set": "1.0.1", 
+    "livetex-node-util": "2.0.0", 
     "livetex-tools": "2.0.1"
-  },
-  
-  "license": "Modified BSD License",
-  
+  }, 
+  "license": "Modified BSD License", 
   "contributors": [
     {
-      "name": "Sergey Kononenko",
+      "name": "Sergey Kononenko", 
       "email": "kononencheg@gmail.com"
-    },
+    }, 
     {
-      "name": "Evgeny Mikheev",
+      "name": "Evgeny Mikheev", 
       "email": "eudgee@gmail.com"
-    },
+    }, 
     {
-      "name": "Maxim Kalachev",
+      "name": "Maxim Kalachev", 
       "email": "kalachevmax@gmail.com"
-    },
+    }, 
     {
-      "name": "Valeria Lepina",
+      "name": "Valeria Lepina", 
       "email": "divergence082@gmail.com"
     }
-  ],
-  
+  ], 
   "repository": {
-    "type": "git",
+    "type": "git", 
     "url": "git://github.com/LiveTex/Node-Polina.git"
   }
-
 }

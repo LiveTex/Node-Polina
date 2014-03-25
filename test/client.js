@@ -2,28 +2,38 @@ var redis = require('redis');
 
 var client = redis.createClient(6379);
 
-var i = 0;
-var c = 100;
+var i  = 0;
+var counter = 30;
+console.time('1');
 
-function handleRequest(err, result) {
-  console.log(arguments);
+function handleRequest(err,result) {
+  //console.log(result);
+  //console.log(i + "^^");
+  i+=1;
+  if (i == counter){
 
-  if ((c -= 1) === 0) {
+    console.timeEnd('1');
+    console.log("Exit in " + i);
+//
+//    var len = result.length;
+//    while(len--){
+//      sum += result[len].length;
+//    }
+//    console.log("Control Sum " + sum);
     process.exit();
   }
-
-  sda.adfg = 2;
-}
-
-while (i < c) {
-  process.nextTick(function() {
-    client.get('value', handleRequest);
-  });
-
-  i += 1;
 }
 
 
-process.on('uncaughtException', function(err) {
-  console.log('Caught exception: ' + err);
-});
+for(  var j = 0; j < counter; j++){
+  //client.get('OK', handleRequest);
+   //client.sscan('setKey','0',handleRequest);
+  client.smembers('setKey',handleRequest);
+
+  //client.set('S',s, handleRequest); // Simple OK
+ // client.get('S', handleRequest); //Bulk
+
+}
+
+
+
