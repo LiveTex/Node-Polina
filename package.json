@@ -1,7 +1,7 @@
 {
-  "name": "livetex-polina",
+  "name": "livetex-polina", 
   "main": "bin/index.js", 
-  "version": "3.1.0", 
+  "version": "3.1.1", 
   "scripts": {
     "install": "npm update"
   }, 
@@ -9,11 +9,11 @@
     "livetex-data-set": "1.0.1", 
     "livetex-node-util": "2.0.0", 
     "livetex-tools": "2.0.1"
-  },
+  }, 
   "repository": {
-    "type": "git",
+    "type": "git", 
     "url": "git://github.com/LiveTex/Node-Polina.git"
-  },
+  }, 
   "license": "Modified BSD License", 
   "contributors": [
     {
@@ -31,9 +31,9 @@
     {
       "name": "Valeria Lepina", 
       "email": "divergence082@gmail.com"
-    },
+    }, 
     {
-      "name": "Igor Korshunov",
+      "name": "Igor Korshunov", 
       "email": "igorkorshynov@gmail.com"
     }
   ]
