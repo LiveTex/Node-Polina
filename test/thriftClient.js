@@ -4,19 +4,17 @@ var polina = require('../bin');
 var client = new polina.thrift.Client(9090);
 
 var methodName = 'isTableEnabled';
-var returnType = polina.thrift.Types.BOOL;
-var clientType = '';
 var args=[];
 
 var tableName = new polina.thrift.Argument(polina.thrift.Types.STRING, 't1', 1);
 var row = new polina.thrift.Argument(polina.thrift.Types.STRING, 'r1', 2);
 var column = new polina.thrift.Argument(polina.thrift.Types.STRING, 'c1', 3);
+var attributes = new polina.thrift.Argument(polina.thrift.Types.MAP, {}, 4);
 
-args=[tableName];
+args = [tableName];
 
 
-client.writeMethod(methodName, returnType, args, console.log);
-
+client.writeMethod(methodName, args, console.log);
 
 //var net = require('net');
 //var socket = net.createConnection(9090,'localhost');
