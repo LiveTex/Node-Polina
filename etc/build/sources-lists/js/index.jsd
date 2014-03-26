@@ -53,6 +53,13 @@ polina/hbase/client.js
 polina/hbase/tregion-info.js
 polina/hbase/column-descriptor.js
 polina/hbase/mutation.js
+polina/hbase/mutation.js
+polina/hbase/tcolumn.js
+polina/hbase/trow-result.js
+polina/hbase/batch-mutation.js
+polina/hbase/tscan.js
+polina/hbase/tincrement.js
+
 
 polina/thrift/thrift-map.js
 polina/thrift/thrift-array.js
