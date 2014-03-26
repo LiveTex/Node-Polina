@@ -290,8 +290,11 @@ service Hbase {
     3:Text column,
 
     /** Get attributes */
-    4:map<Text, Text> attributes
-  ) throws (1:IOError io)
+
+
+
+
+
 
   /** 
    * Get the specified number of versions for the specified table,
