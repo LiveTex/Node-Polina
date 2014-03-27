@@ -7,12 +7,13 @@ client.registerScript('ms','return {1,2,{3,\'Hello World!\',{}}}');
 //client.registerScript('ms','return {}');
 
 var i  = 0;
-var counter = 1;
+var counter = 100000;
 console.time('1');
 
 function handleRequest(result) {
-  //console.log(result);
- // console.log(i + "^^");
+  console.log(result);
+  //console.log(i + "^^");
+
   i+=1;
   if (i == counter){
 
@@ -23,8 +24,8 @@ function handleRequest(result) {
 }
 
 for(  var j = 0; j < counter; j++){
-  //client.execArray('ms','0',handleRequest);
+  client.execArray('ms','0',handleRequest);
   //client.scan('0',handleRequest);
-  client.sscan('setKey','0',handleRequest,handleRequest,{'COUNT': '10240'});
+ // client.sscan('setKey','0',handleRequest,handleRequest,{'COUNT': '10240'});
 
 }

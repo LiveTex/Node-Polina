@@ -1,11 +1,21 @@
+
 var polina = require('../bin');
 
-var client = new polina.hbase.Client(9090);
+var client = new polina.thrift.Client(9090);
 
-client.writeMethod('getTableNames');
+var methodName = 'isTableEnabled';
+var returnType = polina.thrift.Types.BOOL;
+var clientType = '';
+var args=[];
+
+var tableName = new polina.thrift.Argument(polina.thrift.Types.STRING, 't1', 1);
+var row = new polina.thrift.Argument(polina.thrift.Types.STRING, 'r1', 2);
+var column = new polina.thrift.Argument(polina.thrift.Types.STRING, 'c1', 3);
+
+args=[tableName];
 
 
-
+client.writeMethod(methodName, returnType, args, console.log);
 
 
 //var net = require('net');

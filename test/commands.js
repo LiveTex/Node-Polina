@@ -25,7 +25,10 @@ console.log('end');
 
 //var s =(new Array(1024*10+1)).join('a');
 //
-//client.set('long', s, console.info, console.error);
+
+
+client.set('long', s, console.info, console.error);
+
 //client.get('be cool', console.info, console.error);
 
 //client.sadd('be cool', 'при вет', console.info, console.error);
