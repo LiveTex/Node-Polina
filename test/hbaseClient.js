@@ -5,7 +5,7 @@ var client = new polina.hbase.Client(9090);
 var mutation = new polina.hbase.Mutation('c1','c2','c3');
 var columnDescriptor = new polina.hbase.ColumnDescriptor('c1',3,'NONE',false,
                                                           'NONE',0,0,0,-1);
-
+var batch = new polina.hbase.BatchMutation('r1', [mutation]);
 
 //client.createTable('racoon',[new polina.hbase.ColumnDescriptor('c1')],console.log);
 //client.getTableNames(console.log);
@@ -36,5 +36,9 @@ var columnDescriptor = new polina.hbase.ColumnDescriptor('c1',3,'NONE',false,
 //client.getRowsTs('racoon',['r1','r2'],1395835160869,{}, console.log);
 //client.getRowsWithColumnsTs('racoon',['r1','r2'],['c1'],1395835160869,{}, console.log);
 //client.mutateRowTs('racoon','r2',[mutation],1,{}, console.log);
+//client.mutateRows('racoon',[batch],{}, console.log);
+
+
+
 
 //client.getRegionInfo('', console.log);
