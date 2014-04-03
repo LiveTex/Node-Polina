@@ -8,7 +8,7 @@ var columnDescriptor = new polina.hbase.ColumnDescriptor('c1',3,'NONE',false,
 var batch = new polina.hbase.BatchMutation('r1', [mutation]);
 
 //client.createTable('racoon',[new polina.hbase.ColumnDescriptor('c1')],console.log);
-//client.getTableNames(console.log);
+client.getTableNames(console.log);
 //client.disableTable('racoon', console.log);
 //client.isTableEnabled('racoon', console.log);
 //client.enableTable('racoon', console.log);

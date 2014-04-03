@@ -45,9 +45,9 @@ polina/thrift/value-factory.js
 polina/thrift/client.js
 polina/thrift/packet-handler.js
 polina/thrift/arguments.js
+polina/thrift/i-struct.js
 
 polina/hbase/hbase-types.js
-polina/hbase/i-struct.js
 polina/hbase/tcell.js
 polina/hbase/client.js
 polina/hbase/tregion-info.js
