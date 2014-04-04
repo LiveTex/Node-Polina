@@ -1,8 +1,8 @@
 
 polina/polina.js
+polina/cursor.js
 polina/i-packet-handler.js
 polina/connection.js
-polina/cursor.js
 
 polina/beans/beans.js
 polina/beans/client.js
