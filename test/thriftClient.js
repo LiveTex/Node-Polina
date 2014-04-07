@@ -6,10 +6,10 @@ var client = new polina.thrift.Client(9090);
 var methodName = 'isTableEnabled';
 var args=[];
 
-var tableName = new polina.thrift.Argument(polina.thrift.Types.STRING, 't1', 1);
-var row = new polina.thrift.Argument(polina.thrift.Types.STRING, 'r1', 2);
-var column = new polina.thrift.Argument(polina.thrift.Types.STRING, 'c1', 3);
-var attributes = new polina.thrift.Argument(polina.thrift.Types.MAP, {}, 4);
+var tableName = new polina.thrift.Argument({type: polina.thrift.Types.STRING, value: 't1', id: 1});
+var row = new polina.thrift.Argument({type: polina.thrift.Types.STRING, value: 'r1', id: 2});
+var column = new polina.thrift.Argument({type: polina.thrift.Types.STRING, value: 'c1', id: 3});
+var attributes = new polina.thrift.Argument({type: polina.thrift.Types.MAP, value: {}, id: 4});
 
 args = [tableName];
 

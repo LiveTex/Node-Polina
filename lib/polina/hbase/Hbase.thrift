@@ -124,6 +124,7 @@ struct TIncrement {
 /**
  * Holds column name and the cell.
  */
+ */
 struct TColumn {
   1:Text columnName,
   2:TCell cell
