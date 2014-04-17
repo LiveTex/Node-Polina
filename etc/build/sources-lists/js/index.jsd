@@ -29,9 +29,12 @@ polina/redis/resp/value-type.js
 polina/redis/resp/redis-type.js
 
 polina/thrift/i-protocol.js
+polina/thrift/i-value.js
+polina/thrift/i-struct.js
+polina/thrift/i-idl.js
+
 polina/thrift/binery-protocol.js
 
-polina/thrift/i-value.js
 polina/thrift/simple-value.js
 polina/thrift/numeric-value.js
 polina/thrift/structure-value.js
@@ -44,13 +47,14 @@ polina/thrift/value-factory.js
 
 polina/thrift/client.js
 polina/thrift/packet-handler.js
-polina/thrift/arguments.js
-polina/thrift/i-struct.js
-polina/thrift/field-info.js
 
-polina/hbase/hbase-types.js
-polina/hbase/tcell.js
+polina/thrift/arguments.js
+polina/thrift/field-type.js
+polina/thrift/structure-info.js
+
+polina/hbase/idl.js
 polina/hbase/client.js
+
 polina/hbase/tregion-info.js
 polina/hbase/column-descriptor.js
 polina/hbase/mutation.js
@@ -59,7 +63,5 @@ polina/hbase/trow-result.js
 polina/hbase/batch-mutation.js
 polina/hbase/tscan.js
 polina/hbase/tincrement.js
-polina/hbase/i-user-protocol.js
+polina/hbase/tcell.js
 
-polina/thrift/thrift-map.js
-polina/thrift/thrift-array.js
