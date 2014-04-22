@@ -1,1 +1,3 @@
-include node_modules/livetex-tools/rules/js.mk
+TOOLS_PATH = /home/livetex/livetex-tools/0.2.24
+
+include $(TOOLS_PATH)/rules/js.mk
