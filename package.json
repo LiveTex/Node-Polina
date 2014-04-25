@@ -1,14 +1,14 @@
 {
   "name": "livetex-polina", 
   "main": "bin/index.js", 
-  "version": "3.1.1", 
+  "version": "3.1.2", 
   "scripts": {
     "install": "npm update"
   }, 
   "dependencies": {
-    "livetex-data-set": "1.0.1", 
-    "livetex-node-util": "2.0.0", 
-    "livetex-tools": "2.0.1"
+    "livetex-data-set": "1.0.2", 
+    "livetex-node-util": "2.0.1", 
+    "livetex-tools": "2.0.3"
   }, 
   "repository": {
     "type": "git", 
