@@ -1,38 +1,38 @@
 {
-  "name": "node-polina", 
-  "main": "bin/index.js", 
-  "version": "0.3.39", 
+  "name": "node-polina",
+  "main": "bin/index.js",
+  "version": "0.3.40",
   "scripts": {
     "install": "npm update"
-  }, 
+  },
   "dependencies": {
-    "node-ds": "0.2.29", 
+    "node-ds": "0.2.29",
     "node-util": "0.4.14"
-  }, 
+  },
   "repository": {
-    "type": "git", 
+    "type": "git",
     "url": "git://github.com/LiveTex/Node-Polina.git"
-  }, 
-  "license": "Modified BSD License", 
+  },
+  "license": "Modified BSD License",
   "contributors": [
     {
-      "name": "Sergey Kononenko", 
+      "name": "Sergey Kononenko",
       "email": "kononencheg@gmail.com"
-    }, 
+    },
     {
-      "name": "Evgeny Mikheev", 
+      "name": "Evgeny Mikheev",
       "email": "eudgee@gmail.com"
-    }, 
+    },
     {
-      "name": "Maxim Kalachev", 
+      "name": "Maxim Kalachev",
       "email": "kalachevmax@gmail.com"
-    }, 
+    },
     {
-      "name": "Valeria Lepina", 
+      "name": "Valeria Lepina",
       "email": "divergence082@gmail.com"
-    }, 
+    },
     {
-      "name": "Igor Korshunov", 
+      "name": "Igor Korshunov",
       "email": "igorkorshynov@gmail.com"
     }
   ]
