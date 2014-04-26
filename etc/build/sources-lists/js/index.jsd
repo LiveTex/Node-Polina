@@ -36,14 +36,14 @@ polina/thrift/i-idl.js
 polina/thrift/binery-protocol.js
 
 polina/thrift/simple-value.js
-polina/thrift/numeric-value.js
 polina/thrift/structure-value.js
 polina/thrift/map-value.js
 polina/thrift/array-value.js
 
 polina/thrift/thrift-types.js
 polina/thrift/message-types.js
-polina/thrift/value-factory.js
+polina/thrift/thrift.js
+polina/thrift/int64.js
 
 polina/thrift/client.js
 polina/thrift/packet-handler.js
