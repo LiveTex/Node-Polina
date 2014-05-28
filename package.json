@@ -1,13 +1,13 @@
 {
   "name": "node-polina", 
   "main": "bin/index.js", 
-  "version": "0.3.41", 
+  "version": "0.3.42", 
   "scripts": {
     "install": "npm update"
   }, 
   "dependencies": {
-    "node-ds": "0.2.29", 
-    "node-util": "0.4.14"
+    "node-ds": "0.2.30", 
+    "node-util": "0.4.16"
   }, 
   "repository": {
     "type": "git", 
