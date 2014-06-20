@@ -15,8 +15,8 @@ var t = Date.now();
 var mem = 0;
 
 
-var client = new polina.hsocket.Client(9998, 9999);
-var index = new polina.hsocket.Index('test', 'node_hsocket',
+var client = new polina.hs.Client(9998, 9999);
+var index = new polina.hs.Index('test', 'node_hsocket',
     ['id', 'time'], 'time');
 
 

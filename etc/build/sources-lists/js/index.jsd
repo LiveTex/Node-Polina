@@ -28,17 +28,17 @@ polina/redis/resp/simple-value.js
 polina/redis/resp/value-type.js
 polina/redis/resp/redis-type.js
 
-polina/hsocket/hsocket.js
+polina/hs/hs.js
 
-polina/hsocket/filter-type.js
-polina/hsocket/operation-type.js
-polina/hsocket/modify-operation-type.js
+polina/hs/filter-type.js
+polina/hs/operation-type.js
+polina/hs/modify-operation-type.js
 
-polina/hsocket/data.js
-polina/hsocket/packet-handler.js
+polina/hs/value.js
+polina/hs/packet-handler.js
 
-polina/hsocket/index.js
-polina/hsocket/i-channel.js
-polina/hsocket/read-channel.js
-polina/hsocket/write-channel.js
-polina/hsocket/client.js
+polina/hs/index.js
+polina/hs/i-channel.js
+polina/hs/read-channel.js
+polina/hs/write-channel.js
+polina/hs/client.js
