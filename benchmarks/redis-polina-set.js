@@ -2,6 +2,7 @@ var polina = require('../bin');
 
 var count = 0;
 var step = 1;
+var id = 0;
 
 
 var r = 0;
@@ -13,8 +14,9 @@ var mem = 0;
 var client = new polina.redis.Client(6379);
 
 function exec() {
-  client.set('key', (new Array((1024*10)+1)).join(' '),
-      console.info, console.error);
+  client.set(id.toString(), (new Array((1024*10)+1)).join(' '),
+      complete, cancel);
+  id += 1;
 }
 
 function cancel() {
