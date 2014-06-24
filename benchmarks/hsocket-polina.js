@@ -1,12 +1,14 @@
 
 
-// CREATE TABLE node_hsocket(id INT PRIMARY KEY, time DECIMAL, KEY time (time));
+// CREATE TABLE node_hsocket(id INT PRIMARY KEY, data VARCHAR(11000), KEY data (data));
 
 var polina = require('../bin');
 
 var count = 0;
 var step = 1;
 var id = 0;
+var data = ' ';
+
 
 
 var r = 0;
@@ -15,9 +17,8 @@ var t = Date.now();
 var mem = 0;
 
 
-var client = new polina.hs.Client(9998, 9999);
-var index = new polina.hs.Index('test', 'node_hsocket',
-    ['id', 'time'], 'time');
+var client = new polina.hs.Client(9998, 9999, '192.168.48.14');
+var index = new polina.hs.Index('test', 'node_hsocket', ['id', 'data'], 'data');
 
 
 function cancel() {
@@ -37,7 +38,7 @@ function complete() {
 
 
 function exec() {
-  client.insert([id, Date.now() - t], complete, cancel);
+  client.insert([id, data], complete, cancel);
   id += 1;
 }
 

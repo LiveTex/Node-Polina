@@ -1,8 +1,11 @@
+
+
 var polina = require('../bin');
 
 var count = 0;
 var step = 1;
 var id = 0;
+var data = (new Array((1024*10)+1)).join(' ');
 
 
 var r = 0;
@@ -11,11 +14,10 @@ var t = Date.now();
 var mem = 0;
 
 
-var client = new polina.redis.Client(6379);
+var client = new polina.redis.Client(6379, '192.168.48.14');
 
 function exec() {
-  client.set(id.toString(), (new Array((1024*10)+1)).join(' '),
-      complete, cancel);
+  client.set(id.toString(), data, complete, cancel);
   id += 1;
 }
 
@@ -52,7 +54,3 @@ function run() {
 
 
 run();
-
-
-
-

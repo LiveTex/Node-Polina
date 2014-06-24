@@ -1,12 +1,13 @@
 
 
-// CREATE TABLE node_handlersocket(id INT PRIMARY KEY, time DECIMAL, KEY time (time));
+// CREATE TABLE node_handlersocket(id INT PRIMARY KEY, data VARCHAR(11000), KEY data (data));
 
 var hs = require('node-handlersocket');
 
 var count = 0;
 var step = 1;
 var id = 0;
+var data = (new Array((1024*10)+1)).join(' ');
 
 
 var r = 0;
@@ -15,7 +16,10 @@ var t = Date.now();
 var mem = 0;
 
 
-var con = hs.connect({port: 9999});
+var con = hs.connect({
+  port: 9999,
+  host: '192.168.48.14'
+});
 
 
 function cancel(index) {
@@ -35,7 +39,7 @@ function complete(index) {
 
 
 function exec(index) {
-  index.insert([id, Date.now() - t], function(err) {
+  index.insert([id, data], function(err) {
     if (!err) {
       complete(index);
     } else {
@@ -64,7 +68,7 @@ function run(index) {
 
 
 con.on('connect', function() {
-  con.openIndex('test', 'node_handlersocket', 'time', ['id', 'time'],
+  con.openIndex('test', 'node_handlersocket', 'data', ['id', 'data'],
       function(err, index) {
         if (!err) {
           run(index);
