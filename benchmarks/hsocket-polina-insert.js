@@ -1,13 +1,14 @@
 
 
-// CREATE TABLE node_hsocket(id INT PRIMARY KEY, data VARCHAR(11000), KEY data (data));
+// CREATE TABLE node_hsocket(id INT PRIMARY KEY, data VARCHAR(11000),
+// KEY data (data));
 
 var polina = require('../bin');
 
 var count = 0;
 var step = 1;
 var id = 0;
-var data = ' ';
+var data = (new Array((1024*10)+1)).join(' ');
 
 
 
@@ -30,8 +31,8 @@ function cancel() {
 function complete() {
   mem += process.memoryUsage().heapUsed/1024/1024;
   if ((r += 1) === count) {
-    console.log('[POLINA-HSOCKET] | R:', r, ' | E:', e, ' | T:',
-        Date.now() - t, ' | M:', (Math.round(mem/r*10)/10));
+    console.log(r, ' |', e, ' |', Date.now() - t, ' |',
+        (Math.round(mem/r*10)/10));
     run();
   }
 }

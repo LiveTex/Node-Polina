@@ -31,7 +31,7 @@ var index = new polina.hs.Index('test', 't1', ['id', 'c0']);
 
 client.openIndex(index, function() {
   console.log('INDEX OK');
-  client.insert([5, 8], function(result) {
+  client.insert([12, 1], function(result) {
     console.log('INSERT OK', result);
   }, function(error, code) {
     console.log('INSERT ERROR:', error, code);

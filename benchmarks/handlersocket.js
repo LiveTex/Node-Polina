@@ -1,6 +1,7 @@
 
 
-// CREATE TABLE node_handlersocket(id INT PRIMARY KEY, data VARCHAR(11000), KEY data (data));
+// CREATE TABLE node_handlersocket(id INT PRIMARY KEY, data VARCHAR(11000),
+// KEY data (data));
 
 var hs = require('node-handlersocket');
 
