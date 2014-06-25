@@ -1,5 +1,6 @@
 
 
+
 // CREATE TABLE node_handlersocket(id INT PRIMARY KEY, data VARCHAR(11000),
 // KEY data (data));
 
@@ -7,51 +8,47 @@ var hs = require('node-handlersocket');
 
 var count = 0;
 var step = 1;
-var id = 0;
-var data = (new Array((1024*10)+1)).join(' ');
-
-
 var r = 0;
 var e = 0;
 var t = Date.now();
 var mem = 0;
 
+var index = null;
+
 
 var con = hs.connect({
-  port: 9999,
+  port: 9998,
   host: '192.168.48.14'
 });
 
 
-function cancel(index) {
+function cancel() {
   e += 1;
-  complete(index);
+  complete();
 }
 
 
-function complete(index) {
+function complete() {
   mem += process.memoryUsage().heapUsed/1024/1024;
   if ((r += 1) === count) {
-    console.log('[NODE-HANDLERSOCKET] | R:', r, ' | E:', e, ' | T:',
-        Date.now() - t, ' | M:', (Math.round(mem/r*10)/10));
-    run(index);
+    console.log(r, '|', e, '|', Date.now() - t, '|', (Math.round(mem/r*10)/10));
+    run();
   }
 }
 
 
-function exec(index) {
-  index.insert([id, data], function(err) {
-    if (!err) {
-      complete(index);
+function exec() {
+  index.find('=', [10], function(error, records) {
+    if (!error) {
+      complete();
     } else {
-      cancel(index);
+      cancel();
     }
   });
-  id += 1;
 }
 
 
-function run(index) {
+function run() {
   r = 0;
   e = 0;
   t = Date.now();
@@ -63,16 +60,17 @@ function run(index) {
   }
 
   for (var i = 0; i < count; i += 1) {
-    exec(index);
+    exec();
   }
 }
 
 
 con.on('connect', function() {
-  con.openIndex('test', 'node_handlersocket', 'data', ['id', 'data'],
-      function(err, index) {
+  con.openIndex('test', 'node_handlersocket', 'PRIMARY', ['id', 'data'],
+      function(err, ind) {
+        index = ind;
         if (!err) {
-          run(index);
+          run();
         } else {
           console.log('open_index error:', err);
         }
