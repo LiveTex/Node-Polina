@@ -23,14 +23,16 @@ client.peekReady(function(jid) {
 
   client.statsTube(function(result) {
 
-    console.log('STATS:', result);
+//    console.log('STATS:', result);
+    console.log('STATS');
 
     client.delete(jid, function() {
 
       console.log('job', jid, 'DELETED');
 
       client.statsTube(function(result) {
-        console.log('STATS:', result);
+//        console.log('STATS:', result);
+        console.log('STATS');
       });
     }, console.error);
   });
