@@ -1,6 +1,7 @@
 
 polina/polina.js
 polina/cursor.js
+polina/i-value.js
 polina/i-packet-handler.js
 polina/connection.js
 
@@ -9,6 +10,7 @@ polina/beans/client.js
 polina/beans/tube.js
 polina/beans/user.js
 polina/beans/watcher.js
+polina/beans/value.js
 polina/beans/packet-handler.js
 polina/beans/users-bundle.js
 
@@ -21,7 +23,6 @@ polina/redis/packet-handler.js
 polina/redis/script-invoke.js
 
 polina/redis/resp/resp.js
-polina/redis/resp/i-value.js
 polina/redis/resp/bulk-value.js
 polina/redis/resp/arr-value.js
 polina/redis/resp/simple-value.js
