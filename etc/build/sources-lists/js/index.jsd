@@ -1,5 +1,6 @@
 
 polina/polina.js
 polina/cursor.js
+polina/packet.js
 polina/packet-handler.js
 polina/connection.js
