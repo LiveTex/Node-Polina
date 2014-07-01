@@ -1,12 +1,20 @@
+
 var polina = require('../bin');
 
-var client = new polina.hbase.Client(9090);
+var client = new polina.thrift.Client(9090);
 
-client.writeMethod('getTableNames');
+var methodName = 'isTableEnabled';
+var args=[];
+
+var tableName = new polina.thrift.Argument({type: polina.thrift.Types.STRING, value: 't1', id: 1});
+var row = new polina.thrift.Argument({type: polina.thrift.Types.STRING, value: 'r1', id: 2});
+var column = new polina.thrift.Argument({type: polina.thrift.Types.STRING, value: 'c1', id: 3});
+var attributes = new polina.thrift.Argument({type: polina.thrift.Types.MAP, value: {}, id: 4});
+
+args = [tableName];
 
 
-
-
+client.writeMethod(methodName, args, console.log);
 
 //var net = require('net');
 //var socket = net.createConnection(9090,'localhost');
