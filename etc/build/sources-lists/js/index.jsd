@@ -1,17 +1,6 @@
 
 polina/polina.js
 polina/cursor.js
-polina/i-packet-handler.js
-polina/header.js
-polina/body.js
+polina/i-packet.js
 polina/packet-handler.js
 polina/connection.js
-
-polina/beans/protocol/protocol.js
-polina/beans/beans.js
-polina/beans/client.js
-polina/beans/tube.js
-polina/beans/user.js
-polina/beans/users-bundle.js
-polina/beans/watcher.js
-
