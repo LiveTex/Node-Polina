@@ -1,7 +1,7 @@
 {
   "name": "node-polina",
   "main": "bin/index.js",
-  "version": "0.3.34",
+  "version": "0.3.34-fix",
   "scripts": {
     "install": "npm update"
   },
