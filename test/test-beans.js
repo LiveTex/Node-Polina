@@ -19,17 +19,17 @@ client.put(1, 0, ttr, 'job2', putComplete, console.error);
 
 client.peekReady(function(jid, body) {
   console.log('job', jid, 'PICKED');
-//  client.statsTube(function(result) {
-////    console.log('STATS:', result);
-//    console.log('STATS');
-//    client.delete(jid, function() {
-//      console.log('job', jid, 'DELETED');
-//      client.statsTube(function(result) {
-////        console.log('STATS:', result);
-//        console.log('STATS');
-//      }, console.error);
-//    }, console.error);
-//  }, console.error);
+  client.statsTube(function(result) {
+//    console.log('STATS:', result);
+    console.log('STATS');
+    client.delete(jid, function() {
+      console.log('job', jid, 'DELETED');
+      client.statsTube(function(result) {
+//        console.log('STATS:', result);
+        console.log('STATS');
+      }, console.error);
+    }, console.error);
+  }, console.error);
 }, console.error);
 
 
