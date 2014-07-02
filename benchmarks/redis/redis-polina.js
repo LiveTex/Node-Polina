@@ -12,15 +12,16 @@ var mem = 0;
 
 var data = (new Array((1024*10)+1)).join(' ');
 //var data = 'my_data';
-var client = new polina.redis.Client(6379);
+var client = new polina.redis.Client(6379, '192.168.48.14');
 
 
 function complete() {
   mem += process.memoryUsage().heapUsed/1024/1024;
 
   if ((r += 1) === count) {
-    console.log('[REDIS-POLINA] | R:', r, ' | E:', e,
-        ' | T:', Date.now() - t, ' | M:', (Math.round(mem/r*10)/10));
+    console.log(r.toString() + ' | ' + e.toString() +
+        ' | ' + (Date.now() - t).toString() +
+        ' | ' + (Math.round(mem/r*10)/10).toString());
     run();
   }
 }
@@ -33,7 +34,13 @@ function cancel() {
 
 
 function exec() {
-  client.get('key', complete, cancel);
+  client.get('key', function(result) {
+    if (result === data) {
+      complete();
+    } else {
+      cancel();
+    }
+  }, cancel);
 }
 
 
