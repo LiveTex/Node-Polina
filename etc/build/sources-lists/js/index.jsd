@@ -7,8 +7,7 @@ polina/packet-handler.js
 polina/connection.js
 
 
-polina/redis/redis.js
-polina/redis/resp/response-status.js
+polina/redis/resp/data-type.js
 polina/redis/resp/header.js
 polina/redis/resp/packet.js
 polina/redis/resp/resp.js
