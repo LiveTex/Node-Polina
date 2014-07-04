@@ -3,7 +3,8 @@
 var assert = require('assert');
 var polina = require('../../bin/index.js');
 
-var client = new polina.redis.Client(6379, '192.168.48.14');
+//var client = new polina.redis.Client(6379, '192.168.48.14');
+var client = new polina.redis.Client(6379);
 
 
 function createKeys() {
@@ -13,41 +14,56 @@ function createKeys() {
     client.set(i.toString(), data, polina.nop, console.error);
     i += 1;
   }
-  console.log('keys created');
 }
 
 
-function testDel() {
+function testDEL() {
+  client.del('10', polina.nop, console.error);
+  client.keys('10', function(keys) {
+    assert.deepEqual(keys, [], 'del');
+  }, console.error);
 
 }
 
 
-function testExpire() {
-
-}
-
-
-function testKeys() {
-  client.keys('1*', function(keys) {
-    console.log('KEYS:', keys);
+function testEXPIRE() {
+  client.expire('11', 2, function(result) {
+    assert.deepEqual(result, 1, 'expire');
+    var time = Date.now();
+    while (1) {
+      if (Date.now() - time > 5000) {
+        client.expire('11', 2, function(result) {
+          assert.deepEqual(result, 0, 'expire');
+        }, console.error);
+        break;
+      }
+    }
   }, console.error);
 }
 
 
-function testPersist() {
+function testKEYS() {
+  client.keys('*', function(keys) {
+    assert.deepEqual(keys.length, 100, 'keys');
+  }, console.error);
+}
 
+
+function testPERSIST() {
+  client.persist('10', function(result) {
+    assert.deepEqual(result, 0, 'persist');
+  }, console.error);
 }
 
 
 function testScan() {
-
+  client.scan('0', console.info, console.error);
 }
 
 
-//polina.redis.IClient.prototype.del
-//polina.redis.IClient.prototype.expire
-//polina.redis.IClient.prototype.keys
-//polina.redis.IClient.prototype.persist
-//polina.redis.IClient.prototype.scan
 createKeys();
-testKeys();
+testKEYS();
+testDEL();
+testEXPIRE();
+testScan();
+testPERSIST();
