@@ -6,6 +6,17 @@ polina/packet.js
 polina/packet-handler.js
 polina/connection.js
 
+polina/beans/beans.js
+polina/beans/protocol/status.js
+polina/beans/protocol/header.js
+polina/beans/protocol/packet.js
+polina/beans/protocol/protocol.js
+polina/beans/tube.js
+polina/beans/client.js
+polina/beans/user.js
+polina/beans/users-bundle.js
+polina/beans/watcher.js
+
 
 polina/redis/redis.js
 polina/redis/resp/data-type.js
