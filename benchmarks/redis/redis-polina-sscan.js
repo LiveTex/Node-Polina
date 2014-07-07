@@ -15,7 +15,7 @@ var data = [];
 
 var i = 0;
 while (i < ((1024*10)+1)) {
-  data.push(i.toString() + '_test_data');
+  data.push(' ');
   i += 1;
 }
 
@@ -84,7 +84,6 @@ function run() {
   }
 
   for (var i = 0; i < count; i += 1) {
-    console.log(i, count);
     exec();
   }
 }
