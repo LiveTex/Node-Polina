@@ -10,9 +10,43 @@ var e = 0;
 var t = Date.now();
 var mem = 0;
 
-var data = (new Array((1024*10)+1)).join(' ');
-//var data = 'my_data';
-var client = new polina.redis.Client(6379, '192.168.48.14');
+var client = new polina.redis.Client(6379);
+var data = [];
+
+var i = 0;
+while (i < ((1024*10)+1)) {
+  data.push(i.toString() + '_test_data');
+  i += 1;
+}
+
+
+function createKeys(complete) {
+
+  var i = 0;
+  var j = 0;
+
+  function iComplete() {
+    if (i < 10) {
+      j = 0;
+      jComplete();
+    } else {
+      complete();
+    }
+  }
+
+  function jComplete() {
+    if (j < 5) {
+      j += 1;
+      client.sadd(i.toString(), data, jComplete, console.error);
+    } else {
+      i += 1;
+      iComplete();
+    }
+  }
+
+  iComplete();
+
+}
 
 
 function complete() {
@@ -34,13 +68,7 @@ function cancel() {
 
 
 function exec() {
-  client.get('key', function(result) {
-    if (result === data) {
-      complete();
-    } else {
-      cancel();
-    }
-  }, cancel);
+  client.sscan('2', '0', complete, cancel);
 }
 
 
@@ -56,17 +84,11 @@ function run() {
   }
 
   for (var i = 0; i < count; i += 1) {
+    console.log(i, count);
     exec();
   }
 }
 
 
-client.set('key', data, function() {
-  console.log('[REDIS-POLINA]');
-  console.log('   R   |   E   |   T    |   M  ');
-  run();
-}, console.error);
-
-
-
+createKeys(run);
 
