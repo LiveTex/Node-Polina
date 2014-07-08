@@ -10,7 +10,7 @@ var e = 0;
 var t = Date.now();
 var mem = 0;
 
-var client = new polina.redis.Client(6379);
+var client = new polina.redis.Client(6379, '192.168.48.14');
 var data = [];
 
 var i = 0;
@@ -21,7 +21,6 @@ while (i < ((1024*10)+1)) {
 
 
 function createKeys(complete) {
-
   var i = 0;
   var j = 0;
 
@@ -45,7 +44,6 @@ function createKeys(complete) {
   }
 
   iComplete();
-
 }
 
 
@@ -61,7 +59,8 @@ function complete() {
 }
 
 
-function cancel() {
+function cancel(error) {
+  console.log(error);
   e += 1;
   complete();
 }
