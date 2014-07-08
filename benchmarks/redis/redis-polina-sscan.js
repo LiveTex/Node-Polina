@@ -1,6 +1,6 @@
 
 
-var polina = require('../../bin');
+var polina = require('../../bin/index.js');
 
 var count = 0;
 var step = 1;
@@ -14,8 +14,8 @@ var client = new polina.redis.Client(6379, '192.168.48.14');
 var data = [];
 
 var i = 0;
-while (i < ((1024*10)+1)) {
-  data.push(' ');
+while (i < 1024) {
+  data.push(i.toString());
   i += 1;
 }
 
