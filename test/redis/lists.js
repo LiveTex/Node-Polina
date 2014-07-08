@@ -3,7 +3,6 @@
 var assert = require('assert');
 var polina = require('../../bin/index.js');
 
-//var client = new polina.redis.Client(6379, '192.168.48.14');
 var client = new polina.redis.Client(6379);
 
 
@@ -35,6 +34,7 @@ function checkCustom(functionName, result, expected, complete) {
 }
 
 //------------------------------------------------------------------------------
+
 
 function testLSET(complete, cancel) {
   client.rpush('myList', ['b', 'b', 'c'], function(rpushResult) {
