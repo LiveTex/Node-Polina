@@ -1,6 +1,6 @@
 
 
-var polina = require('../../bin');
+var polina = require('../../bin/index.js');
 
 var count = 0;
 var step = 1;
