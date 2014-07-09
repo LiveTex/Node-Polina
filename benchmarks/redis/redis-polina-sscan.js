@@ -51,9 +51,9 @@ function complete() {
   mem += process.memoryUsage().heapUsed/1024/1024;
 
   if ((r += 1) === count) {
-    console.log(r.toString() + ' | ' + e.toString() +
-        ' | ' + (Date.now() - t).toString() +
-        ' | ' + (Math.round(mem/r*10)/10).toString());
+//    console.log(r.toString() + ' | ' + e.toString() +
+//        ' | ' + (Date.now() - t).toString() +
+//        ' | ' + (Math.round(mem/r*10)/10).toString());
     run();
   }
 }
