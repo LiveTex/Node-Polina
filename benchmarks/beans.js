@@ -13,7 +13,6 @@ var e = 0;
 var t = Date.now();
 var mem = 0;
 
-console.log(r);
 
 client.connect('127.0.0.1:11300', function(err, client) {
   function exec() {
