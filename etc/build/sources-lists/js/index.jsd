@@ -5,12 +5,13 @@ polina/i-packet-handler.js
 polina/connection.js
 
 polina/beans/beans.js
-polina/beans/client.js
-polina/beans/tube.js
-polina/beans/user.js
-polina/beans/watcher.js
+polina/beans/status.js
 polina/beans/packet-handler.js
+polina/beans/tube.js
+polina/beans/client.js
+polina/beans/user.js
 polina/beans/users-bundle.js
+polina/beans/watcher.js
 
 polina/redis/redis.js
 polina/redis/i-client.js
