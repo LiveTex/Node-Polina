@@ -1,29 +1,19 @@
 
 polina/polina.js
 polina/cursor.js
-polina/i-packet-handler.js
+polina/i-packet.js
+polina/packet-handler.js
 polina/connection.js
 
-polina/beans/beans.js
-polina/beans/client.js
-polina/beans/tube.js
-polina/beans/user.js
-polina/beans/watcher.js
-polina/beans/packet-handler.js
-polina/beans/users-bundle.js
 
 polina/redis/redis.js
-polina/redis/i-client.js
-polina/redis/client.js
-polina/redis/bucket.js
-polina/redis/bundle.js
-polina/redis/packet-handler.js
-polina/redis/script-invoke.js
-
+polina/redis/resp/data-type.js
+polina/redis/resp/header.js
+polina/redis/resp/body.js
+polina/redis/resp/packet.js
 polina/redis/resp/resp.js
-polina/redis/resp/i-value.js
-polina/redis/resp/bulk-value.js
-polina/redis/resp/arr-value.js
-polina/redis/resp/simple-value.js
-polina/redis/resp/value-type.js
-polina/redis/resp/redis-type.js
+polina/redis/i-client.js
+polina/redis/script.js
+polina/redis/client.js
+polina/redis/bundle.js
+polina/redis/bucket.js
