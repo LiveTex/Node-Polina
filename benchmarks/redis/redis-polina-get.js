@@ -27,7 +27,8 @@ function complete() {
 }
 
 
-function cancel() {
+function cancel(error) {
+  console.log(error);
   e += 1;
   complete();
 }
