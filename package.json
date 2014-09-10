@@ -7,8 +7,9 @@
   }, 
   "dependencies": {
     "node-ds": "0.2.30", 
-    "node-util": "0.4.16"
-  }, 
+    "node-util": "0.4.16",
+    "livetex-shtani": "0.0.1"
+  },
   "repository": {
     "type": "git", 
     "url": "git://github.com/LiveTex/Node-Polina.git"

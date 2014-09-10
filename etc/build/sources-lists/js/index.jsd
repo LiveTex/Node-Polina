@@ -28,3 +28,17 @@ polina/redis/resp/arr-value.js
 polina/redis/resp/simple-value.js
 polina/redis/resp/value-type.js
 polina/redis/resp/redis-type.js
+
+
+polina/hbase/batch-mutation.js
+polina/hbase/client.js
+polina/hbase/column-descriptor.js
+polina/hbase/idl.js
+polina/hbase/mutation.js
+polina/hbase/tcell.js
+polina/hbase/tcolumn.js
+polina/hbase/tincrement.js
+polina/hbase/tregion-info.js
+polina/hbase/trow-result.js
+polina/hbase/tscan.js
+
